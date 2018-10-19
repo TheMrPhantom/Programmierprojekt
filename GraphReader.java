@@ -76,6 +76,9 @@ public class GraphReader {
 
 	}
 
+	/**
+	 * Reads data of given path and saves them into respective arrays. This method is faster due multiple threads.
+	 */
 	public void readDataFast(String path) {
 		File file = new File("./" + path);
 		int numOfNodes = 0;
@@ -125,14 +128,32 @@ public class GraphReader {
 
 	}
 
+	/**
+	 * 
+	 * Gets the indices of the nodes
+	 * 
+	 * @return An array with the indices
+	 */
 	public int[] getIndices() {
 		return this.indices;
 	}
 
+	/**
+	 * 
+	 * Gets the coordinates list
+	 * 
+	 * @return An Array of coordinates always 2 indices forming one coordinate
+	 */
 	public double[] getCoordinates() {
 		return this.coordinates;
 	}
 
+	/**
+	 * 
+	 * Gets the Edges
+	 * 
+	 * @return An array with the form [n]=src, [n+1]=trgt, [n+2]=costs
+	 */
 	public int[] getEdges() {
 		return this.edges;
 	}

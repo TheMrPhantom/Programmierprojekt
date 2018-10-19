@@ -19,6 +19,9 @@ public class EdgeReader extends CustomReader {
 		this.numOfNodes = numOfNodes;
 	}
 
+	/**
+	 * Reads the edges and stores it in the array
+	 */
 	@Override
 	public void run() {
 		System.out.println("Started reading Edges");
@@ -47,6 +50,13 @@ public class EdgeReader extends CustomReader {
 		}
 	}
 
+	/**
+	 * 
+	 * Return the read edges
+	 * 
+	 * @return The edges as array
+	 * @throws IllegalStateException If the thread has not finished reading the file
+	 */
 	public int[] getEdges() {
 		if (!isFinished) {
 			throw new IllegalStateException("The thread has not finished it's work or the reading failed!");

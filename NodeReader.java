@@ -17,6 +17,9 @@ public class NodeReader extends CustomReader {
 		this.numOfNodes = numOfNodes;
 	}
 
+	/**
+	 * Reads the coordinates and stores it in the array
+	 */
 	@Override
 	public void run() {
 		System.out.println("Started reading Nodes");
@@ -43,6 +46,13 @@ public class NodeReader extends CustomReader {
 
 	}
 
+	/**
+	 * 
+	 * Return the read coordinates
+	 * 
+	 * @return The coordinates as array
+	 * @throws IllegalStateException If the thread has not finished reading the file
+	 */
 	public double[] getCoordinates() {
 		if (!isFinished) {
 			throw new IllegalStateException("The thread has not finished it's work or the reading failed!");
