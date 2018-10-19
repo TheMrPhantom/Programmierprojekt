@@ -10,7 +10,7 @@ class Main{
         if(f.isFile()){
             System.out.println("File found");
             GraphReader r = new GraphReader(f);
-            r.readData(args[0]);
+            r.readData();
         } else {
             System.err.println("File does not exist or is a directory");
             System.exit(1);

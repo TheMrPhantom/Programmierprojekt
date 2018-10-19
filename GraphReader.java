@@ -1,16 +1,18 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.File;
-import java.util.ArrayList;
 
 public class GraphReader{
 
     private int[] indices;
     private double[] coordinates;
     private int[] edges;
+    File file;
 
-    public void readData(String path){
-        File file = new File("./" + path);
+    public GraphReader(File f){
+        this.file = f;
+    }
+    public void readData(){
         BufferedReader br = null;
 
         try{
