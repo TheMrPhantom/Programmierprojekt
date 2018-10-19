@@ -1,5 +1,7 @@
 package de.test.uni_stuttgart;
 
+import java.io.File;
+
 class Main{
     public static void main(String[] args) {
         //germany.fmi
@@ -13,5 +15,6 @@ class Main{
         }
         GraphReader r = new GraphReader(new File(args[0]));
         r.readData();
+        r.readDataFast();
     }
 }

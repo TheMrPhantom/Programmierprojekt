@@ -79,8 +79,7 @@ public class GraphReader {
 	/**
 	 * Reads data of given path and saves them into respective arrays. This method is faster due multiple threads.
 	 */
-	public void readDataFast(String path) {
-		File file = new File("./" + path);
+	public void readDataFast() {
 		int numOfNodes = 0;
 		int numOfEdges = 0;
 
