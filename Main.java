@@ -1,19 +1,13 @@
 import java.io.File;
 
-class Main{
+class Main {
     public static void main(String[] args) {
-        if(args.length != 1){
-            System.err.println("Invalid amount of arguments - only one argument is allowed");
+        if (args.length != 1) {
+            System.err.print("Invalid amount of arguments - ");
+            System.err.println((args.length > 1) ? "only one argument is allowed" : "one argument is required");
             System.exit(1);
         }
-        File f = new File(args[0]);
-        if(f.isFile()){
-            System.out.println("File found");
-            GraphReader r = new GraphReader(f);
-            r.readData();
-        } else {
-            System.err.println("File does not exist or is a directory");
-            System.exit(1);
-        }
+        GraphReader r = new GraphReader(new File(args[0]));
+        r.readData();
     }
 }

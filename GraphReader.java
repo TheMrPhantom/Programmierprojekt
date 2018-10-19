@@ -9,9 +9,22 @@ public class GraphReader{
     private int[] edges;
     File file;
 
+    /**
+     * Constructor of GraphReader
+     * @param f is a File object for the graph data file
+     */
     public GraphReader(File f){
+        if(f == null || !f.isFile()){
+            System.err.println("File does not exist or is a directory");
+            System.exit(1);
+        }
         this.file = f;
+        System.out.println("File found: " + this.file.getAbsolutePath());
     }
+
+    /**
+     * Reads data of given path and saves them into respective arrays.
+     */
     public void readData(){
         BufferedReader br = null;
 
