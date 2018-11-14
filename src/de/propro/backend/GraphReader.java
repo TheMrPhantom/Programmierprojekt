@@ -1,4 +1,4 @@
-package de.test.uni_stuttgart;
+package de.propro.backend;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -26,6 +26,7 @@ public class GraphReader {
 		}
 		this.file = f;
 		System.out.println("File found: " + this.file.getAbsolutePath());
+		System.out.println("Graph reader initialized");
 	}
 
 	/**

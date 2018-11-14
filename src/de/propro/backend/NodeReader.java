@@ -1,4 +1,4 @@
-package de.test.uni_stuttgart;
+package de.propro.backend;
 
 import java.io.BufferedReader;
 import java.io.File;
