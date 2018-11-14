@@ -31,7 +31,6 @@ public class EdgeReader extends CustomReader {
 			for (int i = 0; i < numOfNodes + 7; i++) {
 				br.readLine();
 			}
-			System.out.println("Finished skipping Edges");
 			for (int i = 0; i < numOfEdges; i++) {
 				sArr = br.readLine().split(" ");
 				// Source ID

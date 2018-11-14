@@ -16,8 +16,7 @@ public class GraphReader {
 	/**
 	 * Constructor of GraphReader
 	 * 
-	 * @param f
-	 *            is a File object for the graph data file
+	 * @param f is a File object for the graph data file
 	 */
 	public GraphReader(File f) {
 		if (f == null || !f.isFile()) {
@@ -27,6 +26,7 @@ public class GraphReader {
 		this.file = f;
 		System.out.println("File found: " + this.file.getAbsolutePath());
 		System.out.println("Graph reader initialized");
+		System.out.println();
 	}
 
 	/**
@@ -78,7 +78,8 @@ public class GraphReader {
 	}
 
 	/**
-	 * Reads data of given path and saves them into respective arrays. This method is faster due multiple threads.
+	 * Reads data of given path and saves them into respective arrays. This method
+	 * is faster due multiple threads.
 	 */
 	public void readDataFast() {
 		int numOfNodes = 0;
@@ -125,7 +126,7 @@ public class GraphReader {
 		this.coordinates = nodes.getCoordinates();
 
 		System.out.println("Finished reading. Time elapsed: " + (double) (System.nanoTime() - time) / 1000000000f);
-
+		System.out.println();
 	}
 
 	/**
