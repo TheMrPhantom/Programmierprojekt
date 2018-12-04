@@ -3,6 +3,8 @@ package de.propro.backend;
 import java.io.File;
 import java.util.Scanner;
 
+import org.jgrapht.util.FibonacciHeapNode;
+
 class Main {
 
 	private GraphReader reader;
@@ -18,7 +20,7 @@ class Main {
 		// bw.fmi
 
 		Main main = new Main();
-		main.testHeap();
+		
 		
 		if (args.length == 0) {
 			printHelp();
@@ -96,17 +98,18 @@ class Main {
 	}
 
 	public void testHeap() {
-		MinHeap min = new MinHeap();
-		min.push(4, 1);
+		MinHeap min = new MinHeap(4);
+		min.push(1, 7);
 		min.push(2, 5);
-		min.push(1, 2);
-		min.push(7, 8);
+		min.push(3, 2);
+		min.push(4, 8);
 
-		min.decreaseValue(7, 4);
+		min.decreaseValue(0, 3);
 		
 		while(!min.isEmpty()) {
 			System.out.println(min.pop());
 		}
+		System.exit(0);
 	}
 	
 }
