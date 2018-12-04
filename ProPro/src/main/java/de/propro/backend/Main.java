@@ -1,9 +1,6 @@
 package de.propro.backend;
 
-import java.io.File;
 import java.util.Scanner;
-
-import org.jgrapht.util.FibonacciHeapNode;
 
 class Main {
 
