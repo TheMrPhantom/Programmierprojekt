@@ -11,12 +11,14 @@ public class EdgeReader extends CustomReader {
 	private int[] edges;
 	private final int numOfEdges;
 	private final int numOfNodes;
+	private int[] indices;
 
 	public EdgeReader(File file, int numOfNodes, int numOfEdges) {
 		super(file);
 		this.edges = new int[3 * numOfEdges];
 		this.numOfEdges = numOfEdges;
 		this.numOfNodes = numOfNodes;
+		this.indices = new int[numOfNodes];
 	}
 
 	/**
@@ -31,10 +33,19 @@ public class EdgeReader extends CustomReader {
 			for (int i = 0; i < numOfNodes + 7; i++) {
 				br.readLine();
 			}
+			int index = -1;
+			int lastID = -1;
+			int sID = 0;
 			for (int i = 0; i < numOfEdges; i++) {
 				sArr = br.readLine().split(" ");
 				// Source ID
-				edges[i * 3 + 0] = Integer.parseInt(sArr[0]);
+				sID = Integer.parseInt(sArr[0]);
+				edges[i * 3 + 0] = sID;
+				index++;
+				if(lastID != sID){
+					indices[sID] = index;
+				}
+				lastID = sID;
 				// Target ID
 				edges[i * 3 + 1] = Integer.parseInt(sArr[1]);
 				// Costs
@@ -61,6 +72,13 @@ public class EdgeReader extends CustomReader {
 			throw new IllegalStateException("The thread has not finished it's work or the reading failed!");
 		}
 		return edges;
+	}
+
+	public int[] getIndices() {
+		if (!isFinished) {
+			throw new IllegalStateException("The thread has not finished it's work or the reading failed!");
+		}
+		return indices;
 	}
 
 }

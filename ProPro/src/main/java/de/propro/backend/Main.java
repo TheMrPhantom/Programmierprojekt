@@ -82,7 +82,7 @@ class Main {
 	}
 
 	private void initGraph(String filename) {
-		this.reader = new GraphReader(new File(filename));
+		this.reader = new GraphReader(filename);
 		this.reader.readDataFast();
 	}
 
