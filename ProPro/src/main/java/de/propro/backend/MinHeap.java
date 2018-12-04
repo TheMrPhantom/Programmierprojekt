@@ -4,14 +4,14 @@ import org.jgrapht.util.*;
 
 public class MinHeap {
 
-	FibonacciHeap<Integer> heap;
+	private FibonacciHeap<Integer> heap;
 
 	public MinHeap() {
 		heap = new FibonacciHeap<Integer>();
 	}
 
 	public void push(int nodeIdx, int value) {
-		heap.insert(new FibonacciHeapNode<Integer>(value), nodeIdx);
+		heap.insert(new FibonacciHeapNode<Integer>(nodeIdx), value);
 	}
 
 	public int pop() {
@@ -21,6 +21,10 @@ public class MinHeap {
 	}
 	
 	public void decreaseValue(int nodeIdx, int value) {
-		heap.decreaseKey(new FibonacciHeapNode<Integer>(value), nodeIdx);
+		heap.decreaseKey(new FibonacciHeapNode<Integer>(nodeIdx), value);
+	}
+	
+	public boolean isEmpty() {
+		return heap.isEmpty();
 	}
 }
