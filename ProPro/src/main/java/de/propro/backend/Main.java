@@ -100,8 +100,10 @@ class Main {
 		min.push(4, 1);
 		min.push(2, 5);
 		min.push(1, 2);
-		min.push(7, 3);
+		min.push(7, 8);
 
+		min.decreaseValue(7, 4);
+		
 		while(!min.isEmpty()) {
 			System.out.println(min.pop());
 		}

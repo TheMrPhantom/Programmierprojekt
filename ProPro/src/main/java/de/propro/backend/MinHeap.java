@@ -21,7 +21,7 @@ public class MinHeap {
 	}
 	
 	public void decreaseValue(int nodeIdx, int value) {
-		heap.decreaseKey(new FibonacciHeapNode<Integer>(nodeIdx), value);
+		heap.decreaseKey(new FibonacciHeapNode<Integer>(value), nodeIdx);
 	}
 	
 	public boolean isEmpty() {
