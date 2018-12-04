@@ -18,7 +18,8 @@ class Main {
 		// bw.fmi
 
 		Main main = new Main();
-
+		main.testHeap();
+		
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -70,8 +71,7 @@ class Main {
 		System.out.println("\tParam -h:\tShows how to start the programm");
 		System.out.println("\tParam -f:\tSpecify the file to load");
 		System.out.println("\t\t\tExample: java -jar ProPro.jar -f germany.fmi");
-	
-		
+
 	}
 
 	private void printIllegalArgumentsMessage() {
@@ -94,4 +94,19 @@ class Main {
 		int output = Integer.parseInt(scan.nextLine());
 		return output;
 	}
+
+	public void testHeap() {
+		MinHeap min = new MinHeap();
+		min.push(4, 1);
+		min.push(2, 5);
+		min.push(1, 2);
+		min.push(7, 8);
+
+		min.decreaseValue(7, 4);
+		
+		while(!min.isEmpty()) {
+			System.out.println(min.pop());
+		}
+	}
+	
 }
