@@ -1,4 +1,6 @@
 ProPro/.gradle/
 /bin/
 
+ProPro/build/
+ProPro/bin/
 *.fmi

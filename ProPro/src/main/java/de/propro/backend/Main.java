@@ -20,13 +20,11 @@ class Main {
 		Main main = new Main();
 
 		if (args.length == 0) {
-			System.err.print("Invalid amount of arguments!");
+			printHelp();
+			return;
 		} else {
 			if (args[0].equals("-h")) {
-				System.out.println("Usage:");
-				System.out.println("\tParam -h:\tShows how to start the programm");
-				System.out.println("\tParam -f:\tSpecify the file to load");
-				System.out.println("\t\t\tExample: java -jar graphProgramm -f germany.fmi");
+				printHelp();
 			} else if (args[0].equals("-f")) {
 				if (args.length > 1) {
 					main.initGraph(args[1]);
@@ -67,8 +65,17 @@ class Main {
 
 	}
 
+	private static void printHelp() {
+		System.out.println("Usage:");
+		System.out.println("\tParam -h:\tShows how to start the programm");
+		System.out.println("\tParam -f:\tSpecify the file to load");
+		System.out.println("\t\t\tExample: java -jar ProPro.jar -f germany.fmi");
+	
+		
+	}
+
 	private void printIllegalArgumentsMessage() {
-		System.err.print("Invalid arguments");
+		System.err.println("Invalid arguments");
 		System.exit(1);
 	}
 
