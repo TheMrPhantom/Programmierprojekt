@@ -1,6 +1,5 @@
 package de.propro.backend;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -28,32 +27,50 @@ public class Dijkstra {
 	}
 
 	public ArrayList<Integer> startToEnd(int start, int end) {
+		System.out.println("Starting start to end");
 		priorityQueue.decreaseValue(start, 0);
-		int popedNode = Integer.MIN_VALUE;
+		int popedNode = start;
 		nodeCost[popedNode] = 0;
 
 		while (popedNode != end) {
-			for (int i = reader.getIndices()[popedNode]; reader.getEdges()[i] == popedNode; i += 3) {
+			int init = reader.getIndices()[popedNode];
+			if (init == -1) {
+				popedNode = priorityQueue.pop();
+				continue;
+			}
+			for (int i = init; reader.getEdges()[i] == popedNode; i += 3) {
 				if (reader.getEdges()[i + 2] + nodeCost[popedNode] < nodeCost[reader.getEdges()[i + 1]]) {
 					nodeCost[reader.getEdges()[i + 1]] = reader.getEdges()[i + 2] + nodeCost[popedNode];
+					priorityQueue.decreaseValue(reader.getEdges()[i + 1],
+							reader.getEdges()[i + 2] + nodeCost[popedNode]);
 					lastNode[reader.getEdges()[i + 1]] = popedNode;
 				}
+
 			}
+
 			popedNode = priorityQueue.pop();
 		}
 
+		System.out.println("Finished start to end Dijkstra");
+		System.out.println("Starting to collect path");
 		Stack<Integer> rawPath = new Stack<Integer>();
 		int temp = end;
+		int counter = 0;
+		rawPath.add(temp);
 		while (temp != start) {
-			temp = lastNode[end];
+			temp = lastNode[temp];
 			rawPath.add(temp);
+			counter++;
+			System.out.println(counter + " " + temp);
 		}
+
+		System.out.println(counter);
 
 		ArrayList<Integer> outputPath = new ArrayList<Integer>();
 		while (!rawPath.isEmpty()) {
 			outputPath.add(rawPath.pop());
 		}
-
+		System.out.println("Finished collecting path");
 		return outputPath;
 	}
 

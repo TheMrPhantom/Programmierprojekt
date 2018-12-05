@@ -47,7 +47,7 @@ public class EdgeReader extends CustomReader {
 				edges[i * 3 + 0] = sID;
 				// index++;
 				if (lastID != sID) {
-					indices[sID] = i;
+					indices[sID] = i*3;
 				}
 				lastID = sID;
 				// Target ID

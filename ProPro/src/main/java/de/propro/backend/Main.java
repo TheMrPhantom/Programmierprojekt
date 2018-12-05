@@ -1,5 +1,6 @@
 package de.propro.backend;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class Main {
@@ -17,7 +18,8 @@ class Main {
 		// bw.fmi
 
 		Main main = new Main();
-
+		main.initGraph("bw.fmi");
+		main.startToEnd(100,200,main.reader);
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -45,7 +47,7 @@ class Main {
 			}
 			switch (input) {
 			case 0:
-				main.startToEnd(main.reader);
+				//main.startToEnd(main.reader);
 				break;
 			case 1:
 
@@ -64,8 +66,15 @@ class Main {
 
 	}
 
-	private void startToEnd(GraphReader reader) {
-		Dijkstra dijkstra = new Dijkstra(reader.getIndices().length);
+	private void startToEnd(int start,int end,GraphReader reader) {
+		Dijkstra dijkstra = new Dijkstra(reader);
+		ArrayList<Integer> output=dijkstra.startToEnd(start, end);
+		
+		System.out.println("Path is "+output.size()+" long");
+		
+		for(Integer i:output) {
+			System.out.println(i);
+		}
 	}
 
 	private static void printHelp() {
