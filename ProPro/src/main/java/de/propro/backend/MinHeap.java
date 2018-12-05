@@ -44,7 +44,7 @@ public class MinHeap {
 	 * @param value   The cost of the node
 	 * 
 	 */
-	public void push(int nodeIdx, int value) {
+	public void push(int nodeIdx, double value) {
 		FibonacciHeapNode<Integer> node = new FibonacciHeapNode<Integer>(nodeIdx);
 		heap.insert(node, value);
 		nodes[counter] = node;

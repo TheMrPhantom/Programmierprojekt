@@ -17,8 +17,7 @@ class Main {
 		// bw.fmi
 
 		Main main = new Main();
-		
-		
+
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -46,7 +45,7 @@ class Main {
 			}
 			switch (input) {
 			case 0:
-
+				main.startToEnd(main.reader);
 				break;
 			case 1:
 
@@ -63,6 +62,10 @@ class Main {
 			}
 		}
 
+	}
+
+	private void startToEnd(GraphReader reader) {
+		Dijkstra dijkstra = new Dijkstra(reader.getIndices().length);
 	}
 
 	private static void printHelp() {
@@ -102,11 +105,11 @@ class Main {
 		min.push(4, 8);
 
 		min.decreaseValue(0, 3);
-		
-		while(!min.isEmpty()) {
+
+		while (!min.isEmpty()) {
 			System.out.println(min.pop());
 		}
 		System.exit(0);
 	}
-	
+
 }

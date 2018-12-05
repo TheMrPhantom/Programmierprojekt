@@ -29,6 +29,10 @@ public class EdgeReader extends CustomReader {
 		System.out.println("Started reading Edges");
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
+			for (int i = 0; i < numOfNodes; i++) {
+				indices[i] = -1;
+			}
+
 			String[] sArr;
 			for (int i = 0; i < numOfNodes + 7; i++) {
 				br.readLine();
@@ -41,9 +45,9 @@ public class EdgeReader extends CustomReader {
 				// Source ID
 				sID = Integer.parseInt(sArr[0]);
 				edges[i * 3 + 0] = sID;
-				index++;
-				if(lastID != sID){
-					indices[sID] = index;
+				// index++;
+				if (lastID != sID) {
+					indices[sID] = i;
 				}
 				lastID = sID;
 				// Target ID
