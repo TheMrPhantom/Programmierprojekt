@@ -19,16 +19,21 @@ public class Dijkstra {
 		lastNode = new int[nodeCount];
 		nodeCost = new int[nodeCount];
 		for (int i = 0; i < nodeCount; i++) {
-			priorityQueue.push(i, Double.POSITIVE_INFINITY);
+			priorityQueue.push(i, Integer.MAX_VALUE);
 			lastNode[i] = Integer.MAX_VALUE;
 			nodeCost[i] = Integer.MAX_VALUE;
 		}
 		System.out.println("Finished initialising Dijkstra");
 	}
 
-	public ArrayList<Integer> startToEnd(int start, int end) {
+	public DijktraResult startToEnd(int start, int end) {
 		System.out.println("Starting start to end");
-		priorityQueue.decreaseValue(start, 0);
+		try {
+			priorityQueue.decreaseValue(start, 0);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.err.println("Startknoten existiert nicht");
+			return null;
+		}
 		int popedNode = start;
 		nodeCost[popedNode] = 0;
 
@@ -38,40 +43,59 @@ public class Dijkstra {
 				popedNode = priorityQueue.pop();
 				continue;
 			}
-			for (int i = init; reader.getEdges()[i] == popedNode; i += 3) {
-				if (reader.getEdges()[i + 2] + nodeCost[popedNode] < nodeCost[reader.getEdges()[i + 1]]) {
-					nodeCost[reader.getEdges()[i + 1]] = reader.getEdges()[i + 2] + nodeCost[popedNode];
-					priorityQueue.decreaseValue(reader.getEdges()[i + 1],
-							reader.getEdges()[i + 2] + nodeCost[popedNode]);
-					lastNode[reader.getEdges()[i + 1]] = popedNode;
+			try {
+				for (int i = init; reader.getEdges()[i] == popedNode; i += 3) {
+					int newNode = reader.getEdges()[i + 1];
+					int costNodeNewEdge = reader.getEdges()[i + 2] + nodeCost[popedNode];
+					int costNodeOld = nodeCost[newNode];
+
+					if (costNodeNewEdge < costNodeOld) {
+						nodeCost[newNode] = reader.getEdges()[i + 2] + nodeCost[popedNode];
+						priorityQueue.decreaseValue(newNode,
+								reader.getEdges()[i + 2] + nodeCost[popedNode]);
+						lastNode[newNode] = popedNode;
+					}
+
 				}
+			} catch (ArrayIndexOutOfBoundsException e) {
+
+			} catch (IllegalArgumentException e) {
 
 			}
-
-			popedNode = priorityQueue.pop();
+			System.out.println(priorityQueue.getSize());
+			if (!priorityQueue.isEmpty()) {
+				popedNode = priorityQueue.pop();
+			} else {
+				popedNode = end;
+			}
 		}
 
 		System.out.println("Finished start to end Dijkstra");
 		System.out.println("Starting to collect path");
+
 		Stack<Integer> rawPath = new Stack<Integer>();
 		int temp = end;
 		int counter = 0;
 		rawPath.add(temp);
-		while (temp != start) {
-			temp = lastNode[temp];
-			rawPath.add(temp);
-			counter++;
-			System.out.println(counter + " " + temp);
+		try {
+			while (temp != start) {
+				temp = lastNode[temp];
+				rawPath.add(temp);
+				counter++;
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.err.println("Der Endknoten existiert nicht");
+			return null;
 		}
-
-		System.out.println(counter);
-
 		ArrayList<Integer> outputPath = new ArrayList<Integer>();
 		while (!rawPath.isEmpty()) {
 			outputPath.add(rawPath.pop());
 		}
 		System.out.println("Finished collecting path");
-		return outputPath;
+		DijktraResult result = new DijktraResult();
+		result.path = outputPath;
+		result.length=nodeCost[end];
+		return result;
 	}
 
 }

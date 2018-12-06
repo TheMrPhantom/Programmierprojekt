@@ -18,8 +18,9 @@ class Main {
 		// bw.fmi
 
 		Main main = new Main();
+		//main.testHeap();
 		main.initGraph("bw.fmi");
-		main.startToEnd(100,200,main.reader);
+		main.startToEnd(137,138,main.reader);
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -68,13 +69,14 @@ class Main {
 
 	private void startToEnd(int start,int end,GraphReader reader) {
 		Dijkstra dijkstra = new Dijkstra(reader);
-		ArrayList<Integer> output=dijkstra.startToEnd(start, end);
+		DijktraResult output=dijkstra.startToEnd(start, end);
 		
-		System.out.println("Path is "+output.size()+" long");
-		
-		for(Integer i:output) {
+		for(Integer i:output.path) {
 			System.out.println(i);
 		}
+		
+		System.out.println("The path is "+output.length+"m long");
+		System.out.println("The path is "+output.path.size()+" nodes long");
 	}
 
 	private static void printHelp() {

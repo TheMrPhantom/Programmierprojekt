@@ -1,7 +1,7 @@
 package de.propro.backend;
 
-import org.jgrapht.util.*;
-
+//import org.jgrapht.util.*;
+import org.teneighty.heap.*;
 /**
  * 
  * This is the Min Heap used for the Dijkstra
@@ -9,16 +9,19 @@ import org.jgrapht.util.*;
  * @author Justin
  *
  */
+import org.teneighty.heap.Heap.Entry;
+
 public class MinHeap {
 
 	/**
 	 * The internal heap structure
 	 */
-	private FibonacciHeap<Integer> heap;
+	private FibonacciHeap<Integer, Integer> heap;
 	/**
 	 * This array represents the node we have
 	 */
-	private FibonacciHeapNode<Integer>[] nodes;
+	// private FibonacciHeapNode<Integer>[] nodes;
+	private Entry<Integer, Integer>[] nodes;
 	/**
 	 * Here is the index of the node which is inserted next
 	 */
@@ -31,8 +34,8 @@ public class MinHeap {
 	 * @param capacity The amount of nodes that will be added
 	 */
 	public MinHeap(int capacity) {
-		heap = new FibonacciHeap<Integer>();
-		nodes = new FibonacciHeapNode[capacity];
+		heap = new FibonacciHeap<Integer, Integer>();
+		nodes = new Entry[capacity];
 		counter = 0;
 	}
 
@@ -44,10 +47,11 @@ public class MinHeap {
 	 * @param value   The cost of the node
 	 * 
 	 */
-	public void push(int nodeIdx, double value) {
-		FibonacciHeapNode<Integer> node = new FibonacciHeapNode<Integer>(nodeIdx);
-		heap.insert(node, value);
-		nodes[counter] = node;
+	public void push(int nodeIdx, int value) {
+		// FibonacciHeapNode<Integer> node = new FibonacciHeapNode<Integer>(nodeIdx);
+
+		Entry e = heap.insert(value, nodeIdx);
+		nodes[counter] = e;
 		counter++;
 	}
 
@@ -58,9 +62,9 @@ public class MinHeap {
 	 * @return The index of the node with the smallest cost
 	 */
 	public int pop() {
-		FibonacciHeapNode<Integer> value = heap.min();
-		heap.removeMin();
-		return value.getData();
+		Entry<Integer, Integer> value = heap.extractMinimum();
+		// heap.removeMin();
+		return value.getValue();
 	}
 
 	/**
@@ -68,7 +72,7 @@ public class MinHeap {
 	 * Decreases the cost of a node
 	 * 
 	 * @param nodeIdx The node index of which the cost should be removed
-	 * @param value The new cost
+	 * @param value   The new cost
 	 * @throws IllegalArgumentException If the new cost is greater than the old
 	 */
 	public void decreaseValue(int nodeIdx, int value) {
@@ -84,5 +88,15 @@ public class MinHeap {
 	 */
 	public boolean isEmpty() {
 		return heap.isEmpty();
+	}
+
+	/**
+	 * 
+	 * Return the number of elements in the heap
+	 * 
+	 * @return The size
+	 */
+	public int getSize() {
+		return heap.getSize();
 	}
 }
