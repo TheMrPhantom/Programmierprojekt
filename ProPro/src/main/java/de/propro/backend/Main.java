@@ -3,9 +3,9 @@ package de.propro.backend;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Main {
+public class Main {
 
-	private GraphReader reader;
+	public GraphReader reader;
 	private Scanner scan;
 
 	public Main() {
@@ -18,9 +18,9 @@ class Main {
 		// bw.fmi
 
 		Main main = new Main();
-		//main.testHeap();
+		// main.testHeap();
 		main.initGraph("bw.fmi");
-		main.startToEnd(137,138,main.reader);
+		main.startToEnd(137, 138, main.reader);
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -48,7 +48,7 @@ class Main {
 			}
 			switch (input) {
 			case 0:
-				//main.startToEnd(main.reader);
+				// main.startToEnd(main.reader);
 				break;
 			case 1:
 
@@ -67,16 +67,17 @@ class Main {
 
 	}
 
-	private void startToEnd(int start,int end,GraphReader reader) {
+	public DijktraResult startToEnd(int start, int end, GraphReader reader) {
 		Dijkstra dijkstra = new Dijkstra(reader);
-		DijktraResult output=dijkstra.startToEnd(start, end);
-		
-		for(Integer i:output.path) {
+		DijktraResult output = dijkstra.startToEnd(start, end);
+
+		for (Integer i : output.path) {
 			System.out.println(i);
 		}
-		
-		System.out.println("The path is "+output.length+"m long");
-		System.out.println("The path is "+output.path.size()+" nodes long");
+
+		System.out.println("The path is " + output.length + "m long");
+		System.out.println("The path is " + output.path.size() + " nodes long");
+		return output;
 	}
 
 	private static void printHelp() {
@@ -92,7 +93,7 @@ class Main {
 		System.exit(1);
 	}
 
-	private void initGraph(String filename) {
+	public void initGraph(String filename) {
 		this.reader = new GraphReader(filename);
 		this.reader.readDataFast();
 	}
