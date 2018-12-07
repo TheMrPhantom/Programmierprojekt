@@ -16,12 +16,12 @@ public class DijktraTest {
 	@BeforeClass
 	public static void init() {
 		main = new Main();
-		main.initGraph("bw.fmi");
+		//main.initGraph("bw.fmi");
 	}
 
 	@Test
 	public void checkDijktra0() {
-		testDijktra(21);
+		//testDijktra(21);
 	}
 /*
 	@Test
