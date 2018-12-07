@@ -48,7 +48,9 @@ public class Main {
 			}
 			switch (input) {
 			case 0:
-				// main.startToEnd(main.reader);
+				int x = Integer.parseInt(main.scan.nextLine());
+				int y = Integer.parseInt(main.scan.nextLine());
+				main.startToEnd(x, y, main.reader);
 				break;
 			case 1:
 
