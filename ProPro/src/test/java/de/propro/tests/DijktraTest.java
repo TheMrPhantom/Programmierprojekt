@@ -10,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import de.propro.backend.*;
 
-public class TestKlasse {
+public class DijktraTest {
 	static Main main;
 
 	@BeforeClass
@@ -23,7 +23,7 @@ public class TestKlasse {
 	public void checkDijktra0() {
 		testDijktra(21);
 	}
-
+/*
 	@Test
 	public void checkDijktra1() {
 		testDijktra(20);
@@ -76,7 +76,7 @@ public class TestKlasse {
 			testDijktra(i);
 		}
 	}
-
+*/
 	public void testDijktra(int i) {
 		try {
 			FileReader r = new FileReader("bw.que");

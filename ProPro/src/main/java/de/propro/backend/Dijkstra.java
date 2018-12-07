@@ -37,6 +37,10 @@ public class Dijkstra {
 		int popedNode = start;
 		nodeCost[popedNode] = 0;
 
+		int newNode;
+		int costNodeNewEdge;
+		int costNodeOld;
+		int newEdge;
 		while (popedNode != end) {
 			int init = reader.getIndices()[popedNode];
 			if (init == -1) {
@@ -44,15 +48,16 @@ public class Dijkstra {
 				continue;
 			}
 			try {
+
 				for (int i = init; reader.getEdges()[i] == popedNode; i += 3) {
-					int newNode = reader.getEdges()[i + 1];
-					int costNodeNewEdge = reader.getEdges()[i + 2] + nodeCost[popedNode];
-					int costNodeOld = nodeCost[newNode];
+					newNode = reader.getEdges()[i + 1];
+					newEdge = reader.getEdges()[i + 2];
+					costNodeNewEdge = newEdge + nodeCost[popedNode];
+					costNodeOld = nodeCost[newNode];
 
 					if (costNodeNewEdge < costNodeOld) {
-						nodeCost[newNode] = reader.getEdges()[i + 2] + nodeCost[popedNode];
-						priorityQueue.decreaseValue(newNode,
-								reader.getEdges()[i + 2] + nodeCost[popedNode]);
+						nodeCost[newNode] = newEdge + nodeCost[popedNode];
+						priorityQueue.decreaseValue(newNode, newEdge + nodeCost[popedNode]);
 						lastNode[newNode] = popedNode;
 					}
 
@@ -62,7 +67,7 @@ public class Dijkstra {
 			} catch (IllegalArgumentException e) {
 
 			}
-			
+
 			if (!priorityQueue.isEmpty()) {
 				popedNode = priorityQueue.pop();
 			} else {
@@ -94,7 +99,7 @@ public class Dijkstra {
 		System.out.println("Finished collecting path");
 		DijktraResult result = new DijktraResult();
 		result.path = outputPath;
-		result.length=nodeCost[end];
+		result.length = nodeCost[end];
 		return result;
 	}
 
