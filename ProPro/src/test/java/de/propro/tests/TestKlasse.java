@@ -2,52 +2,108 @@ package de.propro.tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 import de.propro.backend.*;
 
 public class TestKlasse {
+	static Main main;
+
+	@BeforeClass
+	public static void init() {
+		main = new Main();
+		main.initGraph("bw.fmi");
+	}
 
 	@Test
-	public void testDijktra() {
-		Main main = new Main();
-		main.initGraph("bw.fmi");
-		int[][] input = new int[10][10];
-		input[0][0] = 1200173;
-		input[0][1] = 2400346;
-		input[1][0] = 1200173;
-		input[1][1] = 2400347;
-		input[2][0] = 1200173;
-		input[2][1] = 2400348;
-		input[3][0] = 1200173;
-		input[3][1] = 2400349;
-		input[4][0] = 1200173;
-		input[4][1] = 2400350;
-		input[5][0] = 1200173;
-		input[5][1] = 2400351;
-		input[6][0] = 1200173;
-		input[6][1] = 2400352;
-		input[7][0] = 1200173;
-		input[7][1] = 2400353;
-		input[8][0] = 1200173;
-		input[8][1] = 2400354;
-		input[9][0] = 1200173;
-		input[9][1] = 2400354;
+	public void checkDijktra0() {
+		testDijktra(21);
+	}
 
-		int[] output = new int[10];
-		output[0] = 383894;
-		output[1] = 384088;
-		output[2] = 384191;
-		output[3] = 384352;
-		output[4] = 384544;
-		output[5] = 386095;
-		output[6] = 384651;
-		output[7] = 383727;
-		output[8] = 383635;
-		output[9] = 534279;
+	@Test
+	public void checkDijktra1() {
+		testDijktra(20);
+	}
 
-		for (int i = 0; i < 10; i++) {
-			DijktraResult r = main.startToEnd(input[i][0], input[i][1], main.reader);
-			assertEquals(output[i], r.length);
+	@Test
+	public void checkDijktra2() {
+		testDijktra(22);
+	}
+
+	@Test
+	public void checkDijktra3() {
+		testDijktra(23);
+	}
+
+	@Test
+	public void checkDijktra4() {
+		testDijktra(24);
+	}
+
+	@Test
+	public void checkDijktra5() {
+		testDijktra(25);
+	}
+
+	@Test
+	public void checkDijktra6() {
+		testDijktra(26);
+	}
+
+	@Test
+	public void checkDijktra7() {
+		testDijktra(27);
+	}
+
+	@Test
+	public void checkDijktra8() {
+		testDijktra(28);
+	}
+
+	@Test
+	public void checkDijktra9() {
+		testDijktra(29);
+	}
+
+	@Test
+	public void testAll() {
+		for (int i = 0; i < 100; i++) {
+			System.out.println("TEST: "+i);
+			testDijktra(i);
+		}
+	}
+
+	public void testDijktra(int i) {
+		try {
+			FileReader r = new FileReader("bw.que");
+			BufferedReader buffi = new BufferedReader(r);
+
+			for (int x = 0; x < i - 1; x++) {
+				buffi.readLine();
+			}
+			String queue = buffi.readLine();
+			String x = queue.split(" ")[0];
+			String y = queue.split(" ")[1];
+
+			buffi.close();
+
+			r = new FileReader("bw.sol");
+			buffi = new BufferedReader(r);
+
+			for (int z = 0; z < i - 1; z++) {
+				buffi.readLine();
+			}
+
+			String res = buffi.readLine();
+			buffi.close();
+			DijktraResult dr = main.startToEnd(Integer.parseInt(x), Integer.parseInt(y), main.reader);
+			assertEquals(Integer.parseInt(res), dr.length);
+		} catch (IOException e) {
+			System.out.println("Error");
 		}
 	}
 }

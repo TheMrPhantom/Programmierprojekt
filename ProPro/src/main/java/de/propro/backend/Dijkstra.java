@@ -62,7 +62,7 @@ public class Dijkstra {
 			} catch (IllegalArgumentException e) {
 
 			}
-			System.out.println(priorityQueue.getSize());
+			
 			if (!priorityQueue.isEmpty()) {
 				popedNode = priorityQueue.pop();
 			} else {
