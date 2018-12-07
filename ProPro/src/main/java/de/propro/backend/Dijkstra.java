@@ -41,9 +41,11 @@ public class Dijkstra {
 		int costNodeNewEdge;
 		int costNodeOld;
 		int newEdge;
+		int[] indices=reader.getIndices();
+		int[] edges=reader.getEdges();
 		while (popedNode != end) {
 	
-			int init = reader.getIndices()[popedNode];
+			int init = indices[popedNode];
 			if (init == -1) {
 				popedNode = priorityQueue.pop();
 
@@ -51,9 +53,9 @@ public class Dijkstra {
 			}
 			try {
 
-				for (int i = init; reader.getEdges()[i] == popedNode; i += 3) {
-					newNode = reader.getEdges()[i + 1];
-					newEdge = reader.getEdges()[i + 2];
+				for (int i = init; edges[i] == popedNode; i += 3) {
+					newNode = edges[i + 1];
+					newEdge = edges[i + 2];
 					costNodeNewEdge = newEdge + nodeCost[popedNode];
 					costNodeOld = nodeCost[newNode];
 

@@ -86,6 +86,7 @@ public class MinHeap {
 	public void decreaseValue(int nodeIdx, int value) {
 
 		heap.decreaseKey(nodes[nodeIdx], value);
+
 	}
 
 	/**
