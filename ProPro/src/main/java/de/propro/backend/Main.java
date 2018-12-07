@@ -70,6 +70,7 @@ public class Main {
 	}
 
 	public DijktraResult startToEnd(int start, int end, GraphReader reader) {
+		long time=System.currentTimeMillis();
 		Dijkstra dijkstra = new Dijkstra(reader);
 		DijktraResult output = dijkstra.startToEnd(start, end);
 
@@ -79,6 +80,7 @@ public class Main {
 
 		System.out.println("The path is " + output.length + "m long");
 		System.out.println("The path is " + output.path.size() + " nodes long");
+		System.out.println("Time needed: "+(System.currentTimeMillis()-time)*1000+" Sekunden");
 		return output;
 	}
 
