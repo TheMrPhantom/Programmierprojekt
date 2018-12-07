@@ -42,12 +42,11 @@ public class Dijkstra {
 		int costNodeOld;
 		int newEdge;
 		while (popedNode != end) {
-			long time=System.nanoTime();
+	
 			int init = reader.getIndices()[popedNode];
 			if (init == -1) {
 				popedNode = priorityQueue.pop();
-				System.out.println("Break: "+(System.nanoTime()-time));
-				time=System.nanoTime();
+
 				continue;
 			}
 			try {
@@ -63,8 +62,7 @@ public class Dijkstra {
 						priorityQueue.decreaseValue(newNode, newEdge + nodeCost[popedNode]);
 						lastNode[newNode] = popedNode;
 					}
-					System.out.println("\tFor "+(System.nanoTime()-time));
-					time=System.nanoTime();
+
 				}
 				
 			} catch (ArrayIndexOutOfBoundsException e) {
@@ -74,10 +72,9 @@ public class Dijkstra {
 			}
 
 			if (!priorityQueue.isEmpty()) {
-				System.out.println("\t\tWhile "+(System.nanoTime()-time));
+
 				popedNode = priorityQueue.pop();
-				System.out.println("\t\t\tPop "+(System.nanoTime()-time));
-				time=System.nanoTime();
+
 			} else {
 				popedNode = end;
 			}
