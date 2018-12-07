@@ -82,6 +82,10 @@ public class Dijkstra {
 			}
 		}
 
+		System.out.println("Push "+(priorityQueue.push/1000)/1000);
+		System.out.println("Pop "+(priorityQueue.pop/1000)/1000);
+		System.out.println("DV "+(priorityQueue.decreaseValue/1000)/1000);
+		
 		System.out.println("Finished start to end Dijkstra");
 		System.out.println("Starting to collect path");
 

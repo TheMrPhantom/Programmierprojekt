@@ -38,13 +38,15 @@ public class MinHeap {
 	 * @param capacity The amount of nodes that will be added
 	 */
 	public MinHeap(int capacity) {
-		//heap = new FibonacciHeap<Integer, Integer>();
+		// heap = new FibonacciHeap<Integer, Integer>();
 		// nodes = new Entry[capacity];
-		heap=new FibonacciHeap<Integer>();
+		heap = new FibonacciHeap<Integer>();
 		nodes = new FibonacciHeapNode[capacity];
 		counter = 0;
 
 	}
+
+	public long push, pop, decreaseValue;
 
 	/**
 	 * 
@@ -55,12 +57,14 @@ public class MinHeap {
 	 * 
 	 */
 	public void push(int nodeIdx, int value) {
+		long time = System.nanoTime();
 		FibonacciHeapNode<Integer> node = new FibonacciHeapNode<Integer>(nodeIdx);
 		nodes[counter] = node;
 		heap.insert(node, value);
 		// Entry e = heap.insert(value, nodeIdx);
 		// nodes[counter] = e;
 		counter++;
+		push += (System.nanoTime() - time);
 	}
 
 	/**
@@ -70,9 +74,12 @@ public class MinHeap {
 	 * @return The index of the node with the smallest cost
 	 */
 	public int pop() {
-		//Entry<Integer, Integer> value = heap.
-		return (int)heap.removeMin().getData();
-		//return value.getValue();
+		long time = System.nanoTime();
+		// Entry<Integer, Integer> value = heap.
+		int i = (int) heap.removeMin().getData();
+		pop += (System.nanoTime() - time);
+		return i;// return value.getValue();
+
 	}
 
 	/**
@@ -84,9 +91,9 @@ public class MinHeap {
 	 * @throws IllegalArgumentException If the new cost is greater than the old
 	 */
 	public void decreaseValue(int nodeIdx, int value) {
-
+		long time = System.nanoTime();
 		heap.decreaseKey(nodes[nodeIdx], value);
-
+		decreaseValue += (System.nanoTime() - time);
 	}
 
 	/**
@@ -106,7 +113,7 @@ public class MinHeap {
 	 * @return The size
 	 */
 	public int getSize() {
-		//return heap.getSize();
+		// return heap.getSize();
 		return heap.size();
 	}
 }
