@@ -43,22 +43,28 @@ public class Dijkstra {
 		int newEdge;
 		int[] indices=reader.getIndices();
 		int[] edges=reader.getEdges();
+		
 		while (popedNode != end) {
 	
+			/*Get the index in the edge list for the node we look at*/
 			int init = indices[popedNode];
+			
+			/*If the node ist not reachable the index is -1*/
 			if (init == -1) {
+				/*Then skip*/
 				popedNode = priorityQueue.pop();
 
 				continue;
 			}
 			try {
-
+				/*For all edges of the active node*/
 				for (int i = init; edges[i] == popedNode; i += 3) {
 					newNode = edges[i + 1];
 					newEdge = edges[i + 2];
 					costNodeNewEdge = newEdge + nodeCost[popedNode];
 					costNodeOld = nodeCost[newNode];
 
+					/*If the edge is better take it*/
 					if (costNodeNewEdge < costNodeOld) {
 						nodeCost[newNode] = newEdge + nodeCost[popedNode];
 						priorityQueue.decreaseValue(newNode, newEdge + nodeCost[popedNode]);
@@ -73,6 +79,7 @@ public class Dijkstra {
 
 			}
 
+			/*If there are more node repeat as long as we are not at the start*/
 			if (!priorityQueue.isEmpty()) {
 
 				popedNode = priorityQueue.pop();
