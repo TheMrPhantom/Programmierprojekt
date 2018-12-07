@@ -3,6 +3,8 @@ package de.propro.backend;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import org.jgrapht.util.FibonacciHeapNode;
+
 public class Dijkstra {
 
 	private MinHeap priorityQueue;
@@ -41,45 +43,47 @@ public class Dijkstra {
 		int costNodeNewEdge;
 		int costNodeOld;
 		int newEdge;
-		int[] indices=reader.getIndices();
-		int[] edges=reader.getEdges();
-		
+		int[] indices = reader.getIndices();
+		int[] edges = reader.getEdges();
+		int cost;
+		FibonacciHeapNode<Integer>[] nodeCost = priorityQueue.nodes;
 		while (popedNode != end) {
-	
-			/*Get the index in the edge list for the node we look at*/
+
+			/* Get the index in the edge list for the node we look at */
 			int init = indices[popedNode];
-			
-			/*If the node ist not reachable the index is -1*/
+
+			/* If the node ist not reachable the index is -1 */
 			if (init == -1) {
-				/*Then skip*/
+				/* Then skip */
 				popedNode = priorityQueue.pop();
 
 				continue;
 			}
 			try {
-				/*For all edges of the active node*/
+				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
 					newNode = edges[i + 1];
 					newEdge = edges[i + 2];
-					costNodeNewEdge = newEdge + nodeCost[popedNode];
-					costNodeOld = nodeCost[newNode];
+					cost = (int) nodeCost[popedNode].getKey();
+					costNodeNewEdge = newEdge + cost;
+					costNodeOld = (int) nodeCost[newNode].getKey();
 
-					/*If the edge is better take it*/
+					/* If the edge is better take it */
 					if (costNodeNewEdge < costNodeOld) {
-						nodeCost[newNode] = newEdge + nodeCost[popedNode];
-						priorityQueue.decreaseValue(newNode, newEdge + nodeCost[popedNode]);
+						// nodeCost[newNode] = newEdge + nodeCost[popedNode];
+						priorityQueue.decreaseValue(newNode, newEdge + cost);
 						lastNode[newNode] = popedNode;
 					}
 
 				}
-				
+
 			} catch (ArrayIndexOutOfBoundsException e) {
 
 			} catch (IllegalArgumentException e) {
 
 			}
 
-			/*If there are more node repeat as long as we are not at the start*/
+			/* If there are more node repeat as long as we are not at the start */
 			if (!priorityQueue.isEmpty()) {
 
 				popedNode = priorityQueue.pop();
@@ -89,10 +93,10 @@ public class Dijkstra {
 			}
 		}
 
-		System.out.println("Push "+(priorityQueue.push/1000)/1000);
-		System.out.println("Pop "+(priorityQueue.pop/1000)/1000);
-		System.out.println("DV "+(priorityQueue.decreaseValue/1000)/1000);
-		
+		System.out.println("Push " + (priorityQueue.push / 1000) / 1000);
+		System.out.println("Pop " + (priorityQueue.pop / 1000) / 1000);
+		System.out.println("DV " + (priorityQueue.decreaseValue / 1000) / 1000);
+
 		System.out.println("Finished start to end Dijkstra");
 		System.out.println("Starting to collect path");
 
@@ -117,7 +121,7 @@ public class Dijkstra {
 		System.out.println("Finished collecting path");
 		DijktraResult result = new DijktraResult();
 		result.path = outputPath;
-		result.length = nodeCost[end];
+		result.length = (int) nodeCost[end].getKey();
 		return result;
 	}
 

@@ -18,9 +18,9 @@ public class Main {
 		// bw.fmi
 
 		Main main = new Main();
-		//main.testHeap();
-		//main.initGraph("bw.fmi");
-		//main.startToEnd(137, 1380, main.reader);
+		// main.testHeap();
+		main.initGraph("bw.fmi");
+		main.startToEnd(137, 1380, main.reader);
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -70,17 +70,24 @@ public class Main {
 	}
 
 	public DijktraResult startToEnd(int start, int end, GraphReader reader) {
-		long time=System.currentTimeMillis();
+		long time = System.currentTimeMillis();
 		Dijkstra dijkstra = new Dijkstra(reader);
 		DijktraResult output = dijkstra.startToEnd(start, end);
 
+		int counter = 0;
 		for (Integer i : output.path) {
-			System.out.println(i);
+			counter++;
+			if (counter < 10) {
+				System.out.print(i.toString() + "->");
+			} else {
+				counter = 0;
+				System.out.println(i.toString() + "->");
+			}
 		}
-
+		System.out.println();
 		System.out.println("The path is " + output.length + "m long");
 		System.out.println("The path is " + output.path.size() + " nodes long");
-		System.out.println("Time needed: "+(System.currentTimeMillis()-time)/1000+" Sekunden");
+		System.out.println("Time needed: " + (System.currentTimeMillis() - time) / 1000 + " Sekunden");
 		return output;
 	}
 

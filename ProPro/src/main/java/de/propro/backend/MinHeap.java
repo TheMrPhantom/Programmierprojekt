@@ -24,7 +24,7 @@ public class MinHeap {
 	/**
 	 * This array represents the node we have
 	 */
-	private FibonacciHeapNode<Integer>[] nodes;
+	FibonacciHeapNode<Integer>[] nodes;
 	// private Entry<Integer, Integer>[] nodes;
 	/**
 	 * Here is the index of the node which is inserted next
