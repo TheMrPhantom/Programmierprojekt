@@ -36,7 +36,7 @@ public class Dijkstra {
 			System.err.println("Startknoten existiert nicht");
 			return null;
 		}
-		int popedNode = start;
+		int popedNode = start;//TODO pop node
 		nodeCost[popedNode] = 0;
 
 		int newNode;
