@@ -80,7 +80,7 @@ public class Main {
 
 		System.out.println("The path is " + output.length + "m long");
 		System.out.println("The path is " + output.path.size() + " nodes long");
-		System.out.println("Time needed: "+(System.currentTimeMillis()-time)*1000+" Sekunden");
+		System.out.println("Time needed: "+(System.currentTimeMillis()-time)/1000+" Sekunden");
 		return output;
 	}
 
