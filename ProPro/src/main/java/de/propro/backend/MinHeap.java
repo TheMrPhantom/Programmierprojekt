@@ -1,7 +1,10 @@
 package de.propro.backend;
 
-//import org.jgrapht.util.*;
-import org.teneighty.heap.*;
+import java.util.PriorityQueue;
+
+import org.jgrapht.util.FibonacciHeapNode;
+import org.jgrapht.util.*;
+//import org.teneighty.heap.*;
 /**
  * 
  * This is the Min Heap used for the Dijkstra
@@ -16,12 +19,13 @@ public class MinHeap {
 	/**
 	 * The internal heap structure
 	 */
-	private FibonacciHeap<Integer, Integer> heap;
+	private FibonacciHeap<Integer> heap;
+	private PriorityQueue<Integer> i;
 	/**
 	 * This array represents the node we have
 	 */
-	// private FibonacciHeapNode<Integer>[] nodes;
-	private Entry<Integer, Integer>[] nodes;
+	private FibonacciHeapNode<Integer>[] nodes;
+	// private Entry<Integer, Integer>[] nodes;
 	/**
 	 * Here is the index of the node which is inserted next
 	 */
@@ -34,9 +38,12 @@ public class MinHeap {
 	 * @param capacity The amount of nodes that will be added
 	 */
 	public MinHeap(int capacity) {
-		heap = new FibonacciHeap<Integer, Integer>();
-		nodes = new Entry[capacity];
+		//heap = new FibonacciHeap<Integer, Integer>();
+		// nodes = new Entry[capacity];
+		heap=new FibonacciHeap<Integer>();
+		nodes = new FibonacciHeapNode[capacity];
 		counter = 0;
+
 	}
 
 	/**
@@ -48,10 +55,11 @@ public class MinHeap {
 	 * 
 	 */
 	public void push(int nodeIdx, int value) {
-		// FibonacciHeapNode<Integer> node = new FibonacciHeapNode<Integer>(nodeIdx);
-
-		Entry e = heap.insert(value, nodeIdx);
-		nodes[counter] = e;
+		FibonacciHeapNode<Integer> node = new FibonacciHeapNode<Integer>(nodeIdx);
+		nodes[counter] = node;
+		heap.insert(node, value);
+		// Entry e = heap.insert(value, nodeIdx);
+		// nodes[counter] = e;
 		counter++;
 	}
 
@@ -62,9 +70,9 @@ public class MinHeap {
 	 * @return The index of the node with the smallest cost
 	 */
 	public int pop() {
-		Entry<Integer, Integer> value = heap.extractMinimum();
-		// heap.removeMin();
-		return value.getValue();
+		//Entry<Integer, Integer> value = heap.
+		return (int)heap.removeMin().getData();
+		//return value.getValue();
 	}
 
 	/**
@@ -97,6 +105,7 @@ public class MinHeap {
 	 * @return The size
 	 */
 	public int getSize() {
-		return heap.getSize();
+		//return heap.getSize();
+		return heap.size();
 	}
 }
