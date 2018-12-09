@@ -7,21 +7,20 @@ import org.jgrapht.util.FibonacciHeapNode;
 
 public class Dijkstra {
 
-	private MinHeap priorityQueue;
+	private CustomMinHeap priorityQueue;
 	private GraphReader reader;
 
-	int[] lastNode;
-	int[] nodeCost;
+	private int[] lastNode;
+	private int[] nodeCost;
 
 	public Dijkstra(GraphReader reader) {
 		System.out.println("Initialising Dijkstra");
 		this.reader = reader;
 		int nodeCount = reader.getIndices().length;
-		priorityQueue = new MinHeap(nodeCount);
+		priorityQueue = new CustomMinHeap(nodeCount);
 		lastNode = new int[nodeCount];
 		nodeCost = new int[nodeCount];
 		for (int i = 0; i < nodeCount; i++) {
-			priorityQueue.push(i, Integer.MAX_VALUE);
 			lastNode[i] = Integer.MAX_VALUE;
 			nodeCost[i] = Integer.MAX_VALUE;
 		}
@@ -36,23 +35,23 @@ public class Dijkstra {
 			System.err.println("Startknoten existiert nicht");
 			return null;
 		}
-		int popedNode = start;//TODO pop node
+		int popedNode = priorityQueue.pop();
 		nodeCost[popedNode] = 0;
 
 		int newNode;
-		int costNodeNewEdge;
-		int costNodeOld;
+		int costOldPlusEdge;
+		int costOnlyNewNode;
 		int newEdge;
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
-		int cost;
-		FibonacciHeapNode<Integer>[] nodeCost = priorityQueue.nodes;
+		int costForViewedNode;
+int counter1=0;
 		while (popedNode != end) {
-
+counter1++;
 			/* Get the index in the edge list for the node we look at */
 			int init = indices[popedNode];
 
-			/* If the node ist not reachable the index is -1 */
+			/* If the node is not reachable the index is -1 */
 			if (init == -1) {
 				/* Then skip */
 				popedNode = priorityQueue.pop();
@@ -60,19 +59,24 @@ public class Dijkstra {
 				continue;
 			}
 			try {
+				costForViewedNode = this.nodeCost[popedNode];
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
 					newNode = edges[i + 1];
 					newEdge = edges[i + 2];
-					cost = (int) nodeCost[popedNode].getKey();
-					costNodeNewEdge = newEdge + cost;
-					costNodeOld = (int) nodeCost[newNode].getKey();
+
+					costOldPlusEdge = newEdge + costForViewedNode;
+					costOnlyNewNode = this.nodeCost[newNode];
 
 					/* If the edge is better take it */
-					if (costNodeNewEdge < costNodeOld) {
-						// nodeCost[newNode] = newEdge + nodeCost[popedNode];
-						priorityQueue.decreaseValue(newNode, newEdge + cost);
+					if (costOldPlusEdge < costOnlyNewNode) {
+						priorityQueue.decreaseValue(newNode, costOldPlusEdge);
+						nodeCost[newNode] = costOldPlusEdge;
+						if (costOldPlusEdge < 0) {
+							throw new IllegalStateException(counter1+"");
+						}
 						lastNode[newNode] = popedNode;
+
 					}
 
 				}
@@ -92,10 +96,6 @@ public class Dijkstra {
 				popedNode = end;
 			}
 		}
-
-		System.out.println("Push " + (priorityQueue.push / 1000) / 1000);
-		System.out.println("Pop " + (priorityQueue.pop / 1000) / 1000);
-		System.out.println("DV " + (priorityQueue.decreaseValue / 1000) / 1000);
 
 		System.out.println("Finished start to end Dijkstra");
 		System.out.println("Starting to collect path");
@@ -121,7 +121,7 @@ public class Dijkstra {
 		System.out.println("Finished collecting path");
 		DijktraResult result = new DijktraResult();
 		result.path = outputPath;
-		result.length = (int) nodeCost[end].getKey();
+		result.length = nodeCost[end];
 		return result;
 	}
 

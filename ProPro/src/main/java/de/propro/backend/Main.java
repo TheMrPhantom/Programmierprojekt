@@ -120,19 +120,6 @@ public class Main {
 		return output;
 	}
 
-	public void testHeap() {
-		MinHeap min = new MinHeap(4);
-		min.push(1, 7);
-		min.push(2, 5);
-		min.push(3, 2);
-		min.push(4, 8);
-
-		min.decreaseValue(0, 3);
-
-		while (!min.isEmpty()) {
-			System.out.println(min.pop());
-		}
-		System.exit(0);
-	}
+	
 
 }

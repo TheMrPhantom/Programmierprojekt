@@ -46,7 +46,14 @@ public class MinHeap {
 
 	}
 
-	public long push, pop, decreaseValue;
+	/**
+	 * Empty constructor for sub classes
+	 */
+	protected MinHeap() {
+		
+	}
+	
+	protected long push, pop, decreaseValue;
 
 	/**
 	 * 
