@@ -2,6 +2,8 @@ package de.propro.backend;
 
 import java.util.Arrays;
 
+import org.apache.commons.math3.analysis.function.Min;
+
 public class CustomMinHeap {
 
 	private int[] indices;
@@ -15,7 +17,7 @@ public class CustomMinHeap {
 		indices = new int[capacity];
 		values = new int[capacity];
 		node = new int[capacity];
-		
+
 		this.capacity = capacity;
 		size = capacity;
 
@@ -26,7 +28,7 @@ public class CustomMinHeap {
 			node[i] = i;
 
 		}
-		
+
 	}
 
 	/**
@@ -45,13 +47,14 @@ public class CustomMinHeap {
 		}
 
 		// Store the minimum value, and remove it from heap
-		int root = indices[0];System.out.println(values[0]);
+		int root = indices[0];
+
 		node[indices[size - 1]] = 0;
 		indices[0] = indices[size - 1];
 		values[0] = values[size - 1];
-
+		values[size - 1] = -1;
 		size--;
-		consolidate(0);
+		heapify(0);
 
 		return root;
 
@@ -67,7 +70,8 @@ public class CustomMinHeap {
 	 */
 	public void decreaseValue(int nodeIdx, int value) {
 
-		values[node[nodeIdx]] = value;
+		nodeIdx = node[nodeIdx];
+		values[nodeIdx] = value;
 
 		int parentNodeIndex;
 
@@ -109,7 +113,7 @@ public class CustomMinHeap {
 		return size;
 	}
 
-	private void consolidate(int i) {
+	private void heapify(int i) {
 		int l = left(i);
 		int r = right(i);
 		int smallest = i;
@@ -120,7 +124,17 @@ public class CustomMinHeap {
 		if (smallest != i) {
 			swapIndicesElements(i, smallest);
 			swapValuesElements(i, smallest);
-			consolidate(smallest);
+
+			// swapIndicesElements(nodeIdx, parentNodeIndex);
+			int nodeIdx = i;
+			int parentNodeIndex = smallest;
+			int nodeAtNID = indices[nodeIdx];
+			int parentAtPID = indices[parentNodeIndex];
+
+			node[nodeAtNID] = parentNodeIndex;
+			node[parentAtPID] = nodeIdx;
+
+			heapify(smallest);
 		}
 	}
 
