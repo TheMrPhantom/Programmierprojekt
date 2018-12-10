@@ -1,9 +1,9 @@
 package de.propro.backend;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
 import de.propro.backend.dijkstra.Dijkstra;
+import de.propro.backend.dijkstra.DijktraResult;
+import de.propro.backend.reading.GraphReader;
 
 public class Main {
 

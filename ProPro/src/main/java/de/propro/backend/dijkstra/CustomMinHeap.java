@@ -2,15 +2,12 @@ package de.propro.backend.dijkstra;
 
 import java.util.Arrays;
 
-import org.apache.commons.math3.analysis.function.Min;
-
 public class CustomMinHeap {
 
 	private int[] indices;
 	private int[] node;
 	private int[] values;
 
-	private int capacity;
 	private int size;
 
 	public CustomMinHeap(int capacity) {
@@ -18,7 +15,6 @@ public class CustomMinHeap {
 		values = new int[capacity];
 		node = new int[capacity];
 
-		this.capacity = capacity;
 		size = capacity;
 
 		for (int i = 0; i < capacity; i++) {

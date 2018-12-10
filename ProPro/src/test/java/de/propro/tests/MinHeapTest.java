@@ -9,6 +9,7 @@ public class MinHeapTest {
 
 	@Test
 	public void testConstructor() {
+		@SuppressWarnings("unused")
 		CustomMinHeap cmh = new CustomMinHeap(10000);
 		assertEquals(0, 0);
 	}

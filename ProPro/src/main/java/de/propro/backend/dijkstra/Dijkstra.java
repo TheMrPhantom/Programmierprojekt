@@ -3,10 +3,7 @@ package de.propro.backend.dijkstra;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import org.jgrapht.util.FibonacciHeapNode;
-
-import de.propro.backend.DijktraResult;
-import de.propro.backend.GraphReader;
+import de.propro.backend.reading.GraphReader;
 
 public class Dijkstra {
 
@@ -105,13 +102,11 @@ counter1++;
 
 		Stack<Integer> rawPath = new Stack<Integer>();
 		int temp = end;
-		int counter = 0;
 		rawPath.add(temp);
 		try {
 			while (temp != start) {
 				temp = lastNode[temp];
 				rawPath.add(temp);
-				counter++;
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.err.println("Der Endknoten existiert nicht");
