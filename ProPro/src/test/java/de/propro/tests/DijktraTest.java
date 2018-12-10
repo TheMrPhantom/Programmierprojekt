@@ -12,7 +12,7 @@ import de.propro.backend.*;
 
 public class DijktraTest {
 	static Main main;
-
+/*
 	@BeforeClass
 	public static void init() {
 		main = new Main();
@@ -25,7 +25,7 @@ public class DijktraTest {
 		
 		
 	}
-/*
+
 	@Test
 	public void checkDijktra1() {
 		testDijktra(20);
