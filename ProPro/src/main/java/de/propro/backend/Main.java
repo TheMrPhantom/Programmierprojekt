@@ -20,9 +20,7 @@ public class Main {
 		// bw.fmi
 
 		Main main = new Main();
-		// main.testHeap();
-		main.initGraph("bw.fmi");
-		main.startToEnd(137, 1380, main.reader);
+		
 		if (args.length == 0) {
 			printHelp();
 			return;
