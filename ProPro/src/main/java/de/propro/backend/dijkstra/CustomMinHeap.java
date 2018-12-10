@@ -50,8 +50,7 @@ public class CustomMinHeap {
 
 		indices[0] = indices[size - 1];
 		values[0] = values[size - 1];
-		values[size - 1] = -1;
-		indices[size - 1] = -1;
+
 		size--;
 		heapify(0);
 
@@ -76,11 +75,9 @@ public class CustomMinHeap {
 
 		while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
 			parentNodeIndex = parent(nodeIdx);
-			int nodeAtNID = indices[nodeIdx];
-			int parentAtPID = indices[parentNodeIndex];
 
-			node[nodeAtNID] = parentNodeIndex;
-			node[parentAtPID] = nodeIdx;
+			node[indices[nodeIdx]] = parentNodeIndex;
+			node[indices[parentNodeIndex]] = nodeIdx;
 
 			swapIndicesElements(nodeIdx, parentNodeIndex);
 			swapValuesElements(nodeIdx, parentNodeIndex);
@@ -121,14 +118,9 @@ public class CustomMinHeap {
 		if (r < size && values[r] < values[smallest])
 			smallest = r;
 		if (smallest != i) {
-			// swapIndicesElements(nodeIdx, parentNodeIndex);
-			int nodeIdx = i;
-			int parentNodeIndex = smallest;
-			int nodeAtNID = indices[nodeIdx];
-			int parentAtPID = indices[parentNodeIndex];
-
-			node[nodeAtNID] = parentNodeIndex;
-			node[parentAtPID] = nodeIdx;
+			
+			node[indices[i]] = smallest;
+			node[indices[smallest]] = i;
 			
 			swapIndicesElements(i, smallest);
 			swapValuesElements(i, smallest);
