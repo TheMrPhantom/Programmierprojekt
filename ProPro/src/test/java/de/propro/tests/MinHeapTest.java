@@ -2,7 +2,8 @@ package de.propro.tests;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import de.propro.backend.CustomMinHeap;
+
+import de.propro.backend.dijkstra.CustomMinHeap;
 
 public class MinHeapTest {
 

@@ -1,4 +1,4 @@
-package de.propro.backend;
+package de.propro.backend.dijkstra;
 
 import java.util.Arrays;
 

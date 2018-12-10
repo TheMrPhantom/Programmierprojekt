@@ -3,6 +3,8 @@ package de.propro.backend;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import de.propro.backend.dijkstra.Dijkstra;
+
 public class Main {
 
 	public GraphReader reader;
