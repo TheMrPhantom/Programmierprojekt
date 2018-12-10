@@ -22,7 +22,7 @@ public class DijktraTest {
 	@Test
 	public void checkDijktra0() {
 		testDijktra(1);
-		//DijktraResult dr = main.startToEnd(3, 0, main.reader);
+		
 		
 	}
 /*
