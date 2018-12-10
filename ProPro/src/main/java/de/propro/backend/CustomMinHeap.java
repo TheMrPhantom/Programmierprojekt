@@ -49,10 +49,13 @@ public class CustomMinHeap {
 		// Store the minimum value, and remove it from heap
 		int root = indices[0];
 
+		node[indices[0]] = -1;
 		node[indices[size - 1]] = 0;
+
 		indices[0] = indices[size - 1];
 		values[0] = values[size - 1];
 		values[size - 1] = -1;
+		indices[size - 1] = -1;
 		size--;
 		heapify(0);
 
@@ -122,9 +125,6 @@ public class CustomMinHeap {
 		if (r < size && values[r] < values[smallest])
 			smallest = r;
 		if (smallest != i) {
-			swapIndicesElements(i, smallest);
-			swapValuesElements(i, smallest);
-
 			// swapIndicesElements(nodeIdx, parentNodeIndex);
 			int nodeIdx = i;
 			int parentNodeIndex = smallest;
@@ -133,6 +133,11 @@ public class CustomMinHeap {
 
 			node[nodeAtNID] = parentNodeIndex;
 			node[parentAtPID] = nodeIdx;
+			
+			swapIndicesElements(i, smallest);
+			swapValuesElements(i, smallest);
+
+
 
 			heapify(smallest);
 		}

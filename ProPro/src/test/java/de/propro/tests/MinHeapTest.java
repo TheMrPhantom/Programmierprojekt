@@ -42,7 +42,7 @@ public class MinHeapTest {
 		assertEquals(2, min.pop());
 		assertEquals(9, min.pop());
 	}
-/*
+
 	@Test
 	public void testHeap2() {
 		CustomMinHeap min = new CustomMinHeap(4);
@@ -150,5 +150,5 @@ public class MinHeapTest {
 		assertEquals(12, min.pop());
 
 	}
-*/
+
 }
