@@ -6,6 +6,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import de.propro.backend.*;
 import de.propro.backend.dijkstra.DijktraResult;
 

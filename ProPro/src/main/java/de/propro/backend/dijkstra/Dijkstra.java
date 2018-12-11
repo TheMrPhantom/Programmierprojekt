@@ -3,6 +3,7 @@ package de.propro.backend.dijkstra;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import de.propro.backend.design.ProcessDisplay;
 import de.propro.backend.reading.GraphReader;
 
 public class Dijkstra {
@@ -29,6 +30,8 @@ public class Dijkstra {
 
 	public DijktraResult startToEnd(int start, int end) {
 		System.out.println("Starting start to end");
+		ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
+		loadingBar.start();
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -45,9 +48,9 @@ public class Dijkstra {
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
-int counter1=0;
+		int counter1 = 0;
 		while (popedNode != end) {
-counter1++;
+			counter1++;
 			/* Get the index in the edge list for the node we look at */
 			int init = indices[popedNode];
 
@@ -73,7 +76,12 @@ counter1++;
 						priorityQueue.decreaseValue(newNode, costOldPlusEdge);
 						nodeCost[newNode] = costOldPlusEdge;
 						if (costOldPlusEdge < 0) {
-							throw new IllegalStateException(counter1+"");
+							loadingBar.stopThread();
+							try {
+								loadingBar.join();
+							} catch (InterruptedException e) {
+							}
+							throw new IllegalStateException(counter1 + "");
 						}
 						lastNode[newNode] = popedNode;
 
@@ -95,6 +103,12 @@ counter1++;
 			} else {
 				popedNode = end;
 			}
+		}
+
+		loadingBar.stopThread();
+		try {
+			loadingBar.join();
+		} catch (InterruptedException e1) {
 		}
 
 		System.out.println("Finished start to end Dijkstra");
