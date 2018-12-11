@@ -54,9 +54,7 @@ public class Dijkstra {
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
-		int counter1 = 0;
 		while (popedNode != end) {
-			counter1++;
 			/* Get the index in the edge list for the node we look at */
 			int init = indices[popedNode];
 
@@ -87,7 +85,7 @@ public class Dijkstra {
 								loadingBar.join();
 							} catch (InterruptedException e) {
 							}
-							throw new IllegalStateException(counter1 + "");
+							throw new IllegalStateException("Node is not reachable");
 						}
 						lastNode[newNode] = popedNode;
 
