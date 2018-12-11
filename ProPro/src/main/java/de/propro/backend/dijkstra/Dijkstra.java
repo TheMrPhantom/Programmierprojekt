@@ -35,7 +35,13 @@ public class Dijkstra {
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
+			loadingBar.stopThread();
+			try {
+				loadingBar.join();
+			} catch (InterruptedException ex) {
+			}
 			System.err.println("Startknoten existiert nicht");
+			
 			return null;
 		}
 		int popedNode = priorityQueue.pop();
