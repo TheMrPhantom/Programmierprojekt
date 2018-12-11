@@ -48,12 +48,16 @@ public class Main {
 			}
 			switch (input) {
 			case 0:
-				int x = Integer.parseInt(main.readLine("Type the start node"));
-				int y = Integer.parseInt(main.readLine("Type the end node"));
 				try {
+					int x = Integer.parseInt(main.readLine("Type the start node index"));
+					int y = Integer.parseInt(main.readLine("Type the end node index"));
+
 					main.startToEnd(x, y, main.reader);
 				} catch (IllegalStateException e) {
 					System.err.println(e.getMessage());
+				} catch (NumberFormatException e) {
+					System.err.println("Input got wrong format\n"
+							+ "E.g. Not a number or out of the allowed range ([0, nodeCount])");
 				}
 				break;
 			case 1:
