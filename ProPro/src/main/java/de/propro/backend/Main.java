@@ -57,7 +57,7 @@ public class Main {
 					System.err.println(e.getMessage());
 				} catch (NumberFormatException e) {
 					System.err.println("Input got wrong format\n"
-							+ "E.g. Not a number or out of the allowed range ([0, nodeCount])");
+							+ "E.g. Not a number or out of the allowed range ([0, nodeCount-1])");
 				}
 				break;
 			case 1:
