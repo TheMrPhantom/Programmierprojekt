@@ -20,7 +20,7 @@ public class Main {
 		// bw.fmi
 
 		Main main = new Main();
-		
+
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -48,9 +48,13 @@ public class Main {
 			}
 			switch (input) {
 			case 0:
-				int x = Integer.parseInt(main.scan.nextLine());
-				int y = Integer.parseInt(main.scan.nextLine());
-				main.startToEnd(x, y, main.reader);
+				int x = Integer.parseInt(main.readLine("Type the start node"));
+				int y = Integer.parseInt(main.readLine("Type the end node"));
+				try {
+					main.startToEnd(x, y, main.reader);
+				} catch (IllegalStateException e) {
+					System.err.println(e.getMessage());
+				}
 				break;
 			case 1:
 
@@ -120,6 +124,9 @@ public class Main {
 		return output;
 	}
 
-	
+	private String readLine(String message) {
+		System.out.println(message);
+		return scan.nextLine();
+	}
 
 }
