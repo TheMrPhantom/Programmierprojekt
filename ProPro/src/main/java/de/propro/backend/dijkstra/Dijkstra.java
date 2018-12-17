@@ -31,20 +31,20 @@ public class Dijkstra {
 
 	public DijktraResult startToEnd(int start, int end) {
 		System.out.println("Starting start to end");
-		/*ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
-		loadingBar.start();
+		//ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
+		//loadingBar.start();
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			loadingBar.stopThread();
+			/*loadingBar.stopThread();
 			try {
 				loadingBar.join();
 			} catch (InterruptedException ex) {
-			}
+			}*/
 			System.err.println("Startknoten existiert nicht");
 
 			return null;
-		}*/
+		}
 		int popedNode = priorityQueue.pop();
 		nodeCost[popedNode] = 0;
 
