@@ -191,15 +191,10 @@ public class Dijkstra {
 
 					/* If the edge is better take it */
 					if (costOldPlusEdge < costOnlyNewNode) {
-						priorityQueue.decreaseValue(newNode, costOldPlusEdge);
-						nodeCost[newNode] = costOldPlusEdge;
-						if (costOldPlusEdge < 0) {
-							loadingBar.stopThread();
-							try {
-								loadingBar.join();
-							} catch (InterruptedException e) {
-							}
-							throw new IllegalStateException("Node is not reachable");
+						
+						if (costOldPlusEdge >= 0) {
+							nodeCost[newNode] = costOldPlusEdge;
+							priorityQueue.decreaseValue(newNode, costOldPlusEdge);
 						}
 						lastNode[newNode] = popedNode;
 
