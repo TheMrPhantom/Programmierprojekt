@@ -140,6 +140,7 @@ public class Main {
 		ArrayList<String> outputs = new ArrayList<String>();
 		long time = System.currentTimeMillis();
 		for (int i = 0; i < starts.size(); i++) {
+			System.gc();
 			int s = Integer.parseInt(starts.get(i));
 			int e = Integer.parseInt(ends.get(i));
 			Dijkstra d = new Dijkstra(reader);
@@ -147,6 +148,7 @@ public class Main {
 			outputs.add(temp);
 			double t = ((int) ((System.currentTimeMillis() - time) / 10.0)) / 100.0;
 			System.out.println(i + "/" + starts.size() + " | Time needed: " + t);
+			System.out.println();
 			time = System.currentTimeMillis();
 		}
 
