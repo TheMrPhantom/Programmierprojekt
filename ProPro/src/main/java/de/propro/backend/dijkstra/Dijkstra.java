@@ -246,35 +246,5 @@ public class Dijkstra {
 
 	}
 
-	public void queue(Main main) throws IOException {
-		String input = main.readLine("Type the path of the .que file (with file ending)");
-		String output = main.readLine("Type the name of the .sol file (without file ending)");
-		FileReader fr = new FileReader(input);
-		BufferedReader buffi = new BufferedReader(fr);
-		ArrayList<String> starts = new ArrayList<String>();
-		ArrayList<String> ends = new ArrayList<String>();
-
-		String fileInput;
-		while ((fileInput = buffi.readLine()) != null) {
-			starts.add(fileInput.split(" ")[0]);
-			ends.add(fileInput.split(" ")[1]);
-		}
-
-		buffi.close();
-
-		ArrayList<String> outputs = new ArrayList<String>();
-		for (int i = 0; i < starts.size(); i++) {
-			outputs.add(startToEnd(Integer.parseInt(starts.get(i)), Integer.parseInt(ends.get(i))).length + "");
-		}
-		
-		FileWriter writer=new FileWriter(output+".sol");
-		BufferedWriter buffiWriter=new BufferedWriter(writer);
-		
-		for(String out:outputs) {
-			buffiWriter.write(out+"\n");
-		}
-		buffiWriter.close();
-		
-	}
 
 }

@@ -1,6 +1,12 @@
 package de.propro.backend;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import de.propro.backend.dijkstra.Dijkstra;
 import de.propro.backend.dijkstra.DijktraResult;
@@ -21,6 +27,14 @@ public class Main {
 		// bw.fmi
 
 		Main main = new Main();
+		main.initGraph("bw.fmi");
+		Dijkstra dijkstra = new Dijkstra(main.reader);
+		try {
+
+			main.queue();
+		} catch (IOException e) {
+			System.err.println("Fehler beim Schreiben/Lesen");
+		}
 
 		if (args.length == 0) {
 			printHelp();
@@ -62,15 +76,18 @@ public class Main {
 				}
 				break;
 			case 1:
-				Dijkstra dijkstra = new Dijkstra(main.reader);
+				// Dijkstra dijkstra = new Dijkstra(main.reader);
 				dijkstra.oneToAll(Integer.parseInt(main.readLine("Enter the id od the start node")), main);
 				break;
 			case 2:
 				dijkstra = new Dijkstra(main.reader);
 				try {
-					dijkstra.queue(main);
+					main.queue();
 				} catch (IOException e) {
-					System.err.println("Fehler beim Schreiben/Lesen");
+					if (e instanceof FileNotFoundException)
+						System.err.println("File does not exist");
+					else
+						System.err.println("Fehler beim Schreiben/Lesen");
 				}
 				break;
 			case 3:
@@ -104,6 +121,45 @@ public class Main {
 		System.out.println("The path is " + output.path.size() + " nodes long");
 		System.out.println("Time needed: " + (System.currentTimeMillis() - time) / 1000 + " Sekunden");
 		return output;
+	}
+
+	private void queue() throws IOException {
+		String input = readLine("Type the path of the .que file (with file ending)");
+		String output = readLine("Type the name of the .sol file (without file ending)");
+		FileReader fr = new FileReader(input);
+		BufferedReader buffi = new BufferedReader(fr);
+		ArrayList<String> starts = new ArrayList<String>();
+		ArrayList<String> ends = new ArrayList<String>();
+
+		String fileInput;
+		while ((fileInput = buffi.readLine()) != null) {
+			starts.add(fileInput.split(" ")[0]);
+			ends.add(fileInput.split(" ")[1]);
+		}
+
+		buffi.close();
+
+		ArrayList<String> outputs = new ArrayList<String>();
+		long time = System.currentTimeMillis();
+		for (int i = 0; i < starts.size(); i++) {
+			int s = Integer.parseInt(starts.get(i));
+			int e = Integer.parseInt(ends.get(i));
+			Dijkstra d = new Dijkstra(reader);
+			String temp = d.startToEnd(s, e).length + "";
+			outputs.add(temp);
+			double t = ((int) ((System.currentTimeMillis() - time) / 10.0))/100.0;
+			System.out.println(i + "/" + starts.size() + " | Time needed: " + t);
+			time = System.currentTimeMillis();
+		}
+
+		FileWriter writer = new FileWriter(output + ".sol");
+		BufferedWriter buffiWriter = new BufferedWriter(writer);
+
+		for (String out : outputs) {
+			buffiWriter.write(out + "\n");
+		}
+		buffiWriter.close();
+
 	}
 
 	private static void printHelp() {
