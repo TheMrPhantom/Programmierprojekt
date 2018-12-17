@@ -27,15 +27,13 @@ public class Main {
 		// bw.fmi
 
 		Main main = new Main();
-		main.initGraph("bw.fmi");
-		Dijkstra dijkstra = new Dijkstra(main.reader);
-		try {
-
-			main.queue();
-		} catch (IOException e) {
-			System.err.println("Fehler beim Schreiben/Lesen");
-		}
-
+		/*
+		 * main.initGraph("bw.fmi"); Dijkstra dijkstra = new Dijkstra(main.reader); try
+		 * {
+		 * 
+		 * main.queue(); } catch (IOException e) {
+		 * System.err.println("Fehler beim Schreiben/Lesen"); }
+		 */
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -76,11 +74,11 @@ public class Main {
 				}
 				break;
 			case 1:
-				// Dijkstra dijkstra = new Dijkstra(main.reader);
+				Dijkstra dijkstra = new Dijkstra(main.reader);
 				dijkstra.oneToAll(Integer.parseInt(main.readLine("Enter the id od the start node")), main);
 				break;
 			case 2:
-				dijkstra = new Dijkstra(main.reader);
+
 				try {
 					main.queue();
 				} catch (IOException e) {
@@ -147,7 +145,7 @@ public class Main {
 			Dijkstra d = new Dijkstra(reader);
 			String temp = d.startToEnd(s, e).length + "";
 			outputs.add(temp);
-			double t = ((int) ((System.currentTimeMillis() - time) / 10.0))/100.0;
+			double t = ((int) ((System.currentTimeMillis() - time) / 10.0)) / 100.0;
 			System.out.println(i + "/" + starts.size() + " | Time needed: " + t);
 			time = System.currentTimeMillis();
 		}
