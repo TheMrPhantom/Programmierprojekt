@@ -191,7 +191,7 @@ public class Dijkstra {
 
 					/* If the edge is better take it */
 					if (costOldPlusEdge < costOnlyNewNode) {
-						
+
 						if (costOldPlusEdge >= 0) {
 							nodeCost[newNode] = costOldPlusEdge;
 							priorityQueue.decreaseValue(newNode, costOldPlusEdge);
@@ -224,9 +224,12 @@ public class Dijkstra {
 
 		System.out.println("Finished one to all Dijkstra");
 		do {
-			int node = Integer.parseInt(main.readLine("Cost to what node?"));
-			System.out.println(nodeCost[node]);
-
+			try {
+				int node = Integer.parseInt(main.readLine("Cost to what node?"));
+				System.out.println(nodeCost[node]);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.err.println("Node does not exist");
+			}
 		} while (main.readLine("New request? (y/n)").equals("y"));
 
 	}
