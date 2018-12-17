@@ -91,6 +91,25 @@ public class Main {
 				}
 				break;
 			case 3:
+				try {
+					int startX = Integer.parseInt(main.readLine("Type the X-coordinate of the starting location"));
+					int startY = Integer.parseInt(main.readLine("Type the Y-coordinate of the starting location"));
+					int startNode = main.reader.findNearestNode(startX, startY);
+
+					int endX = Integer.parseInt(main.readLine("Type the X-coordinate of the ending location"));
+					int endY = Integer.parseInt(main.readLine("Type the Y-coordinate of the ending location"));
+					int endNode = main.reader.findNearestNode(endX, endY);
+
+					main.startToEnd(startNode, endNode, main.reader);
+				} catch (IllegalStateException e) {
+					System.err.println(e.getMessage());
+				} catch (NumberFormatException e) {
+					System.err.println("Input got wrong format\n"
+							+ "E.g. Not a number or out of the allowed range");
+				}
+
+				break;
+			case 4:
 				System.out.println("Programm exited");
 				break;
 			default:
@@ -119,7 +138,7 @@ public class Main {
 		System.out.println();
 		System.out.println("The path is " + output.length + "m long");
 		System.out.println("The path is " + output.path.size() + " nodes long");
-		System.out.println("Time needed: " + (System.currentTimeMillis() - time) / 1000 + " Sekunden");
+		System.out.printf("Time needed: %.2f Seconds\n", (System.currentTimeMillis() - time) / 1000.0);
 		return output;
 	}
 
@@ -187,7 +206,8 @@ public class Main {
 		System.out.println("\t(0) Start -> End");
 		System.out.println("\t(1) Node -> All");
 		System.out.println("\t(2) Process Start -> End file");
-		System.out.println("\t(3) Exit");
+		System.out.println("\t(3) Location -> Location");
+		System.out.println("\t(4) Exit");
 
 		int output = Integer.parseInt(scan.nextLine());
 		return output;

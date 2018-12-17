@@ -108,19 +108,30 @@ public class GraphReader {
 	public int[] getEdges() {
 		return this.edges;
 	}
-	
+
 	/**
 	 * TODO find nearest node to given node  
 	 * @param lat latitude of given node
 	 * @param long longtitude of given node
 	 * @return index i of nearest node
-	 * use https://www.varsitytutors.com/hotmath/hotmath_help/topics/distance-formula 
 	 */
 	public int findNearestNode(double latitude, double longitude) {
 		int num = coordinates.length;
-		for(int i = 0; i < num; i+=2 ) {
+		int bestNodeIndex = 0;
+		double bestDistance = Double.MAX_VALUE;
+		
+		double currentLat, currentLong, currentDistance;
+		
+		for (int i = 0; i < num; i+=2) {
+			currentLat = coordinates[i];
+			currentLong = coordinates[i + 1];
 			
+			currentDistance = Math.sqrt(Math.pow(latitude - currentLat, 2) + Math.pow(longitude - currentLong, 2));
+			if (currentDistance < bestDistance) {
+				bestDistance = currentDistance;
+				bestNodeIndex = i;
+			}
 		}
-		return 5;
+		return bestNodeIndex;
 	}
 }
