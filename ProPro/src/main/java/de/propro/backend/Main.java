@@ -86,7 +86,7 @@ public class Main {
 						System.err.println("File does not exist");
 					else
 						System.err.println("Fehler beim Schreiben/Lesen");
-				}catch(ArrayIndexOutOfBoundsException e) {
+				} catch (ArrayIndexOutOfBoundsException e) {
 					System.err.println("File is not a valid .que file");
 				}
 				break;
@@ -104,8 +104,7 @@ public class Main {
 				} catch (IllegalStateException e) {
 					System.err.println(e.getMessage());
 				} catch (NumberFormatException e) {
-					System.err.println("Input got wrong format\n"
-							+ "E.g. Not a number or out of the allowed range");
+					System.err.println("Input got wrong format\n" + "E.g. Not a number or out of the allowed range");
 				}
 
 				break;

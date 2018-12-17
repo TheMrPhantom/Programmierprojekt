@@ -12,76 +12,39 @@ import org.junit.Test;
 import de.propro.backend.*;
 import de.propro.backend.dijkstra.DijktraResult;
 
-
 public class DijktraTest {
 	static Main main;
-/*
-	@BeforeClass
-	public static void init() {
-		main = new Main();
-		main.initGraph("bw.fmi");
-	}
 
-	@Test
-	public void checkDijktra0() {
-		testDijktra(1);
-		
-		
-	}
-
-	@Test
-	public void checkDijktra1() {
-		testDijktra(20);
-	}
-
-	@Test
-	public void checkDijktra2() {
-		testDijktra(22);
-	}
-
-	@Test
-	public void checkDijktra3() {
-		testDijktra(23);
-	}
-
-	@Test
-	public void checkDijktra4() {
-		testDijktra(24);
-	}
-
-	@Test
-	public void checkDijktra5() {
-		testDijktra(25);
-	}
-
-	@Test
-	public void checkDijktra6() {
-		testDijktra(26);
-	}
-
-	@Test
-	public void checkDijktra7() {
-		testDijktra(27);
-	}
-
-	@Test
-	public void checkDijktra8() {
-		testDijktra(28);
-	}
-
-	@Test
-	public void checkDijktra9() {
-		testDijktra(29);
-	}
-
-	@Test
-	public void testAll() {
-		for (int i = 0; i < 100; i++) {
-			System.out.println("TEST: "+i);
-			testDijktra(i);
-		}
-	}
-*/
+	/*
+	 * @BeforeClass public static void init() { main = new Main();
+	 * main.initGraph("bw.fmi"); }
+	 * 
+	 * @Test public void checkDijktra0() { testDijktra(1);
+	 * 
+	 * 
+	 * }
+	 * 
+	 * @Test public void checkDijktra1() { testDijktra(20); }
+	 * 
+	 * @Test public void checkDijktra2() { testDijktra(22); }
+	 * 
+	 * @Test public void checkDijktra3() { testDijktra(23); }
+	 * 
+	 * @Test public void checkDijktra4() { testDijktra(24); }
+	 * 
+	 * @Test public void checkDijktra5() { testDijktra(25); }
+	 * 
+	 * @Test public void checkDijktra6() { testDijktra(26); }
+	 * 
+	 * @Test public void checkDijktra7() { testDijktra(27); }
+	 * 
+	 * @Test public void checkDijktra8() { testDijktra(28); }
+	 * 
+	 * @Test public void checkDijktra9() { testDijktra(29); }
+	 * 
+	 * @Test public void testAll() { for (int i = 0; i < 100; i++) {
+	 * System.out.println("TEST: "+i); testDijktra(i); } }
+	 */
 	public void testDijktra(int i) {
 		try {
 			FileReader r = new FileReader("bw.que");

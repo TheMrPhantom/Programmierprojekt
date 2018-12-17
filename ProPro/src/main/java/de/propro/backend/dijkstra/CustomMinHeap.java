@@ -118,14 +118,12 @@ public class CustomMinHeap {
 		if (r < size && values[r] < values[smallest])
 			smallest = r;
 		if (smallest != i) {
-			
+
 			node[indices[i]] = smallest;
 			node[indices[smallest]] = i;
-			
+
 			swapIndicesElements(i, smallest);
 			swapValuesElements(i, smallest);
-
-
 
 			heapify(smallest);
 		}

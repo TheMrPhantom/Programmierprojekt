@@ -22,19 +22,17 @@ public class MinHeapTest {
 		min.decreaseValue(1, 100);
 		min.decreaseValue(2, 1000);
 		assertEquals(3, min.pop());
-		
+
 		min.decreaseValue(0, 500);
 		min.decreaseValue(4, 10);
 		assertEquals(4, min.pop());
-		
+
 		min.decreaseValue(8, 80);
 		min.decreaseValue(7, 700);
 		min.decreaseValue(9, 2000);
 		min.decreaseValue(5, 60);
 		min.decreaseValue(6, 400);
-		
-		
-		
+
 		assertEquals(5, min.pop());
 		assertEquals(8, min.pop());
 		assertEquals(1, min.pop());
