@@ -1,5 +1,6 @@
 package de.propro.backend;
 
+import java.io.IOException;
 import java.util.Scanner;
 import de.propro.backend.dijkstra.Dijkstra;
 import de.propro.backend.dijkstra.DijktraResult;
@@ -65,7 +66,12 @@ public class Main {
 				dijkstra.oneToAll(Integer.parseInt(main.readLine("Enter the id od the start node")), main);
 				break;
 			case 2:
-
+				dijkstra = new Dijkstra(main.reader);
+				try {
+					dijkstra.queue(main);
+				} catch (IOException e) {
+					System.err.println("Fehler beim Schreiben/Lesen");
+				}
 				break;
 			case 3:
 				System.out.println("Programm exited");

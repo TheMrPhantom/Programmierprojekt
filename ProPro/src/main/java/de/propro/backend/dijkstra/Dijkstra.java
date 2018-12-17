@@ -1,7 +1,14 @@
 package de.propro.backend.dijkstra;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
+
+import com.google.common.io.FileWriteMode;
 
 import de.propro.backend.Main;
 import de.propro.backend.design.ProcessDisplay;
@@ -146,7 +153,7 @@ public class Dijkstra {
 		System.out.println("Starting start to end");
 		ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
 		loadingBar.start();
-		long time=System.currentTimeMillis();
+		long time = System.currentTimeMillis();
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -217,8 +224,8 @@ public class Dijkstra {
 			}
 		}
 
-		long time2=System.currentTimeMillis();
-		
+		long time2 = System.currentTimeMillis();
+
 		loadingBar.stopThread();
 		try {
 			loadingBar.join();
@@ -226,8 +233,8 @@ public class Dijkstra {
 		}
 
 		System.out.println("Finished one to all Dijkstra");
-		
-		System.out.println((time2-time)/1000+"s needed");
+
+		System.out.println((time2 - time) / 1000 + "s needed");
 		do {
 			try {
 				int node = Integer.parseInt(main.readLine("Cost to what node?"));
@@ -237,6 +244,37 @@ public class Dijkstra {
 			}
 		} while (main.readLine("New request? (y/n)").equals("y"));
 
+	}
+
+	public void queue(Main main) throws IOException {
+		String input = main.readLine("Type the path of the .que file (with file ending)");
+		String output = main.readLine("Type the name of the .sol file (without file ending)");
+		FileReader fr = new FileReader(input);
+		BufferedReader buffi = new BufferedReader(fr);
+		ArrayList<String> starts = new ArrayList<String>();
+		ArrayList<String> ends = new ArrayList<String>();
+
+		String fileInput;
+		while ((fileInput = buffi.readLine()) != null) {
+			starts.add(fileInput.split(" ")[0]);
+			ends.add(fileInput.split(" ")[1]);
+		}
+
+		buffi.close();
+
+		ArrayList<String> outputs = new ArrayList<String>();
+		for (int i = 0; i < starts.size(); i++) {
+			outputs.add(startToEnd(Integer.parseInt(starts.get(i)), Integer.parseInt(ends.get(i))).length + "");
+		}
+		
+		FileWriter writer=new FileWriter(output+".sol");
+		BufferedWriter buffiWriter=new BufferedWriter(writer);
+		
+		for(String out:outputs) {
+			buffiWriter.write(out+"\n");
+		}
+		buffiWriter.close();
+		
 	}
 
 }
