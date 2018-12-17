@@ -86,6 +86,8 @@ public class Main {
 						System.err.println("File does not exist");
 					else
 						System.err.println("Fehler beim Schreiben/Lesen");
+				}catch(ArrayIndexOutOfBoundsException e) {
+					System.err.println("File is not a valid .que file");
 				}
 				break;
 			case 3:
@@ -121,7 +123,7 @@ public class Main {
 		return output;
 	}
 
-	private void queue() throws IOException {
+	private void queue() throws IOException, ArrayIndexOutOfBoundsException {
 		String input = readLine("Type the path of the .que file (with file ending)");
 		String output = readLine("Type the name of the .sol file (without file ending)");
 		FileReader fr = new FileReader(input);
