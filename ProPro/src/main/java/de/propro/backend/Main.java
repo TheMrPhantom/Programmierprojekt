@@ -61,7 +61,8 @@ public class Main {
 				}
 				break;
 			case 1:
-
+				Dijkstra dijkstra = new Dijkstra(main.reader);
+				dijkstra.oneToAll(Integer.parseInt(main.readLine("Enter the id od the start node")), main);
 				break;
 			case 2:
 
@@ -128,7 +129,7 @@ public class Main {
 		return output;
 	}
 
-	private String readLine(String message) {
+	public String readLine(String message) {
 		System.out.println(message);
 		return scan.nextLine();
 	}
