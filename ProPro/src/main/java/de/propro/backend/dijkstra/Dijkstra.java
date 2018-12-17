@@ -146,6 +146,7 @@ public class Dijkstra {
 		System.out.println("Starting start to end");
 		ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
 		loadingBar.start();
+		long time=System.currentTimeMillis();
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -216,6 +217,8 @@ public class Dijkstra {
 			}
 		}
 
+		long time2=System.currentTimeMillis();
+		
 		loadingBar.stopThread();
 		try {
 			loadingBar.join();
@@ -223,6 +226,8 @@ public class Dijkstra {
 		}
 
 		System.out.println("Finished one to all Dijkstra");
+		
+		System.out.println((time2-time)/1000+"s needed");
 		do {
 			try {
 				int node = Integer.parseInt(main.readLine("Cost to what node?"));
