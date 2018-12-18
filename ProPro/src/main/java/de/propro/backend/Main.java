@@ -92,12 +92,12 @@ public class Main {
 				break;
 			case 3:
 				try {
-					int startX = Integer.parseInt(main.readLine("Type the X-coordinate of the starting location"));
-					int startY = Integer.parseInt(main.readLine("Type the Y-coordinate of the starting location"));
+					double startX = Double.parseDouble(main.readLine("Type the X-coordinate of the starting location"));
+					double startY = Double.parseDouble(main.readLine("Type the Y-coordinate of the starting location"));
 					int startNode = main.reader.findNearestNode(startX, startY);
 
-					int endX = Integer.parseInt(main.readLine("Type the X-coordinate of the ending location"));
-					int endY = Integer.parseInt(main.readLine("Type the Y-coordinate of the ending location"));
+					double endX = Double.parseDouble(main.readLine("Type the X-coordinate of the ending location"));
+					double endY = Double.parseDouble(main.readLine("Type the Y-coordinate of the ending location"));
 					int endNode = main.reader.findNearestNode(endX, endY);
 
 					main.startToEnd(startNode, endNode, main.reader);
