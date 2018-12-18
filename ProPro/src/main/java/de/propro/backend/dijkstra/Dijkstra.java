@@ -169,7 +169,7 @@ public class Dijkstra {
 		int newNode;
 		int costOldPlusEdge;
 		int costOnlyNewNode;
-		int newEdge;
+		
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
@@ -189,22 +189,18 @@ public class Dijkstra {
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
 					newNode = edges[i + 1];
-					newEdge = edges[i + 2];
 
-					costOldPlusEdge = newEdge + costForViewedNode;
+					costOldPlusEdge = edges[i + 2] + costForViewedNode;
 					costOnlyNewNode = this.nodeCost[newNode];
 
 					/* If the edge is better take it */
 					if (costOldPlusEdge < costOnlyNewNode) {
-
 						if (costOldPlusEdge >= 0) {
 							nodeCost[newNode] = costOldPlusEdge;
 							priorityQueue.decreaseValue(newNode, costOldPlusEdge);
 						}
 						lastNode[newNode] = popedNode;
-
 					}
-
 				}
 
 			} catch (ArrayIndexOutOfBoundsException e) {
