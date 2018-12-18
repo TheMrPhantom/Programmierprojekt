@@ -22,7 +22,7 @@ The runnable JAR is build by gradle. Open root directory of repository and run `
 
 To run the software, locate **ProPro.jar** (by default in `./build/libs/`) and run the following command:
 ```
-java -jar ProPro.jar -f <Filename>
+java -Xmx5g -jar ProPro.jar -f <Filename>
 ```
 
 \<Filename> is either the path to a graph file or the name of a graph file in current folder, e.g. `java -jar ProPro.jar -f germany.fmi`
