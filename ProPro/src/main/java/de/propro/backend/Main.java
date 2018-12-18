@@ -40,6 +40,7 @@ public class Main {
 		} else {
 			if (args[0].equals("-h")) {
 				printHelp();
+				return;
 			} else if (args[0].equals("-f")) {
 				if (args.length > 1) {
 					main.initGraph(args[1]);
