@@ -141,7 +141,11 @@ public class Dijkstra {
 		result.length = nodeCost[end];
 		return result;
 	}
-
+/**
+ * Implementation of an one-to-all Dijkstra
+ * @param start
+ * @param main
+ */
 	public void oneToAll(int start, Main main) {
 		System.out.println("Starting start to end");
 		ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
