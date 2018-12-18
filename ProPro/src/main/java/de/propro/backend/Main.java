@@ -157,18 +157,19 @@ public class Main {
 		buffi.close();
 
 		ArrayList<String> outputs = new ArrayList<String>();
+		Dijkstra d = new Dijkstra(reader);
 		long time = System.currentTimeMillis();
 		for (int i = 0; i < starts.size(); i++) {
-			System.gc();
 			int s = Integer.parseInt(starts.get(i));
 			int e = Integer.parseInt(ends.get(i));
-			Dijkstra d = new Dijkstra(reader);
+
 			String temp = d.startToEnd(s, e).length + "";
 			outputs.add(temp);
 			double t = ((int) ((System.currentTimeMillis() - time) / 10.0)) / 100.0;
 			System.out.println(i + "/" + starts.size() + " | Time needed: " + t);
 			System.out.println();
 			time = System.currentTimeMillis();
+			d.reset();
 		}
 
 		FileWriter writer = new FileWriter(output + ".sol");

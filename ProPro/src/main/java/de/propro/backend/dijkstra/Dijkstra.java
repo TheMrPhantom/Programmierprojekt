@@ -243,4 +243,16 @@ public class Dijkstra {
 
 	}
 
+	public void reset() {
+		int nodeCount = reader.getIndices().length;
+		priorityQueue = new CustomMinHeap(nodeCount);
+		lastNode = new int[nodeCount];
+		nodeCost = new int[nodeCount];
+		for (int i = 0; i < nodeCount; i++) {
+			lastNode[i] = Integer.MAX_VALUE;
+			nodeCost[i] = Integer.MAX_VALUE;
+		}
+		System.out.println("Finished reseting Dijkstra");
+	}
+	
 }
