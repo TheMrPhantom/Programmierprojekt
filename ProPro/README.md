@@ -25,7 +25,7 @@ To run the software, locate **ProPro.jar** (by default in `./build/libs/`) and r
 java -Xmx5g -jar ProPro.jar -f <Filename>
 ```
 
-\<Filename> is either the path to a graph file or the name of a graph file in current folder, e.g. `java -jar ProPro.jar -f germany.fmi`
+\<Filename> is either the path to a graph file or the name of a graph file in current folder, e.g. `java -Xmx5g -jar ProPro.jar -f germany.fmi`
 
 The program starts to read header informations followed by parallel reading of node and edge data. As soon as the graph got sucessfully read, a main menu appears with the  following options:
 
