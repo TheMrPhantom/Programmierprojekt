@@ -76,10 +76,9 @@ public class Main {
 				break;
 			case 1:
 				Dijkstra dijkstra = new Dijkstra(main.reader);
-				dijkstra.oneToAll(Integer.parseInt(main.readLine("Enter the id od the start node")), main);
+				dijkstra.oneToAll(Integer.parseInt(main.readLine("Enter the id of the start node")), main);
 				break;
 			case 2:
-
 				try {
 					main.queue();
 				} catch (IOException e) {
@@ -107,7 +106,6 @@ public class Main {
 				} catch (NumberFormatException e) {
 					System.err.println("Input got wrong format\n" + "E.g. Not a number or out of the allowed range");
 				}
-
 				break;
 			case 4:
 				System.out.println("Programm exited");
@@ -180,7 +178,6 @@ public class Main {
 			buffiWriter.write(out + "\n");
 		}
 		buffiWriter.close();
-
 	}
 
 	private static void printHelp() {
@@ -188,7 +185,6 @@ public class Main {
 		System.out.println("\tParam -h:\tShows how to start the programm");
 		System.out.println("\tParam -f:\tSpecify the file to load");
 		System.out.println("\t\t\tExample: java -jar ProPro.jar -f germany.fmi");
-
 	}
 
 	private void printIllegalArgumentsMessage() {
@@ -217,5 +213,4 @@ public class Main {
 		System.out.println(message);
 		return scan.nextLine();
 	}
-
 }
