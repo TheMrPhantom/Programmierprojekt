@@ -18,7 +18,10 @@ The underlaying algorithm is based on a one-to-all Dijkstra path-finding algorit
   - All external dependecies are downloaded automatically from gradle while building
 
 ## Building the software
-The runnable JAR is build by gradle. To install the newest version of gradle we prepared a skript to run. Open root directory of repository and run `sudo sh prepareProPro.sh` this will install gradle, the needed java version and build the project. Afterwards you can find **ProPro.jar** in `./build/libs/`
+The runnable JAR is build by gradle. To install the newest version of gradle we prepared a skript to run. Open root directory of repository and run `sudo sh prepareProPro.sh` this will install gradle, the needed java version and build the project.
+While running the skript will ask you a few times to confirm the installation of the parts type yes or press enter if you are asked to.
+At the end it may ask you "What would you like to do about menu.lst?" the just type keep and you are done with preparing and building.
+Afterwards you can find **ProPro.jar** in `./build/libs/`
 
 
 ## Running the software
