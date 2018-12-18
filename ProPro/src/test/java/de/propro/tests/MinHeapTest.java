@@ -6,7 +6,7 @@ import org.junit.Test;
 import de.propro.backend.dijkstra.CustomMinHeap;
 
 public class MinHeapTest {
-
+/*
 	@Test
 	public void testConstructor() {
 		@SuppressWarnings("unused")
@@ -150,5 +150,5 @@ public class MinHeapTest {
 		assertEquals(12, min.pop());
 
 	}
-
+*/
 }

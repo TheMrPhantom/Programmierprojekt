@@ -44,7 +44,7 @@ public class DijktraTest {
 	 * 
 	 * @Test public void testAll() { for (int i = 0; i < 100; i++) {
 	 * System.out.println("TEST: "+i); testDijktra(i); } }
-	 */
+	 *
 	public void testDijktra(int i) {
 		try {
 			FileReader r = new FileReader("bw.que");
@@ -73,5 +73,5 @@ public class DijktraTest {
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
-	}
+	}*/
 }
