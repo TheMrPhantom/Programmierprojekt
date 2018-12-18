@@ -12,7 +12,8 @@ The underlaying algorithm is based on a one-to-all Dijkstra path-finding algorit
 
 - Backend built on Java
 - Build system implemented in Gradle
-- No external dependencies
+- External dependencies
+  - Gson (not used yet)
 
 ## Building the software
 The runnable JAR is build by gradle. Open root directory of repository and run `gradle build`. Afterwards you can find **ProPro.jar** in `./build/libs/`
