@@ -10,6 +10,12 @@ public class CustomMinHeap {
 
 	private int size;
 
+	private int left;
+	private int right;
+	
+	private int swapIndices;
+	private int swapValues;
+	
 	public CustomMinHeap(int capacity) {
 		indices = new int[capacity];
 		values = new int[capacity];
@@ -45,7 +51,7 @@ public class CustomMinHeap {
 		// Store the minimum value, and remove it from heap
 		int root = indices[0];
 
-		node[indices[0]] = -1;
+		//node[indices[0]] = -1;
 		node[indices[size - 1]] = 0;
 
 		indices[0] = indices[size - 1];
@@ -110,13 +116,13 @@ public class CustomMinHeap {
 	}
 
 	private void heapify(int i) {
-		int l = left(i);
-		int r = right(i);
+		left = left(i);
+		right = right(i);
 		int smallest = i;
-		if (l < size && values[l] < values[i])
-			smallest = l;
-		if (r < size && values[r] < values[smallest])
-			smallest = r;
+		if (left < size && values[left] < values[i])
+			smallest = left;
+		if (right < size && values[right] < values[smallest])
+			smallest = right;
 		if (smallest != i) {
 
 			node[indices[i]] = smallest;
@@ -130,15 +136,15 @@ public class CustomMinHeap {
 	}
 
 	private void swapIndicesElements(int a, int b) {
-		int valueTemp = indices[a];
+		swapIndices = indices[a];
 		indices[a] = indices[b];
-		indices[b] = valueTemp;
+		indices[b] = swapIndices;
 	}
 
 	private void swapValuesElements(int a, int b) {
-		int valueTemp = values[a];
+		swapValues = values[a];
 		values[a] = values[b];
-		values[b] = valueTemp;
+		values[b] = swapValues;
 	}
 
 	private static int parent(int i) {
