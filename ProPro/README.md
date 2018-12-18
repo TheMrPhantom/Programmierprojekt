@@ -12,7 +12,10 @@ The underlaying algorithm is based on a one-to-all Dijkstra path-finding algorit
 
 - Backend built on Java
 - Build system implemented in Gradle
-- No external dependencies
+- External dependencies
+  - Gson (not used yet)
+  - JUnit 4.12
+  - All external dependecies are downloaded automatically from gradle while building
 
 ## Building the software
 The runnable JAR is build by gradle. Open root directory of repository and run `gradle build`. Afterwards you can find **ProPro.jar** in `./build/libs/`
@@ -22,10 +25,10 @@ The runnable JAR is build by gradle. Open root directory of repository and run `
 
 To run the software, locate **ProPro.jar** (by default in `./build/libs/`) and run the following command:
 ```
-java -jar ProPro.jar -f <Filename>
+java -Xmx5g -jar ProPro.jar -f <Filename>
 ```
 
-\<Filename> is either the path to a graph file or the name of a graph file in current folder, e.g. `java -jar ProPro.jar -f germany.fmi`
+\<Filename> is either the path to a graph file or the name of a graph file in current folder, e.g. `java -Xmx5g -jar ProPro.jar -f germany.fmi`
 
 The program starts to read header informations followed by parallel reading of node and edge data. As soon as the graph got sucessfully read, a main menu appears with the  following options:
 
