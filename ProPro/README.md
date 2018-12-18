@@ -18,14 +18,14 @@ The underlaying algorithm is based on a one-to-all Dijkstra path-finding algorit
   - All external dependecies are downloaded automatically from gradle while building
 
 ## Building the software
-The runnable JAR is build by gradle. Open root directory of repository and run `gradle build`. Afterwards you can find **ProPro.jar** in `./build/libs/`
+The runnable JAR is build by gradle. To install the newest version of gradle we prepared a skript to run. Open root directory of repository and run `sudo sh prepareProPro.sh` this will install gradle, the needed java version and build the project. Afterwards you can find **ProPro.jar** in `./build/libs/`
 
 
 ## Running the software
 
 To run the software, locate **ProPro.jar** (by default in `./build/libs/`) and run the following command:
 ```
-java -Xmx5g -jar ProPro.jar -f <Filename>
+java -Xmx5g -jar ProPro.jar -f </Filename>
 ```
 
 \<Filename> is either the path to a graph file or the name of a graph file in current folder, e.g. `java -Xmx5g -jar ProPro.jar -f germany.fmi`
@@ -33,13 +33,13 @@ java -Xmx5g -jar ProPro.jar -f <Filename>
 The program starts to read header informations followed by parallel reading of node and edge data. As soon as the graph got sucessfully read, a main menu appears with the  following options:
 
 ##### (0) Start -> End
-Generates the shortest path from a start to end node and stores results in a *DijkstraResult* Object 
+Generates the shortest path from a start to end node and returns the path length in nodes and meters plus the needed time to calculate
 ##### (1) Node -> All
-
+Generates the shortest path from a start to all nodes and returns the needed time to calculate. The program will ask for a node id ot which you want to know the shortest distance
 ##### (2) Process Start -> End file
-
+Asks you for a .que file and generates a .sol file
 ##### (3) Location -> Location
-
+Asks for coordinates and gives you the index of the nearest node to this location
 ##### (4) Exit
 Closes the program
 
