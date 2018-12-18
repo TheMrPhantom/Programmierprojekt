@@ -33,13 +33,13 @@ java -Xmx5g -jar ProPro.jar -f </Filename>
 The program starts to read header informations followed by parallel reading of node and edge data. As soon as the graph got sucessfully read, a main menu appears with the  following options:
 
 ##### (0) Start -> End
-Generates the shortest path from a start to end node and stores results in a *DijkstraResult* Object 
+Generates the shortest path from a start to end node and returns the path length in nodes and meters plus the needed time to calculate
 ##### (1) Node -> All
-
+Generates the shortest path from a start to all nodes and returns the needed time to calculate. The program will ask for a node id ot which you want to know the shortest distance
 ##### (2) Process Start -> End file
-
+Asks you for a .que file and generates a .sol file
 ##### (3) Location -> Location
-
+Asks for coordinates and gives you the index of the nearest node to this location
 ##### (4) Exit
 Closes the program
 
