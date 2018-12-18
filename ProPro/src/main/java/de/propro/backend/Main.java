@@ -54,7 +54,7 @@ public class Main {
 
 		int input = 0;
 
-		while (input != 3) {
+		while (input != 4) {
 			try {
 				input = main.printMainMenu();
 			} catch (NumberFormatException ex) {
