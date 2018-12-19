@@ -22,7 +22,7 @@ public class EdgeReader extends CustomReader {
 	}
 
 	/**
-	 * Reads the edges and stores it in the array
+	 * Reads the edges and stores them in an array
 	 */
 	@Override
 	public void run() {
@@ -68,7 +68,7 @@ public class EdgeReader extends CustomReader {
 	 * 
 	 * Return the read edges
 	 * 
-	 * @return The edges as array
+	 * @return The edges as an array
 	 * @throws IllegalStateException If the thread has not finished reading the file
 	 */
 	public int[] getEdges() {
@@ -78,6 +78,11 @@ public class EdgeReader extends CustomReader {
 		return edges;
 	}
 
+	/**
+	 * Return the indices of read edges
+	 * 
+	 * @return The indices as an array
+	 */
 	public int[] getIndices() {
 		if (!isFinished) {
 			throw new IllegalStateException("The thread has not finished it's work or the reading failed!");

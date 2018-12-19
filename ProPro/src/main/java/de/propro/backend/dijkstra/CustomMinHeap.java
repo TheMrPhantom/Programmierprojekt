@@ -12,10 +12,10 @@ public class CustomMinHeap {
 
 	private int left;
 	private int right;
-	
+
 	private int swapIndices;
 	private int swapValues;
-	
+
 	public CustomMinHeap(int capacity) {
 		indices = new int[capacity];
 		values = new int[capacity];
@@ -41,8 +41,8 @@ public class CustomMinHeap {
 	 */
 	public int pop() {
 
-		//if (size <= 0)
-			//throw new IllegalStateException("There are no more elements to pop");
+		// if (size <= 0)
+		// throw new IllegalStateException("There are no more elements to pop");
 		if (size == 1) {
 			size--;
 			return indices[0];
@@ -51,7 +51,7 @@ public class CustomMinHeap {
 		// Store the minimum value, and remove it from heap
 		int root = indices[0];
 
-		//node[indices[0]] = -1;
+		// node[indices[0]] = -1;
 		node[indices[size - 1]] = 0;
 
 		indices[0] = indices[size - 1];
@@ -119,14 +119,12 @@ public class CustomMinHeap {
 			smallest = right;
 		if (smallest != i) {
 
+			// swapOther(i,smallest);
+			// swapIndicesElements(i, smallest);
+			// swapValuesElements(i, smallest);
 
-			//swapOther(i,smallest);
-			//swapIndicesElements(i, smallest);
-			//swapValuesElements(i, smallest);
-			
-			
 			swap(i, smallest);
-			
+
 			heapify(smallest);
 		}
 	}
@@ -134,15 +132,15 @@ public class CustomMinHeap {
 	private void swap(int a, int b) {
 		node[indices[a]] = b;
 		node[indices[b]] = a;
-		
+
 		swapIndices = indices[a];
 		indices[a] = indices[b];
 		indices[b] = swapIndices;
-		
+
 		swapValues = values[a];
 		values[a] = values[b];
 		values[b] = swapValues;
-		
+
 	}
 
 	private static int parent(int i) {

@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 /**
  * 
- * Class using a Buffered Reader to read over the coordinates of given nodes and storing these in an array. Additional basic
- * functions like returning the read coordinates for later processing
+ * Class using a Buffered Reader to read over the coordinates of given nodes and
+ * storing these in an array. Additional basic functions like returning the read
+ * coordinates for later processing
  *
  */
 public class NodeReader extends CustomReader {

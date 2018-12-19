@@ -31,16 +31,15 @@ public class Dijkstra {
 
 	public DijktraResult startToEnd(int start, int end) {
 		System.out.println("Starting start to end");
-		//ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
-		//loadingBar.start();
+		// ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
+		// loadingBar.start();
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			/*loadingBar.stopThread();
-			try {
-				loadingBar.join();
-			} catch (InterruptedException ex) {
-			}*/
+			/*
+			 * loadingBar.stopThread(); try { loadingBar.join(); } catch
+			 * (InterruptedException ex) { }
+			 */
 			System.err.println("Startknoten existiert nicht");
 
 			return null;
@@ -82,11 +81,10 @@ public class Dijkstra {
 						priorityQueue.decreaseValue(newNode, costOldPlusEdge);
 						nodeCost[newNode] = costOldPlusEdge;
 						if (costOldPlusEdge < 0) {
-							/*loadingBar.stopThread();
-							try {
-								loadingBar.join();
-							} catch (InterruptedException e) {
-							}*/
+							/*
+							 * loadingBar.stopThread(); try { loadingBar.join(); } catch
+							 * (InterruptedException e) { }
+							 */
 							throw new IllegalStateException("Node is not reachable");
 						}
 						lastNode[newNode] = popedNode;
@@ -112,14 +110,11 @@ public class Dijkstra {
 		}
 
 		System.out.printf("Time needed: %.2f Seconds\n", (System.currentTimeMillis() - time) / 1000.0);
-		
-/*
-		loadingBar.stopThread();
-		try {
-			loadingBar.join();
-		} catch (InterruptedException e1) {
-		}
-*/
+
+		/*
+		 * loadingBar.stopThread(); try { loadingBar.join(); } catch
+		 * (InterruptedException e1) { }
+		 */
 		System.out.println("Finished start to end Dijkstra");
 		System.out.println("Starting to collect path");
 
@@ -145,11 +140,13 @@ public class Dijkstra {
 		result.length = nodeCost[end];
 		return result;
 	}
-/**
- * Implementation of an one-to-all Dijkstra
- * @param start
- * @param main
- */
+
+	/**
+	 * Implementation of an one-to-all Dijkstra
+	 * 
+	 * @param start
+	 * @param main
+	 */
 	public void oneToAll(int start, Main main) {
 		System.out.println("Starting start to end");
 		ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
@@ -173,7 +170,7 @@ public class Dijkstra {
 		int newNode;
 		int costOldPlusEdge;
 		int costOnlyNewNode;
-		
+
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
@@ -254,5 +251,5 @@ public class Dijkstra {
 		}
 		System.out.println("Finished reseting Dijkstra");
 	}
-	
+
 }
