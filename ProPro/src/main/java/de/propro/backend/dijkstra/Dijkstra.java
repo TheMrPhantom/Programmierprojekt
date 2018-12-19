@@ -31,16 +31,16 @@ public class Dijkstra {
 
 	public DijktraResult startToEnd(int start, int end) {
 		System.out.println("Starting start to end");
-		ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
-		loadingBar.start();
+		//ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
+		//loadingBar.start();
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			loadingBar.stopThread();
+			/*loadingBar.stopThread();
 			try {
 				loadingBar.join();
 			} catch (InterruptedException ex) {
-			}
+			}*/
 			System.err.println("Startknoten existiert nicht");
 
 			return null;
@@ -81,11 +81,11 @@ public class Dijkstra {
 						priorityQueue.decreaseValue(newNode, costOldPlusEdge);
 						nodeCost[newNode] = costOldPlusEdge;
 						if (costOldPlusEdge < 0) {
-							loadingBar.stopThread();
+							/*loadingBar.stopThread();
 							try {
 								loadingBar.join();
 							} catch (InterruptedException e) {
-							}
+							}*/
 							throw new IllegalStateException("Node is not reachable");
 						}
 						lastNode[newNode] = popedNode;
@@ -109,13 +109,13 @@ public class Dijkstra {
 				popedNode = end;
 			}
 		}
-
+/*
 		loadingBar.stopThread();
 		try {
 			loadingBar.join();
 		} catch (InterruptedException e1) {
 		}
-
+*/
 		System.out.println("Finished start to end Dijkstra");
 		System.out.println("Starting to collect path");
 
