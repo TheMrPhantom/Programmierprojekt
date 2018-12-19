@@ -45,33 +45,22 @@ public class DijktraTest {
 	 * @Test public void testAll() { for (int i = 0; i < 100; i++) {
 	 * System.out.println("TEST: "+i); testDijktra(i); } }
 	 *
-	public void testDijktra(int i) {
-		try {
-			FileReader r = new FileReader("bw.que");
-			BufferedReader buffi = new BufferedReader(r);
-
-			for (int x = 0; x < i - 1; x++) {
-				buffi.readLine();
-			}
-			String queue = buffi.readLine();
-			String x = queue.split(" ")[0];
-			String y = queue.split(" ")[1];
-
-			buffi.close();
-
-			r = new FileReader("bw.sol");
-			buffi = new BufferedReader(r);
-
-			for (int z = 0; z < i - 1; z++) {
-				buffi.readLine();
-			}
-
-			String res = buffi.readLine();
-			buffi.close();
-			DijktraResult dr = main.startToEnd(Integer.parseInt(x), Integer.parseInt(y), main.reader);
-			assertEquals(Integer.parseInt(res), dr.length);
-		} catch (IOException e) {
-			System.out.println("Error");
-		}
-	}*/
+	 * public void testDijktra(int i) { try { FileReader r = new
+	 * FileReader("bw.que"); BufferedReader buffi = new BufferedReader(r);
+	 * 
+	 * for (int x = 0; x < i - 1; x++) { buffi.readLine(); } String queue =
+	 * buffi.readLine(); String x = queue.split(" ")[0]; String y =
+	 * queue.split(" ")[1];
+	 * 
+	 * buffi.close();
+	 * 
+	 * r = new FileReader("bw.sol"); buffi = new BufferedReader(r);
+	 * 
+	 * for (int z = 0; z < i - 1; z++) { buffi.readLine(); }
+	 * 
+	 * String res = buffi.readLine(); buffi.close(); DijktraResult dr =
+	 * main.startToEnd(Integer.parseInt(x), Integer.parseInt(y), main.reader);
+	 * assertEquals(Integer.parseInt(res), dr.length); } catch (IOException e) {
+	 * System.out.println("Error"); } }
+	 */
 }

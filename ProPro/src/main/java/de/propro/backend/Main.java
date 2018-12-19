@@ -14,6 +14,14 @@ import de.propro.backend.dijkstra.Dijkstra;
 import de.propro.backend.dijkstra.DijktraResult;
 import de.propro.backend.reading.GraphReader;
 
+/**
+ * 
+ * @author Elif Dilara Aygün
+ * @author Sven Dyhr
+ * @author Justin Schiel
+ *
+ *         Class holding the entry point method of the program
+ */
 public class Main {
 
 	public GraphReader reader;
@@ -141,7 +149,7 @@ public class Main {
 	}
 
 	public DijktraResult startToEnd(int start, int end, GraphReader reader) {
-		
+
 		Dijkstra dijkstra = new Dijkstra(reader);
 		DijktraResult output = dijkstra.startToEnd(start, end);
 
@@ -179,16 +187,16 @@ public class Main {
 
 		ArrayList<String> outputs = new ArrayList<String>();
 		Dijkstra d = new Dijkstra(reader);
-		
+
 		for (int i = 0; i < starts.size(); i++) {
 			int s = Integer.parseInt(starts.get(i));
 			int e = Integer.parseInt(ends.get(i));
 
 			String temp = d.startToEnd(s, e).length + "";
 			outputs.add(temp);
-			
+
 			d.reset();
-			System.out.println(i+"/"+starts.size());
+			System.out.println(i + "/" + starts.size());
 			System.out.println();
 		}
 

@@ -13,15 +13,15 @@ public class CustomMinHeap {
 
 	private int left;
 	private int right;
-	
+
 	private int swapIndices;
 	private int swapValues;
-	
+
 	public static ArrayList<Long> heapifyP=new ArrayList<Long>();
 	public static ArrayList<Long> popP=new ArrayList<Long>();
 	public static ArrayList<Long> decreaseP=new ArrayList<Long>();
 	
-	
+
 	public CustomMinHeap(int capacity) {
 		indices = new int[capacity];
 		values = new int[capacity];
@@ -46,9 +46,11 @@ public class CustomMinHeap {
 	 * @return The index of the node with the smallest cost
 	 */
 	public int pop() {
+
 long t=System.currentTimeMillis();
 		//if (size <= 0)
 			//throw new IllegalStateException("There are no more elements to pop");
+
 		if (size == 1) {
 			size--;
 			return indices[0];
@@ -57,7 +59,7 @@ long t=System.currentTimeMillis();
 		// Store the minimum value, and remove it from heap
 		int root = indices[0];
 
-		//node[indices[0]] = -1;
+		// node[indices[0]] = -1;
 		node[indices[size - 1]] = 0;
 
 		indices[0] = indices[size - 1];
@@ -128,14 +130,12 @@ long t=System.currentTimeMillis();
 			smallest = right;
 		if (smallest != i) {
 
+			// swapOther(i,smallest);
+			// swapIndicesElements(i, smallest);
+			// swapValuesElements(i, smallest);
 
-			//swapOther(i,smallest);
-			//swapIndicesElements(i, smallest);
-			//swapValuesElements(i, smallest);
-			
-			
 			swap(i, smallest);
-			
+
 			heapify(smallest);
 		}
 		heapifyP.add((long)((System.currentTimeMillis()-t)));
@@ -144,15 +144,15 @@ long t=System.currentTimeMillis();
 	private void swap(int a, int b) {
 		node[indices[a]] = b;
 		node[indices[b]] = a;
-		
+
 		swapIndices = indices[a];
 		indices[a] = indices[b];
 		indices[b] = swapIndices;
-		
+
 		swapValues = values[a];
 		values[a] = values[b];
 		values[b] = swapValues;
-		
+
 	}
 
 	private static int parent(int i) {
