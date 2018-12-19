@@ -15,6 +15,12 @@ public class Dijkstra {
 	private int[] lastNode;
 	private int[] nodeCost;
 
+	/**
+	 * 
+	 * Initializing all attributes needed for the dijkstra
+	 * 
+	 * @param reader The inputed graph
+	 */
 	public Dijkstra(GraphReader reader) {
 		System.out.println("Initialising Dijkstra");
 		this.reader = reader;
@@ -29,17 +35,21 @@ public class Dijkstra {
 		System.out.println("Finished initialising Dijkstra");
 	}
 
+	/**
+	 * 
+	 * Executes the dijkstra from a start node to an end node
+	 * 
+	 * @param start The start node index
+	 * @param end   The end node index
+	 * @return The result of the dijkstra (length and path)
+	 */
 	public DijktraResult startToEnd(int start, int end) {
 		System.out.println("Starting start to end");
-		// ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
-		// loadingBar.start();
+
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			/*
-			 * loadingBar.stopThread(); try { loadingBar.join(); } catch
-			 * (InterruptedException ex) { }
-			 */
+
 			System.err.println("Startknoten existiert nicht");
 
 			return null;
@@ -70,7 +80,6 @@ public class Dijkstra {
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
 					newNode = edges[i + 1];
-					
 
 					costOldPlusEdge = edges[i + 2] + costForViewedNode;
 					costOnlyNewNode = this.nodeCost[newNode];
@@ -80,10 +89,6 @@ public class Dijkstra {
 						priorityQueue.decreaseValue(newNode, costOldPlusEdge);
 						nodeCost[newNode] = costOldPlusEdge;
 						if (costOldPlusEdge < 0) {
-							/*
-							 * loadingBar.stopThread(); try { loadingBar.join(); } catch
-							 * (InterruptedException e) { }
-							 */
 							throw new IllegalStateException("Node is not reachable");
 						}
 						lastNode[newNode] = popedNode;
@@ -109,11 +114,6 @@ public class Dijkstra {
 		}
 
 		System.out.printf("Time needed: %.2f Seconds\n", (System.currentTimeMillis() - time) / 1000.0);
-
-		/*
-		 * loadingBar.stopThread(); try { loadingBar.join(); } catch
-		 * (InterruptedException e1) { }
-		 */
 		System.out.println("Finished start to end Dijkstra");
 		System.out.println("Starting to collect path");
 
@@ -143,8 +143,8 @@ public class Dijkstra {
 	/**
 	 * Implementation of an one-to-all Dijkstra
 	 * 
-	 * @param start
-	 * @param main
+	 * @param start The start node index
+	 * @param main  The main object for reading input
 	 */
 	public void oneToAll(int start, Main main) {
 		System.out.println("Starting start to end");
@@ -239,6 +239,10 @@ public class Dijkstra {
 
 	}
 
+	/**
+	 * Resets the dijkstra object so it can be used for another dijkstra algorithm.
+	 * Must be called before every dijkstra if dijkstra was executed once.
+	 */
 	public void reset() {
 		int nodeCount = reader.getIndices().length;
 		priorityQueue = new CustomMinHeap(nodeCount);
