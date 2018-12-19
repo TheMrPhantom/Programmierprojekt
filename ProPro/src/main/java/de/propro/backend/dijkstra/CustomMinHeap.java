@@ -168,8 +168,8 @@ public class CustomMinHeap {
 	}
 
 	private void swapOther(int a, int b) {
-		node[indices[a]] = b;
 		node[indices[b]] = a;
+		node[indices[a]] = b;
 	}
 	
 	private static int parent(int i) {
