@@ -1,6 +1,5 @@
 package de.propro.backend.dijkstra;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CustomMinHeap {
@@ -53,7 +52,7 @@ public class CustomMinHeap {
 		// Store the minimum value, and remove it from heap
 		int root = indices[0];
 
-		// node[indices[0]] = -1;
+		
 		node[indices[size - 1]] = 0;
 
 		indices[0] = indices[size - 1];
@@ -121,10 +120,6 @@ public class CustomMinHeap {
 		if (right < size && values[right] < values[smallest])
 			smallest = right;
 		if (smallest != i) {
-
-			// swapOther(i,smallest);
-			// swapIndicesElements(i, smallest);
-			// swapValuesElements(i, smallest);
 
 			swap(i, smallest);
 

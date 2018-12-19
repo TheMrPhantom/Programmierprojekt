@@ -50,7 +50,6 @@ public class Dijkstra {
 		int newNode;
 		int costOldPlusEdge;
 		int costOnlyNewNode;
-		int newEdge;
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
