@@ -101,8 +101,6 @@ public class Dijkstra {
 
 			}
 
-			System.out.printf("Time needed: %.2f Seconds\n", (System.currentTimeMillis() - time) / 1000.0);
-			
 			/* If there are more node repeat as long as we are not at the start */
 			if (!priorityQueue.isEmpty()) {
 
@@ -112,6 +110,9 @@ public class Dijkstra {
 				popedNode = end;
 			}
 		}
+
+		System.out.printf("Time needed: %.2f Seconds\n", (System.currentTimeMillis() - time) / 1000.0);
+		
 /*
 		loadingBar.stopThread();
 		try {
