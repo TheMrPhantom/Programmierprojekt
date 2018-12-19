@@ -1,7 +1,5 @@
 package de.propro.backend.dijkstra;
 
-import java.util.Arrays;
-
 public class CustomMinHeap {
 
 	private int[] indices;
@@ -16,6 +14,12 @@ public class CustomMinHeap {
 	private int swapIndices;
 	private int swapValues;
 
+	/**
+	 * 
+	 * Initializes the min heap for any dijkstra
+	 * 
+	 * @param capacity The maximum amount of elements which are contained in the min heap
+	 */
 	public CustomMinHeap(int capacity) {
 		indices = new int[capacity];
 		values = new int[capacity];
@@ -110,6 +114,12 @@ public class CustomMinHeap {
 		return size;
 	}
 
+	/**
+	 * 
+	 * Restores the heap property if broken
+	 * 
+	 * @param i The root node from which the min heap should be healed
+	 */
 	private void heapify(int i) {
 
 		left = left(i);
@@ -128,6 +138,13 @@ public class CustomMinHeap {
 
 	}
 
+	/**
+	 * 
+	 * Swaps the elements in the lists so the heap is not destroyed
+	 * 
+	 * @param a The first index
+	 * @param b The second index
+	 */
 	private void swap(int a, int b) {
 		node[indices[a]] = b;
 		node[indices[b]] = a;
@@ -142,23 +159,37 @@ public class CustomMinHeap {
 
 	}
 
+	/**
+	 * 
+	 * To get the parent node of a node
+	 * 
+	 * @param i The node to get the parent node from
+	 * @return The index of the parent node
+	 */
 	private static int parent(int i) {
 		return (i - 1) / 2;
 	}
 
+	/**
+	 * 
+	 * To get the left node of a node
+	 * 
+	 * @param i The node to get the left node from
+	 * @return The index of the left node
+	 */
 	private static int left(int i) {
 		return (2 * i + 1);
 	}
 
+	/**
+	 * 
+	 * To get the right node of a node
+	 * 
+	 * @param i The node to get the right node from
+	 * @return The index of the right node
+	 */
 	private static int right(int i) {
 		return (2 * i + 2);
 	}
 
-	public int[] getIndicesCopy() {
-		return Arrays.copyOf(indices, indices.length);
-	}
-
-	public int[] getCostCopy() {
-		return Arrays.copyOf(values, values.length);
-	}
 }
