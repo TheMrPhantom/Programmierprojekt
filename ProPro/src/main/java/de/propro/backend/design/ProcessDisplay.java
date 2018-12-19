@@ -9,6 +9,12 @@ public class ProcessDisplay extends Thread {
 
 	private boolean stop;
 
+	/**
+	 * 
+	 * Initializes the ProcessDisplay
+	 * 
+	 * @param textForDots What text should be displayed before the dots
+	 */
 	public ProcessDisplay(String textForDots) {
 		this.textForDots = textForDots;
 		printedOut = textForDots;
@@ -16,6 +22,9 @@ public class ProcessDisplay extends Thread {
 		System.out.print(textForDots);
 	}
 
+	/**
+	 * Prints the process bar on the console continuously
+	 */
 	@Override
 	public void run() {
 		while (!stop) {
@@ -37,6 +46,12 @@ public class ProcessDisplay extends Thread {
 		}
 	}
 
+	/**
+	 * 
+	 * Prints out the process bar
+	 * 
+	 * @param toBePrinted What text should be displayed before the dots
+	 */
 	private void printOut(String toBePrinted) {
 		for (int i = 0; i < printedOut.length(); i++) {
 			System.out.print("\b");
@@ -51,6 +66,10 @@ public class ProcessDisplay extends Thread {
 		System.out.print(printedOut);
 	}
 
+	/**
+	 * Stops the thread from printing on the console. It will remove the remaining
+	 * text.
+	 */
 	public void stopThread() {
 		stop = true;
 	}
