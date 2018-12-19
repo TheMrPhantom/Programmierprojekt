@@ -23,7 +23,7 @@ public class GraphReader {
 	/**
 	 * Constructor of GraphReader
 	 * 
-	 * @param f is a File object for the graph data file
+	 * @param name The path to the graph which should be read
 	 */
 	public GraphReader(String name) {
 		File f = new File(name);
@@ -120,9 +120,9 @@ public class GraphReader {
 	/**
 	 * Find nearest node to given node
 	 * 
-	 * @param lat latitude of given node
-	 * @param     long longtitude of given node
-	 * @return index i of nearest node
+	 * @param latitude  Latitude of given node
+	 * @param longitude Longtitude of given node
+	 * @return Index of nearest node
 	 */
 	public int findNearestNode(double latitude, double longitude) {
 		int num = coordinates.length;
