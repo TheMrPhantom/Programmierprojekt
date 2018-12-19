@@ -7,7 +7,8 @@ import java.io.File;
 /**
  * 
  * This class iterates over a given graph and saves the information into multiple arrays alowing multithreading. It also
- * calculates the nearest node to a given node which is relevant for Dijkstras algorithm
+ * calculates the nearest node to a given node which is relevant for Dijkstras algorithm. The class combines the methods
+ * of NodeReader and EdgeReader to a full GraphReader
  *
  */
 public class GraphReader {
