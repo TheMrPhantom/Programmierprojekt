@@ -168,7 +168,7 @@ public class Main {
 
 			String temp = d.startToEnd(s, e).length + "";
 			outputs.add(temp);
-
+			System.out.println("Length: "+temp);
 			d.reset();
 			System.out.println(i + "/" + starts.size());
 			System.out.println();
