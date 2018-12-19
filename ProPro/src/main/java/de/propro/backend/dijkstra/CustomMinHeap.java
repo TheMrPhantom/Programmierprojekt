@@ -119,9 +119,9 @@ public class CustomMinHeap {
 		left = left(i);
 		right = right(i);
 		int smallest = i;
-		if (values[left] < values[i]&&left < size)
+		if (left < size && values[left] < values[i])
 			smallest = left;
-		if (values[right] < values[smallest]&&right < size )
+		if (right < size && values[right] < values[smallest])
 			smallest = right;
 		if (smallest != i) {
 
