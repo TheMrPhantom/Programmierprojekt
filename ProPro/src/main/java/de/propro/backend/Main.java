@@ -35,7 +35,7 @@ public class Main {
 
 		Main main = new Main();
 		//main.initGraph("bw.fmi");
-		/*
+		
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -52,7 +52,7 @@ public class Main {
 			} else {
 				main.printIllegalArgumentsMessage();
 			}
-		}*/
+		}
 
 		int input = 0;
 
