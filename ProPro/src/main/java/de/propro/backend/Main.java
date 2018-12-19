@@ -22,18 +22,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		// germany.fmi
-		// stgtregbz.fmi
-		// bw.fmi
 
 		Main main = new Main();
-		/*
-		 * main.initGraph("bw.fmi"); Dijkstra dijkstra = new Dijkstra(main.reader); try
-		 * {
-		 * 
-		 * main.queue(); } catch (IOException e) {
-		 * System.err.println("Fehler beim Schreiben/Lesen"); }
-		 */
+
 		if (args.length == 0) {
 			printHelp();
 			return;
