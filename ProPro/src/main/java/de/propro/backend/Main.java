@@ -26,15 +26,24 @@ public class Main {
 	public GraphReader reader;
 	private Scanner scan;
 
+	/**
+	 * Initializes the scanner
+	 */
 	public Main() {
 		scan = new Scanner(System.in);
 	}
 
+	/**
+	 * 
+	 * In this method the whole programm is executed
+	 * 
+	 * @param args Not used
+	 */
 	public static void main(String[] args) {
 
 		Main main = new Main();
-		//main.initGraph("bw.fmi");
-		
+		// main.initGraph("bw.fmi");
+
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -68,8 +77,7 @@ public class Main {
 					int y = Integer.parseInt(main.readLine("Type the end node index"));
 
 					main.startToEnd(x, y, main.reader);
-					
-					
+
 				} catch (IllegalStateException e) {
 					System.err.println(e.getMessage());
 				} catch (NumberFormatException e) {
@@ -122,6 +130,16 @@ public class Main {
 
 	}
 
+	/**
+	 * 
+	 * Executes a shortest path request with dijkstra algorithm
+	 * 
+	 * @param start  The start node id
+	 * @param end    The end node id
+	 * @param reader The reader representing the graph on which the dijkstra should
+	 *               be executed
+	 * @return All informations about the executed dijkstra
+	 */
 	public DijktraResult startToEnd(int start, int end, GraphReader reader) {
 
 		Dijkstra dijkstra = new Dijkstra(reader);
@@ -143,6 +161,15 @@ public class Main {
 		return output;
 	}
 
+	/**
+	 * 
+	 * Executes many dijkstra algorithms based on a *.que file which path is asked
+	 * from the user
+	 * 
+	 * @throws IOException                    If the *.que file does not exist or
+	 *                                        reading errors happen
+	 * @throws ArrayIndexOutOfBoundsException If the *.que file is malformed
+	 */
 	private void queue() throws IOException, ArrayIndexOutOfBoundsException {
 		String input = readLine("Type the path of the .que file (with file ending)");
 		String output = readLine("Type the name of the .sol file (without file ending)");
@@ -168,7 +195,7 @@ public class Main {
 
 			String temp = d.startToEnd(s, e).length + "";
 			outputs.add(temp);
-			System.out.println("Length: "+temp);
+			System.out.println("Length: " + temp);
 			d.reset();
 			System.out.println(i + "/" + starts.size());
 			System.out.println();
@@ -183,6 +210,9 @@ public class Main {
 		buffiWriter.close();
 	}
 
+	/**
+	 * Prints the help menu so the user know how to use the programm
+	 */
 	private static void printHelp() {
 		System.out.println("Usage:");
 		System.out.println("\tParam -h:\tShows how to start the programm");
@@ -190,16 +220,33 @@ public class Main {
 		System.out.println("\t\t\tExample: java -jar ProPro.jar -f germany.fmi");
 	}
 
+	/**
+	 * Signals the user that he inputed wrong arguments and exits with error code 1
+	 */
 	private void printIllegalArgumentsMessage() {
 		System.err.println("Invalid arguments");
 		System.exit(1);
 	}
 
+	/**
+	 * 
+	 * Initializes the graph with the given graph file as path
+	 * 
+	 * @param filename The path of the graph the read (Path must include file
+	 *                 extension)
+	 */
 	public void initGraph(String filename) {
 		this.reader = new GraphReader(filename);
 		this.reader.readDataFast();
 	}
 
+	/**
+	 * 
+	 * Prints the main menu so the user knows what to choose from
+	 * 
+	 * @return The index of the menu point which was selected
+	 * @throws NumberFormatException If the user did not type a number
+	 */
 	private int printMainMenu() throws NumberFormatException {
 		System.out.println("Ready for input...");
 		System.out.println("\t(0) Start -> End");
@@ -212,6 +259,14 @@ public class Main {
 		return output;
 	}
 
+	/**
+	 * 
+	 * Reads a from the reader of this object
+	 * 
+	 * @param message A question which should be send to the user before waiting for
+	 *                input
+	 * @return The inputed line
+	 */
 	public String readLine(String message) {
 		System.out.println(message);
 		return scan.nextLine();
