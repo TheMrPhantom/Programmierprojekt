@@ -5,7 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+/**
+ * Class using a Buffered Reader to read over the edges of given nodes and
+ * storing these in an array. Additional basic functions like returning the read
+ * nodes and their indices for later processing
+ *
+ */
 public class EdgeReader extends CustomReader {
 
 	private int[] edges;
