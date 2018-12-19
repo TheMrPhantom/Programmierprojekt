@@ -41,8 +41,8 @@ public class CustomMinHeap {
 	 */
 	public int pop() {
 
-		if (size <= 0)
-			throw new IllegalStateException("There are no more elements to pop");
+		//if (size <= 0)
+			//throw new IllegalStateException("There are no more elements to pop");
 		if (size == 1) {
 			size--;
 			return indices[0];
@@ -81,14 +81,7 @@ public class CustomMinHeap {
 
 		while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
 			parentNodeIndex = parent(nodeIdx);
-
-			//swapOther(nodeIdx,parentNodeIndex);
-			//swapIndicesElements(nodeIdx, parentNodeIndex);
-			//swapValuesElements(nodeIdx, parentNodeIndex);
-			
-			
 			swap(nodeIdx, parentNodeIndex);
-			
 			nodeIdx = parentNodeIndex;
 		}
 
@@ -138,12 +131,6 @@ public class CustomMinHeap {
 		}
 	}
 
-	private void swapOther(int a, int b) {
-		node[indices[a]] = b;
-		node[indices[b]] = a;
-		
-	}
-	
 	private void swap(int a, int b) {
 		node[indices[a]] = b;
 		node[indices[b]] = a;
@@ -157,19 +144,7 @@ public class CustomMinHeap {
 		values[b] = swapValues;
 		
 	}
-	
-	private void swapIndicesElements(int a, int b) {
-		swapIndices = indices[a];
-		indices[a] = indices[b];
-		indices[b] = swapIndices;
-	}
 
-	private void swapValuesElements(int a, int b) {
-		swapValues = values[a];
-		values[a] = values[b];
-		values[b] = swapValues;
-	}
-	
 	private static int parent(int i) {
 		return (i - 1) / 2;
 	}
