@@ -88,6 +88,7 @@ public class Main {
 						System.err.println("Fehler beim Schreiben/Lesen");
 				} catch (ArrayIndexOutOfBoundsException e) {
 					System.err.println("File is not a valid .que file");
+					e.printStackTrace();
 				}
 				break;
 			case 3:
