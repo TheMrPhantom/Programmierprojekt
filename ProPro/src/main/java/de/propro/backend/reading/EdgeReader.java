@@ -18,6 +18,14 @@ public class EdgeReader extends CustomReader {
 	private final int numOfNodes;
 	private int[] indices;
 
+	/**
+	 * 
+	 * Initializes the edge reader with the given file
+	 * 
+	 * @param file The file of the graph
+	 * @param numOfNodes The number of Node which should be skipped
+	 * @param numOfEdges The number of edges which should be read
+	 */
 	public EdgeReader(File file, int numOfNodes, int numOfEdges) {
 		super(file);
 		this.edges = new int[3 * numOfEdges];
