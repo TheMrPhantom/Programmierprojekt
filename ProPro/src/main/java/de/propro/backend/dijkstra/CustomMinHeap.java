@@ -1,5 +1,6 @@
 package de.propro.backend.dijkstra;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CustomMinHeap {
@@ -15,6 +16,11 @@ public class CustomMinHeap {
 
 	private int swapIndices;
 	private int swapValues;
+
+	public static ArrayList<Long> heapifyP=new ArrayList<Long>();
+	public static ArrayList<Long> popP=new ArrayList<Long>();
+	public static ArrayList<Long> decreaseP=new ArrayList<Long>();
+	
 
 	public CustomMinHeap(int capacity) {
 		indices = new int[capacity];
@@ -41,8 +47,10 @@ public class CustomMinHeap {
 	 */
 	public int pop() {
 
-		// if (size <= 0)
-		// throw new IllegalStateException("There are no more elements to pop");
+long t=System.currentTimeMillis();
+		//if (size <= 0)
+			//throw new IllegalStateException("There are no more elements to pop");
+
 		if (size == 1) {
 			size--;
 			return indices[0];
@@ -59,7 +67,7 @@ public class CustomMinHeap {
 
 		size--;
 		heapify(0);
-
+popP.add((long)((System.currentTimeMillis()-t)/1000.0));
 		return root;
 
 	}
@@ -73,7 +81,7 @@ public class CustomMinHeap {
 	 * @throws IllegalArgumentException If the new cost is greater than the old
 	 */
 	public void decreaseValue(int nodeIdx, int value) {
-
+long t=System.currentTimeMillis();
 		nodeIdx = node[nodeIdx];
 		values[nodeIdx] = value;
 
@@ -85,6 +93,8 @@ public class CustomMinHeap {
 			nodeIdx = parentNodeIndex;
 		}
 
+		
+		decreaseP.add((long)((System.currentTimeMillis()-t)/1000));
 	}
 
 	/**
@@ -110,6 +120,7 @@ public class CustomMinHeap {
 	}
 
 	private void heapify(int i) {
+		long t=System.currentTimeMillis();
 		left = left(i);
 		right = right(i);
 		int smallest = i;
@@ -127,6 +138,7 @@ public class CustomMinHeap {
 
 			heapify(smallest);
 		}
+		heapifyP.add((long)((System.currentTimeMillis()-t)));
 	}
 
 	private void swap(int a, int b) {
