@@ -157,18 +157,16 @@ public class Main {
 
 		ArrayList<String> outputs = new ArrayList<String>();
 		Dijkstra d = new Dijkstra(reader);
-		long time = System.currentTimeMillis();
+		
 		for (int i = 0; i < starts.size(); i++) {
 			int s = Integer.parseInt(starts.get(i));
 			int e = Integer.parseInt(ends.get(i));
 
 			String temp = d.startToEnd(s, e).length + "";
 			outputs.add(temp);
-			double t = ((int) ((System.currentTimeMillis() - time) / 10.0)) / 100.0;
-			System.out.println(i + "/" + starts.size() + " | Time needed: " + t);
-			System.out.println();
-			time = System.currentTimeMillis();
+			
 			d.reset();
+			System.out.println();
 		}
 
 		FileWriter writer = new FileWriter(output + ".sol");
