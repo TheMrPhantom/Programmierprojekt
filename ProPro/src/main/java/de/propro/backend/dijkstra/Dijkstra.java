@@ -71,9 +71,9 @@ public class Dijkstra {
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
 					newNode = edges[i + 1];
-					newEdge = edges[i + 2];
+					
 
-					costOldPlusEdge = newEdge + costForViewedNode;
+					costOldPlusEdge = edges[i + 2] + costForViewedNode;
 					costOnlyNewNode = this.nodeCost[newNode];
 
 					/* If the edge is better take it */

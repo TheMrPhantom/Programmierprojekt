@@ -79,13 +79,9 @@ public class CustomMinHeap {
 		nodeIdx = node[nodeIdx];
 		values[nodeIdx] = value;
 
-		//int parentNodeIndex;
+		
 
 		while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
-			/*
-			 * parentNodeIndex = parent(nodeIdx); swap(nodeIdx, parentNodeIndex); nodeIdx =
-			 * parentNodeIndex;
-			 */
 
 			swap(nodeIdx, (nodeIdx = parent(nodeIdx)));
 
