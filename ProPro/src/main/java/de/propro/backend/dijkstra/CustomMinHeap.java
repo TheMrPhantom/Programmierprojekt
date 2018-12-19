@@ -83,8 +83,8 @@ public class CustomMinHeap {
 			parentNodeIndex = parent(nodeIdx);
 
 			
-			//node[indices[nodeIdx]] = parentNodeIndex;
-			//node[indices[parentNodeIndex]] = nodeIdx;
+			node[indices[nodeIdx]] = parentNodeIndex;
+			node[indices[parentNodeIndex]] = nodeIdx;
 
 			swapIndicesElements(nodeIdx, parentNodeIndex);
 			swapValuesElements(nodeIdx, parentNodeIndex);
@@ -142,6 +142,14 @@ public class CustomMinHeap {
 		}
 	}
 
+	private void swapOther(int i, int smallest) {
+		node[indices[i]] = smallest;
+		node[indices[smallest]] = i;
+		
+		//node[indices[i]] = smallest;
+		//node[indices[smallest]] = i;
+	}
+	
 	private void swap(int a, int b) {
 		swapIndices = indices[a];
 		indices[a] = indices[b];
@@ -165,11 +173,6 @@ public class CustomMinHeap {
 		swapValues = values[a];
 		values[a] = values[b];
 		values[b] = swapValues;
-	}
-
-	private void swapOther(int a, int b) {
-		node[indices[b]] = a;
-		node[indices[a]] = b;
 	}
 	
 	private static int parent(int i) {
