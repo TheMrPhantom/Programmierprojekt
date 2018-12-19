@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import de.propro.backend.dijkstra.CustomMinHeap;
 import de.propro.backend.dijkstra.Dijkstra;
 import de.propro.backend.dijkstra.DijktraResult;
 import de.propro.backend.reading.GraphReader;
@@ -35,7 +34,7 @@ public class Main {
 
 		Main main = new Main();
 		//main.initGraph("bw.fmi");
-		/*
+		
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -52,7 +51,7 @@ public class Main {
 			} else {
 				main.printIllegalArgumentsMessage();
 			}
-		}*/
+		}
 
 		int input = 0;
 
@@ -69,31 +68,6 @@ public class Main {
 					int y = Integer.parseInt(main.readLine("Type the end node index"));
 
 					main.startToEnd(x, y, main.reader);
-					
-					
-					long t=0;
-					for(Long l:CustomMinHeap.heapifyP) {
-						t+=l;
-					}
-					t=(long)(t/(double)CustomMinHeap.heapifyP.size());
-					
-					System.out.println("Heapify="+t);
-					
-					 t=0;
-					for(Long l:CustomMinHeap.decreaseP) {
-						t+=l;
-					}
-					t=(long)(t/(double)CustomMinHeap.decreaseP.size());
-					
-					System.out.println("decrease="+t);
-					
-					t=0;
-					for(Long l:CustomMinHeap.popP) {
-						t+=l;
-					}
-					t=(long)(t/(double)CustomMinHeap.popP.size());
-					
-					System.out.println("pop="+t);
 					
 					
 				} catch (IllegalStateException e) {
@@ -194,7 +168,7 @@ public class Main {
 
 			String temp = d.startToEnd(s, e).length + "";
 			outputs.add(temp);
-
+			System.out.println("Length: "+temp);
 			d.reset();
 			System.out.println(i + "/" + starts.size());
 			System.out.println();
