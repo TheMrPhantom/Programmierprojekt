@@ -11,7 +11,14 @@ import java.util.Scanner;
 import de.propro.backend.dijkstra.Dijkstra;
 import de.propro.backend.dijkstra.DijktraResult;
 import de.propro.backend.reading.GraphReader;
-
+/**
+ * 
+ * @author Elif Dilara Aygün
+ * @author Sven Dyhr
+ * @author Justin Schiel
+ *
+ *Class holding the entry point method of the program
+ */
 public class Main {
 
 	public GraphReader reader;
