@@ -55,6 +55,7 @@ public class Dijkstra {
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
+		long time = System.currentTimeMillis();
 		while (popedNode != end) {
 			/* Get the index in the edge list for the node we look at */
 			int init = indices[popedNode];
@@ -100,6 +101,8 @@ public class Dijkstra {
 
 			}
 
+			System.out.printf("Time needed: %.2f Seconds\n", (System.currentTimeMillis() - time) / 1000.0);
+			
 			/* If there are more node repeat as long as we are not at the start */
 			if (!priorityQueue.isEmpty()) {
 
