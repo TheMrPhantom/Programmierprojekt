@@ -148,17 +148,12 @@ public class Dijkstra {
 	 */
 	public void oneToAll(int start, Main main) {
 		System.out.println("Starting start to end");
-		ProcessDisplay loadingBar = new ProcessDisplay("Calculating");
-		loadingBar.start();
+		
 		long time = System.currentTimeMillis();
 		try {
 			priorityQueue.decreaseValue(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			loadingBar.stopThread();
-			try {
-				loadingBar.join();
-			} catch (InterruptedException ex) {
-			}
+			
 			System.err.println("Startknoten existiert nicht");
 
 			return;
@@ -173,6 +168,8 @@ public class Dijkstra {
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
+		
+		/*Start of the dijkstra*/
 		while (!priorityQueue.isEmpty()) {
 			/* Get the index in the edge list for the node we look at */
 			int init = indices[popedNode];
@@ -184,7 +181,7 @@ public class Dijkstra {
 
 				continue;
 			}
-			//try {
+			try {
 				costForViewedNode = this.nodeCost[popedNode];
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
@@ -203,11 +200,11 @@ public class Dijkstra {
 					}
 				}
 
-			//} catch (ArrayIndexOutOfBoundsException e) {
+			} catch (ArrayIndexOutOfBoundsException e) {
 
-			//} catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 
-			//}
+			}
 
 			/* If there are more node repeat as long as we are not at the start */
 			if (!priorityQueue.isEmpty()) {
@@ -217,13 +214,10 @@ public class Dijkstra {
 			}
 		}
 
+		/*End of the dijkstra*/
+		
 		long time2 = System.currentTimeMillis();
 
-		loadingBar.stopThread();
-		try {
-			loadingBar.join();
-		} catch (InterruptedException e1) {
-		}
 
 		System.out.println("Finished one to all Dijkstra");
 
