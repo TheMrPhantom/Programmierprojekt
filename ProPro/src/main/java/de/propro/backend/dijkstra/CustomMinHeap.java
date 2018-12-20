@@ -29,10 +29,8 @@ public class CustomMinHeap {
 
 		for (int i = 0; i < capacity; i++) {
 			indices[i] = i;
-			values[i] = Integer.MAX_VALUE;
-
 			node[i] = i;
-
+			values[i] = Integer.MAX_VALUE;
 		}
 
 	}
@@ -81,8 +79,6 @@ public class CustomMinHeap {
 
 		nodeIdx = node[nodeIdx];
 		values[nodeIdx] = value;
-
-		
 
 		while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
 

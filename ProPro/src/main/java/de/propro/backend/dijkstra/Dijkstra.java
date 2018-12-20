@@ -184,7 +184,7 @@ public class Dijkstra {
 
 				continue;
 			}
-			try {
+			//try {
 				costForViewedNode = this.nodeCost[popedNode];
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
@@ -203,11 +203,11 @@ public class Dijkstra {
 					}
 				}
 
-			} catch (ArrayIndexOutOfBoundsException e) {
+			//} catch (ArrayIndexOutOfBoundsException e) {
 
-			} catch (IllegalArgumentException e) {
+			//} catch (IllegalArgumentException e) {
 
-			}
+			//}
 
 			/* If there are more node repeat as long as we are not at the start */
 			if (!priorityQueue.isEmpty()) {
