@@ -28,7 +28,7 @@ Afterwards you can find **ProPro.jar** in `./build/libs/`
 
 To run the software, locate **ProPro.jar** (by default in `./build/libs/`) and run the following command:
 ```
-java -Xmx5g -jar ProPro.jar -f </Filename>
+java -Xmx5g -jar ProPro.jar -f <Filename>
 ```
 
 \<Filename> is either the path to a graph file or the name of a graph file in current folder, e.g. `java -Xmx5g -jar ProPro.jar -f germany.fmi`
