@@ -14,12 +14,13 @@ import de.propro.backend.dijkstra.DijktraResult;
 
 public class DijktraTest {
 	static Main main;
-
+/*
 	@BeforeClass
 	public static void init() {
 		main = new Main();
 		main.initGraph("bw.fmi");
 	}
+	*/
 /*
 	@Test
 	public void checkDijktra0() {
@@ -71,7 +72,7 @@ public class DijktraTest {
 	public void checkDijktra9() {
 		testDijktra(29);
 	}
-*/
+
 	@Test
 	public void testAll() {
 		for (int i = 0; i < 100; i++) {
@@ -108,6 +109,6 @@ public class DijktraTest {
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
-	}
+	}*/
 
 }
