@@ -18,7 +18,8 @@ public class CustomMinHeap {
 	 * 
 	 * Initializes the min heap for any dijkstra
 	 * 
-	 * @param capacity The maximum amount of elements which are contained in the min heap
+	 * @param capacity The maximum amount of elements which are contained in the min
+	 *                 heap
 	 */
 	public CustomMinHeap(int capacity) {
 		indices = new int[capacity];
@@ -54,7 +55,6 @@ public class CustomMinHeap {
 		// Store the minimum value, and remove it from heap
 		int root = indices[0];
 
-		
 		node[indices[size - 1]] = 0;
 
 		indices[0] = indices[size - 1];
@@ -121,10 +121,15 @@ public class CustomMinHeap {
 		left = left(i);
 		right = right(i);
 		int smallest = i;
+
 		if (left < size && values[left] < values[i])
 			smallest = left;
 		if (right < size && values[right] < values[smallest])
 			smallest = right;
+
+		if (smallest == Integer.MAX_VALUE) {
+			return;
+		}
 		if (smallest != i) {
 
 			swap(i, smallest);
