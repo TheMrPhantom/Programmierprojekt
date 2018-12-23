@@ -207,7 +207,7 @@ public class Main {
 			outputs.add(result.length + "");
 			
 			System.out.println("Length: " + result.length);
-			System.out.println("Time: " + result + result.time);
+			System.out.println("Time: " + result.time+"s");
 			System.out.println(i + "/" + starts.size());
 			System.out.println();
 		}
