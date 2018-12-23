@@ -43,8 +43,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		Main main = new Main();
-//		main.initGraph("bw.fmi");
-
+		main.initGraph("bw.fmi");
+/*
 		if (args.length == 0) {
 			printHelp();
 			return;
@@ -67,7 +67,7 @@ public class Main {
 				main.printIllegalArgumentsMessage();
 			}
 		}
-
+*/
 		int input = 0;
 
 		while (input != 4) {

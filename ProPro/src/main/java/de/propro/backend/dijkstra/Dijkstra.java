@@ -257,13 +257,15 @@ public class Dijkstra {
 
 		System.out.println("Finished one to all Dijkstra");
 
-		System.out.println((time2 - time) / 1000 + "s needed");
+		System.out.println((time2 - time) / 1000.0 + "s needed");
 		do {
 			try {
 				int node = Integer.parseInt(main.readLine("Cost to what node?"));
 				System.out.println(nodeCost[node]);
 			} catch (ArrayIndexOutOfBoundsException e) {
 				System.err.println("Node does not exist");
+			}catch(NumberFormatException e) {
+				System.err.println("Not a number");
 			}
 		} while (main.readLine("New request? (y/n)").equals("y"));
 
