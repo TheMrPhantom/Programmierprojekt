@@ -15,7 +15,7 @@ import de.propro.backend.reading.GraphReader;
 
 /**
  * 
- * @author Elif Dilara Aygün
+ * @author Elif Dilara Ayguen
  * @author Sven Dyhr
  * @author Justin Schiel
  *
