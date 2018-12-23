@@ -32,6 +32,13 @@ public class CustomMinHeap {
 
 	}
 
+	/**
+	 * 
+	 * Adds a node to the heap 
+	 * 
+	 * @param nodeIdx The index of the node to insert
+	 * @param cost The distance to the node from the start node
+	 */
 	public void push(int nodeIdx, int cost) {
 
 		size++;
