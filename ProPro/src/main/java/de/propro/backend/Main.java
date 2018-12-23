@@ -57,6 +57,7 @@ public class Main {
 					main.initGraph(args[1]);
 					}catch(IllegalStateException ex) {
 						System.err.println(ex.getMessage());
+						System.exit(1);
 					}
 				} else {
 					main.printIllegalArgumentsMessage();
