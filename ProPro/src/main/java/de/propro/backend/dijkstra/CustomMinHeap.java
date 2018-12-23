@@ -42,17 +42,18 @@ public class CustomMinHeap {
 
 	}
 
-	private void push(int nodeIdx, int cost) {
+	public void push(int nodeIdx, int cost) {
 
 		size++;
 		node[nodeIdx] = size - 1;
 
-		int nodeIndex = size - 1;
-		values[nodeIndex] = cost;
+		int fIndex = size - 1;
+		indices[fIndex] = nodeIdx;
+		values[fIndex] = cost;
 
-		while (nodeIndex != 0 && values[parent(nodeIndex)] > values[nodeIndex]) {
-			swap(nodeIndex, parent(nodeIndex));
-			nodeIndex = parent(nodeIndex);
+		while (fIndex != 0 && values[parent(fIndex)] > values[fIndex]) {
+			swap(fIndex, parent(fIndex));
+			fIndex = parent(fIndex);
 		}
 
 	}
@@ -104,7 +105,7 @@ public class CustomMinHeap {
 		while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
 			swap(nodeIdx, (nodeIdx = parent[nodeIdx]));
 		}
-
+		
 	}
 
 	/**
@@ -147,9 +148,9 @@ public class CustomMinHeap {
 		if (right < size && values[right] < values[smallest])
 			smallest = right;
 
-		if (values[smallest] == Integer.MAX_VALUE) {
-			return;
-		}
+		// if (values[smallest] == Integer.MAX_VALUE) {
+		// return;
+		// }
 		if (smallest != i) {
 
 			swap(i, smallest);

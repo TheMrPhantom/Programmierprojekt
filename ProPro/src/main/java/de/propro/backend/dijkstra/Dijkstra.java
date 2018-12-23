@@ -47,7 +47,7 @@ public class Dijkstra {
 		System.out.println("Starting start to end");
 
 		try {
-			priorityQueue.decreaseValue(start, 0);
+			priorityQueue.push(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
 
 			System.err.println("Startknoten existiert nicht");
@@ -79,18 +79,26 @@ public class Dijkstra {
 				costForViewedNode = this.nodeCost[popedNode];
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
+					
 					newNode = edges[i + 1];
 
+					if (nodeCost[newNode] == Integer.MAX_VALUE) {
+						priorityQueue.push(newNode, Integer.MAX_VALUE);
+					}
+					
 					costOldPlusEdge = edges[i + 2] + costForViewedNode;
 					costOnlyNewNode = this.nodeCost[newNode];
 
 					/* If the edge is better take it */
 					if (costOldPlusEdge < costOnlyNewNode) {
+
 						priorityQueue.decreaseValue(newNode, costOldPlusEdge);
+
 						nodeCost[newNode] = costOldPlusEdge;
 						if (costOldPlusEdge < 0) {
 							throw new IllegalStateException("Node is not reachable");
 						}
+
 						lastNode[newNode] = popedNode;
 
 					}
@@ -147,13 +155,13 @@ public class Dijkstra {
 	 * @param main  The main object for reading input
 	 */
 	public void oneToAll(int start, Main main) {
-		System.out.println("Starting start to end");
-		
+		System.out.println("Starting one to all");
+
 		long time = System.currentTimeMillis();
 		try {
-			priorityQueue.decreaseValue(start, 0);
+			priorityQueue.push(start, 0);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			
+
 			System.err.println("Startknoten existiert nicht");
 
 			return;
@@ -168,9 +176,9 @@ public class Dijkstra {
 		int[] indices = reader.getIndices();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
-		
-		/*Start of the dijkstra*/
-		while (!priorityQueue.isEmpty()) {
+		boolean finished = false;
+		/* Start of the dijkstra */
+		while (!finished) {
 			/* Get the index in the edge list for the node we look at */
 			int init = indices[popedNode];
 
@@ -186,13 +194,16 @@ public class Dijkstra {
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
 					newNode = edges[i + 1];
-
+					if (nodeCost[newNode] == Integer.MAX_VALUE) {
+						priorityQueue.push(newNode, Integer.MAX_VALUE);
+					}
 					costOldPlusEdge = edges[i + 2] + costForViewedNode;
 					costOnlyNewNode = this.nodeCost[newNode];
 
 					/* If the edge is better take it */
 					if (costOldPlusEdge < costOnlyNewNode) {
 						if (costOldPlusEdge >= 0) {
+
 							nodeCost[newNode] = costOldPlusEdge;
 							priorityQueue.decreaseValue(newNode, costOldPlusEdge);
 						}
@@ -211,13 +222,14 @@ public class Dijkstra {
 
 				popedNode = priorityQueue.pop();
 
+			} else {
+				finished = true;
 			}
 		}
 
-		/*End of the dijkstra*/
-		
-		long time2 = System.currentTimeMillis();
+		/* End of the dijkstra */
 
+		long time2 = System.currentTimeMillis();
 
 		System.out.println("Finished one to all Dijkstra");
 
