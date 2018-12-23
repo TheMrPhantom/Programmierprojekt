@@ -11,10 +11,6 @@ public class CustomMinHeap {
 	private int swapIndices;
 	private int swapValues;
 
-	private static int[] parent;
-	private static int[] left;
-	private static int[] right;
-
 	/**
 	 * 
 	 * Initializes the min heap for any dijkstra
@@ -26,17 +22,11 @@ public class CustomMinHeap {
 		indices = new int[capacity];
 		values = new int[capacity];
 		node = new int[capacity];
-		parent = new int[capacity];
-		left = new int[capacity];
-		right = new int[capacity];
 		size = 0;
 
 		for (int i = 0; i < capacity; i++) {
 			indices[i] = i;
 			node[i] = i;
-			parent[i] = (i - 1) / 2;
-			left[i] = (2 * i + 1);
-			right[i] = (2 * i + 2);
 			values[i] = Integer.MAX_VALUE;
 		}
 
@@ -103,9 +93,9 @@ public class CustomMinHeap {
 		values[nodeIdx] = value;
 
 		while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
-			swap(nodeIdx, (nodeIdx = parent[nodeIdx]));
+			swap(nodeIdx, (nodeIdx = parent(nodeIdx)));
 		}
-		
+
 	}
 
 	/**
@@ -186,8 +176,8 @@ public class CustomMinHeap {
 	 * @return The index of the parent node
 	 */
 	private static int parent(int i) {
-		 return (i - 1) / 2;
-		//return parent[i];
+		return (i - 1) / 2;
+
 	}
 
 	/**
@@ -198,8 +188,8 @@ public class CustomMinHeap {
 	 * @return The index of the left node
 	 */
 	private static int left(int i) {
-		//return (2 * i + 1);
-		return left[i];
+		return (2 * i + 1);
+
 	}
 
 	/**
@@ -210,16 +200,15 @@ public class CustomMinHeap {
 	 * @return The index of the right node
 	 */
 	private static int right(int i) {
-		 //return (2 * i + 2);
-		return right[i];
-
+		return (2 * i + 2);
+		
 	}
 
 	/**
 	 * Resets the min heap, equal to remove all nodes
 	 */
 	public void reset() {
-		size=0;
+		size = 0;
 	}
-	
+
 }
