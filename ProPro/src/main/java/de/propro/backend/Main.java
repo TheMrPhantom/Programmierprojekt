@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import de.propro.backend.dijkstra.CustomMinHeap;
 import de.propro.backend.dijkstra.Dijkstra;
 import de.propro.backend.dijkstra.DijktraResult;
 import de.propro.backend.reading.GraphReader;
@@ -54,8 +55,8 @@ public class Main {
 			} else if (args[0].equals("-f")) {
 				if (args.length > 1) {
 					try {
-					main.initGraph(args[1]);
-					}catch(IllegalStateException ex) {
+						main.initGraph(args[1]);
+					} catch (IllegalStateException ex) {
 						System.err.println(ex.getMessage());
 						System.exit(1);
 					}
@@ -161,7 +162,7 @@ public class Main {
 			}
 		}
 		System.out.println();
-		System.out.println("Time needed: "+output.time);
+		System.out.println("Time needed: " + output.time);
 		System.out.println("The path is " + output.length + "m long");
 		System.out.println("The path is " + output.path.size() + " nodes long");
 		return output;
@@ -193,7 +194,9 @@ public class Main {
 		buffi.close();
 
 		ArrayList<String> outputs = new ArrayList<String>();
-		Dijkstra d = new Dijkstra(reader);
+
+		CustomMinHeap heap = new CustomMinHeap(reader.getIndices().length);
+		Dijkstra d = new Dijkstra(reader, heap);
 
 		for (int i = 0; i < starts.size(); i++) {
 			int s = Integer.parseInt(starts.get(i));

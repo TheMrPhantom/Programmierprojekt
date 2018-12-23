@@ -218,4 +218,11 @@ public class CustomMinHeap {
 
 	}
 
+	/**
+	 * Resets the min heap, equal to remove all nodes
+	 */
+	public void reset() {
+		size=0;
+	}
+	
 }

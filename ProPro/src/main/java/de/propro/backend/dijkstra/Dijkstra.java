@@ -36,6 +36,30 @@ public class Dijkstra {
 
 	/**
 	 * 
+	 * Initializing all attributes needed for the dijkstra
+	 * 
+	 * @param reader        The inputed graph
+	 * @param priorityQueue Use this priorityQueue instead of creating a new one.
+	 *                      The method reset of the min heap is called in this
+	 *                      method
+	 */
+	public Dijkstra(GraphReader reader, CustomMinHeap priorityQueue) {
+		System.out.println("Initialising Dijkstra");
+		this.reader = reader;
+		int nodeCount = reader.getIndices().length;
+		this.priorityQueue = priorityQueue;
+		this.priorityQueue.reset();
+		lastNode = new int[nodeCount];
+		nodeCost = new int[nodeCount];
+		for (int i = 0; i < nodeCount; i++) {
+			lastNode[i] = Integer.MAX_VALUE;
+			nodeCost[i] = Integer.MAX_VALUE;
+		}
+		System.out.println("Finished initialising Dijkstra");
+	}
+
+	/**
+	 * 
 	 * Executes the dijkstra from a start node to an end node
 	 * 
 	 * @param start The start node index
@@ -247,7 +271,8 @@ public class Dijkstra {
 
 	/**
 	 * Resets the dijkstra object so it can be used for another dijkstra algorithm.
-	 * Must be called before every dijkstra if dijkstra was executed once.
+	 * Must be called before every dijkstra if dijkstra was executed once. The min
+	 * heap ist also reseted
 	 */
 	public void reset() {
 		int nodeCount = reader.getIndices().length;
@@ -258,6 +283,7 @@ public class Dijkstra {
 			lastNode[i] = Integer.MAX_VALUE;
 			nodeCost[i] = Integer.MAX_VALUE;
 		}
+		priorityQueue.reset();
 		System.out.println("Finished reseting Dijkstra");
 	}
 
