@@ -201,8 +201,8 @@ public class CustomMinHeap {
 	 * @return The index of the left node
 	 */
 	private static int left(int i) {
-		// return (2 * i + 1);
-		return left[i];
+		return (2 * i + 1);
+		//return left[i];
 	}
 
 	/**
@@ -213,8 +213,8 @@ public class CustomMinHeap {
 	 * @return The index of the right node
 	 */
 	private static int right(int i) {
-		// return (2 * i + 2);
-		return right[i];
+		 return (2 * i + 2);
+		//return right[i];
 
 	}
 

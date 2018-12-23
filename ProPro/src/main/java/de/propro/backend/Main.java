@@ -202,10 +202,12 @@ public class Main {
 			int s = Integer.parseInt(starts.get(i));
 			int e = Integer.parseInt(ends.get(i));
 
-			String temp = d.startToEnd(s, e).length + "";
-			outputs.add(temp);
-			System.out.println("Length: " + temp);
+			DijktraResult result = d.startToEnd(s, e);
 			d.reset();
+			outputs.add(result.length + "");
+			
+			System.out.println("Length: " + result.length);
+			System.out.println("Time: " + result + result.time);
 			System.out.println(i + "/" + starts.size());
 			System.out.println();
 		}
