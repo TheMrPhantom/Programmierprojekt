@@ -8,11 +8,12 @@ public class CustomMinHeap {
 
 	private int size;
 
-	private int left;
-	private int right;
-
 	private int swapIndices;
 	private int swapValues;
+	
+	private int[] parent;
+	private int[] left;
+	private int[] right;
 
 	/**
 	 * 
@@ -25,12 +26,17 @@ public class CustomMinHeap {
 		indices = new int[capacity];
 		values = new int[capacity];
 		node = new int[capacity];
-
+parent=new int[capacity];
+left=new int[capacity];
+right=new int[capacity];
 		size = capacity;
 
 		for (int i = 0; i < capacity; i++) {
 			indices[i] = i;
 			node[i] = i;
+			parent[i]=(i - 1) / 2;
+			left[i]=(2 * i + 1);
+			right[i]=(2 * i + 2);
 			values[i] = Integer.MAX_VALUE;
 		}
 
@@ -80,10 +86,10 @@ public class CustomMinHeap {
 		nodeIdx = node[nodeIdx];
 		values[nodeIdx] = value;
 
-		while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
-
-			swap(nodeIdx, (nodeIdx = parent(nodeIdx)));
-
+		//while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
+		while (nodeIdx != 0 && values[parent[nodeIdx]] > values[nodeIdx]) {
+			//swap(nodeIdx, (nodeIdx = parent(nodeIdx)));
+			swap(nodeIdx, (nodeIdx = parent[nodeIdx]));
 		}
 
 	}
@@ -118,8 +124,8 @@ public class CustomMinHeap {
 	 */
 	private void heapify(int i) {
 
-		left = left(i);
-		right = right(i);
+		int left = this.left[i];
+		int right = this.right[i];
 		int smallest = i;
 
 		if (left < size && values[left] < values[i])
