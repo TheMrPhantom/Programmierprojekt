@@ -161,6 +161,7 @@ public class Main {
 			}
 		}
 		System.out.println();
+		System.out.println("Time needed: "+output.time);
 		System.out.println("The path is " + output.length + "m long");
 		System.out.println("The path is " + output.path.size() + " nodes long");
 		return output;

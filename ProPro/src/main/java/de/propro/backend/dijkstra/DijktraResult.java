@@ -12,4 +12,5 @@ import java.util.ArrayList;
 public class DijktraResult {
 	public ArrayList<Integer> path;
 	public int length;
+	public double time;
 }

@@ -1,3 +1,4 @@
+/*
 package de.propro.tests;
 
 import static org.junit.Assert.assertEquals;
@@ -6,7 +7,7 @@ import org.junit.Test;
 import de.propro.backend.dijkstra.CustomMinHeap;
 
 public class MinHeapTest {
-	/*
+	
 	 * @Test public void testConstructor() {
 	 * 
 	 * @SuppressWarnings("unused") CustomMinHeap cmh = new CustomMinHeap(10000);
@@ -87,5 +88,5 @@ public class MinHeapTest {
 	 * min.pop()); assertEquals(10, min.pop()); assertEquals(12, min.pop());
 	 * 
 	 * }
-	 */
-}
+	 
+}*/

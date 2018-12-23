@@ -1,4 +1,4 @@
-package de.propro.tests;
+/*package de.propro.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,14 +14,14 @@ import de.propro.backend.dijkstra.DijktraResult;
 
 public class DijktraTest {
 	static Main main;
-/*
+
 	@BeforeClass
 	public static void init() {
 		main = new Main();
 		main.initGraph("bw.fmi");
 	}
-	*/
-/*
+	
+
 	@Test
 	public void checkDijktra0() {
 		testDijktra(1);
@@ -109,6 +109,6 @@ public class DijktraTest {
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
-	}*/
+	}
 
-}
+}*/

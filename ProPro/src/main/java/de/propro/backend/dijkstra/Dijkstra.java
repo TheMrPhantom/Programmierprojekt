@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import de.propro.backend.Main;
-import de.propro.backend.design.ProcessDisplay;
 import de.propro.backend.reading.GraphReader;
 
 public class Dijkstra {
@@ -79,13 +78,13 @@ public class Dijkstra {
 				costForViewedNode = this.nodeCost[popedNode];
 				/* For all edges of the active node */
 				for (int i = init; edges[i] == popedNode; i += 3) {
-					
+
 					newNode = edges[i + 1];
 
 					if (nodeCost[newNode] == Integer.MAX_VALUE) {
 						priorityQueue.push(newNode, Integer.MAX_VALUE);
 					}
-					
+
 					costOldPlusEdge = edges[i + 2] + costForViewedNode;
 					costOnlyNewNode = this.nodeCost[newNode];
 
@@ -121,7 +120,6 @@ public class Dijkstra {
 			}
 		}
 
-		System.out.printf("Time needed: %.2f Seconds\n", (System.currentTimeMillis() - time) / 1000.0);
 		System.out.println("Finished start to end Dijkstra");
 		System.out.println("Starting to collect path");
 
@@ -142,9 +140,11 @@ public class Dijkstra {
 			outputPath.add(rawPath.pop());
 		}
 		System.out.println("Finished collecting path");
+
 		DijktraResult result = new DijktraResult();
 		result.path = outputPath;
 		result.length = nodeCost[end];
+		result.time = (System.currentTimeMillis() - time) / 1000.0;
 		return result;
 	}
 
