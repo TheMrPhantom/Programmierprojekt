@@ -53,7 +53,11 @@ public class Main {
 				return;
 			} else if (args[0].equals("-f")) {
 				if (args.length > 1) {
+					try {
 					main.initGraph(args[1]);
+					}catch(IllegalStateException ex) {
+						System.err.println(ex.getMessage());
+					}
 				} else {
 					main.printIllegalArgumentsMessage();
 				}

@@ -47,7 +47,7 @@ public class NodeReader extends CustomReader {
 			isFinished = true;
 		} catch (FileNotFoundException e) {
 			System.out.println("File was not found");
-		} catch (IOException e) {
+		} catch (IOException | NullPointerException e) {
 			System.out.println("Error while reading file");
 		}
 

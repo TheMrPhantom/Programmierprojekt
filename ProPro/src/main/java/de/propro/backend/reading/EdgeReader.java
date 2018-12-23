@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 /**
  * Class using a Buffered Reader to read over the edges of given nodes and
  * storing these in an array. Additional basic functions like returning the read
@@ -22,7 +23,7 @@ public class EdgeReader extends CustomReader {
 	 * 
 	 * Initializes the edge reader with the given file
 	 * 
-	 * @param file The file of the graph
+	 * @param file       The file of the graph
 	 * @param numOfNodes The number of Node which should be skipped
 	 * @param numOfEdges The number of edges which should be read
 	 */
@@ -72,7 +73,7 @@ public class EdgeReader extends CustomReader {
 			isFinished = true;
 		} catch (FileNotFoundException e) {
 			System.out.println("File was not found");
-		} catch (IOException e) {
+		} catch (IOException | NullPointerException e) {
 			System.out.println("Error while reading file");
 		}
 	}
