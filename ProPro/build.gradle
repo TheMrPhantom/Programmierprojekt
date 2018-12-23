@@ -10,9 +10,7 @@
 apply plugin: 'java-library'
 
 apply plugin: 'java'
-tasks.withType(Compile) {
-    options.encoding = 'UTF-8'
-}
+compileJava.options.encoding = 'UTF-8'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
