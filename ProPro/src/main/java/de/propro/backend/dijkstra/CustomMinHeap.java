@@ -10,10 +10,10 @@ public class CustomMinHeap {
 
 	private int swapIndices;
 	private int swapValues;
-	
-	private int[] parent;
-	private int[] left;
-	private int[] right;
+
+	private static int[] parent;
+	private static int[] left;
+	private static int[] right;
 
 	/**
 	 * 
@@ -26,18 +26,33 @@ public class CustomMinHeap {
 		indices = new int[capacity];
 		values = new int[capacity];
 		node = new int[capacity];
-parent=new int[capacity];
-left=new int[capacity];
-right=new int[capacity];
-		size = capacity;
+		parent = new int[capacity];
+		left = new int[capacity];
+		right = new int[capacity];
+		size = 0;
 
 		for (int i = 0; i < capacity; i++) {
 			indices[i] = i;
 			node[i] = i;
-			parent[i]=(i - 1) / 2;
-			left[i]=(2 * i + 1);
-			right[i]=(2 * i + 2);
+			parent[i] = (i - 1) / 2;
+			left[i] = (2 * i + 1);
+			right[i] = (2 * i + 2);
 			values[i] = Integer.MAX_VALUE;
+		}
+
+	}
+
+	private void push(int nodeIdx, int cost) {
+
+		size++;
+		node[nodeIdx] = size - 1;
+
+		int nodeIndex = size - 1;
+		values[nodeIndex] = cost;
+
+		while (nodeIndex != 0 && values[parent(nodeIndex)] > values[nodeIndex]) {
+			swap(nodeIndex, parent(nodeIndex));
+			nodeIndex = parent(nodeIndex);
 		}
 
 	}
@@ -86,9 +101,7 @@ right=new int[capacity];
 		nodeIdx = node[nodeIdx];
 		values[nodeIdx] = value;
 
-		//while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
-		while (nodeIdx != 0 && values[parent[nodeIdx]] > values[nodeIdx]) {
-			//swap(nodeIdx, (nodeIdx = parent(nodeIdx)));
+		while (nodeIdx != 0 && values[parent(nodeIdx)] > values[nodeIdx]) {
 			swap(nodeIdx, (nodeIdx = parent[nodeIdx]));
 		}
 
@@ -124,8 +137,9 @@ right=new int[capacity];
 	 */
 	private void heapify(int i) {
 
-		int left = this.left[i];
-		int right = this.right[i];
+		int left = left(i);
+		int right = right(i);
+
 		int smallest = i;
 
 		if (left < size && values[left] < values[i])
@@ -133,7 +147,7 @@ right=new int[capacity];
 		if (right < size && values[right] < values[smallest])
 			smallest = right;
 
-		if (smallest == Integer.MAX_VALUE) {
+		if (values[smallest] == Integer.MAX_VALUE) {
 			return;
 		}
 		if (smallest != i) {
@@ -174,7 +188,8 @@ right=new int[capacity];
 	 * @return The index of the parent node
 	 */
 	private static int parent(int i) {
-		return (i - 1) / 2;
+		// return (i - 1) / 2;
+		return parent[i];
 	}
 
 	/**
@@ -185,7 +200,8 @@ right=new int[capacity];
 	 * @return The index of the left node
 	 */
 	private static int left(int i) {
-		return (2 * i + 1);
+		// return (2 * i + 1);
+		return left[i];
 	}
 
 	/**
@@ -196,7 +212,9 @@ right=new int[capacity];
 	 * @return The index of the right node
 	 */
 	private static int right(int i) {
-		return (2 * i + 2);
+		// return (2 * i + 2);
+		return right[i];
+
 	}
 
 }
