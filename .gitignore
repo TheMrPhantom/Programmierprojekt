@@ -3,4 +3,6 @@ ProPro/.gradle/
 
 ProPro/build/
 ProPro/bin/
+ProProWeb/build/
+ProProWeb/target/
 *.fmi
