@@ -29,7 +29,6 @@ public class GraphReader {
 		File f = new File(name);
 		if (f == null || !f.isFile()) {
 			System.err.println("File does not exist or is a directory");
-			System.exit(1);
 		}
 		this.file = f;
 		System.out.println("File found: " + this.file.getAbsolutePath());
