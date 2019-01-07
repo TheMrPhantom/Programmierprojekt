@@ -6,15 +6,13 @@ import javax.ws.rs.QueryParam;
 
 import de.propro.web.util.ServerSetup;
 
-@Path("api")
-public class API {
-
+@Path(ServerSetup.BASE_URL+"/internal")
+public class Internal {
 	@GET
-	@Path("internal/initGraph")
+	@Path("initGraph")
 	public String initGraph(@QueryParam("path") String path) {
 		ServerSetup.initializeGraph(path);
 		System.out.println("The path is: "+path);
 		return "OK";
 	}
-
 }
