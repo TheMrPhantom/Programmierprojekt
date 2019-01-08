@@ -1,4 +1,4 @@
-package de.propro.api;
+package de.propro.web.api;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

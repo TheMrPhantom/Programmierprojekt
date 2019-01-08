@@ -6,7 +6,7 @@
     <servlet-class>com.sun.jersey.server.impl.container.servlet.ServletAdaptor</servlet-class>
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
-      <param-value>de.propro.web</param-value>
+      <param-value>de.propro.web.api</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
