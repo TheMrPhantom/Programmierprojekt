@@ -18,48 +18,48 @@ import de.propro.web.util.ServerSetup;
 @Path(ServerSetup.BASE_URL)
 public class API {
 
-	@GET
-	@Path("test")
-	public Response test() {
-
-		ResponseBuilder response = Response.ok("dffd", MediaType.APPLICATION_JSON);
-		Response output = response.build();
-		return output;
-	}
-
-	@GET
-	@Path("test2")
-	@Consumes(MediaType.TEXT_PLAIN)
-	public Response test2(@QueryParam("tt") Double d) {
-
-		Dijkstra dijkstra = new Dijkstra(ServerSetup.reader);
-		DijkstraOneToAllResult dResult = dijkstra.oneToAll(23);
-
-		ResponseBuilder response = Response.ok("gg: " + d, MediaType.APPLICATION_JSON);
-		Response output = response.build();
-		return output;
-	}
-
 	/**
 	 * 
-	 * Request for the one to all Dijkstra
+	 * Handles a request for the one to all Dijkstra. You can either pass a nodeID
 	 * 
-	 * @param input The index of the node to start from
-	 * @return The time for the calculation and all results as json
+	 * @param nodeID    The index of the node to start from
+	 * @param latitude  The latitude of the coordinate. It's not required that the
+	 *                  latitude is a valid coordinate of a node.
+	 * @param longitude The latitude of the coordinate. It's not required that the
+	 *                  latitude is a valid coordinate of a node.
+	 * @return The processing time and the distance to all nodes from the start node
 	 */
 	@GET
 	@Path("oneToAll")
 	@Consumes(MediaType.TEXT_PLAIN)
-	public Response oneToAllDijkstra(@QueryParam("nodeID") int input) {
+	public Response oneToAllDijkstra(@QueryParam("nodeID") Integer nodeID, @QueryParam("lat") Double latitude,
+			@QueryParam("long") Double longitude) {
 
-		Dijkstra dijkstra = new Dijkstra(ServerSetup.reader);
-		DijkstraOneToAllResult dResult = dijkstra.oneToAll(input);
+		ResponseBuilder response = null;
+		Dijkstra dijkstra = null;
+		DijkstraOneToAllResult dResult = null;
+		Response output = null;
+		Gson jsonHandler = new Gson();
 
-		Gson jInput = new Gson();
-		jInput.toJson(dResult);
+		if (nodeID != null) {
+			/* Use node index */
+			dijkstra = new Dijkstra(ServerSetup.reader);
+			dResult = dijkstra.oneToAll(nodeID);
 
-		ResponseBuilder response = Response.ok(dResult, MediaType.APPLICATION_JSON);
-		Response output = response.build();
+			jsonHandler.toJson(dResult);
+
+			response = Response.ok(dResult, MediaType.APPLICATION_JSON);
+			output = response.build();
+		} else if (longitude != null && latitude != null) {
+			/* Use coordiantes */
+			output = oneToAllDijkstra(ServerSetup.reader.findNearestNode(latitude, longitude), null, null);
+
+		} else {
+			/* Report an error */
+			response = Response.status(412);
+			output = response.build();
+		}
+
 		return output;
 	}
 
@@ -73,10 +73,10 @@ public class API {
 	@GET
 	@Path("oneToAllSearch")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response oneToAllDijkstra2(String input) {
+	public Response oneToAllDijkstraSearch(String input) {
 
 		Gson jInput = new Gson();
-		OneToAllInput otai=jInput.fromJson(input, OneToAllInput.class);
+		OneToAllInput otai = jInput.fromJson(input, OneToAllInput.class);
 		Dijkstra dijkstra = new Dijkstra(ServerSetup.reader);
 		int nodeIdx = ServerSetup.reader.findNearestNode(otai.lat, otai.lng);
 		DijkstraOneToAllResult dResult = dijkstra.oneToAll(nodeIdx);
