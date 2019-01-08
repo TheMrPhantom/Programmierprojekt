@@ -1,4 +1,4 @@
-package de.propro.web.api;
+package de.propro.web;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -9,11 +9,12 @@ import de.propro.web.util.ServerSetup;
 @Path(ServerSetup.BASE_URL+"/internal")
 public class Internal {
 	
+	/*
 	@POST
 	@Path("initGraph")
 	public String initGraph(@QueryParam("path") String path) {
 		ServerSetup.initializeGraph(path);
 		System.out.println("The path is: "+path);
 		return "OK";
-	}
+	}*/
 }
