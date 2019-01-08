@@ -178,7 +178,7 @@ public class Dijkstra {
 	 * @param start The start node index
 	 * @param main  The main object for reading input
 	 */
-	public void oneToAll(int start, Main main) {
+	public DijkstraOneToAllResult oneToAll(int start) {
 		System.out.println("Starting one to all");
 
 		long time = System.currentTimeMillis();
@@ -188,7 +188,7 @@ public class Dijkstra {
 
 			System.err.println("Startknoten existiert nicht");
 
-			return;
+			return null;
 		}
 		int popedNode = priorityQueue.pop();
 		nodeCost[popedNode] = 0;
@@ -258,17 +258,12 @@ public class Dijkstra {
 		System.out.println("Finished one to all Dijkstra");
 
 		System.out.println((time2 - time) / 1000.0 + "s needed");
-		do {
-			try {
-				int node = Integer.parseInt(main.readLine("Cost to what node?"));
-				System.out.println(nodeCost[node]);
-			} catch (ArrayIndexOutOfBoundsException e) {
-				System.err.println("Node does not exist");
-			}catch(NumberFormatException e) {
-				System.err.println("Not a number");
-			}
-		} while (main.readLine("New request? (y/n)").equals("y"));
 
+		DijkstraOneToAllResult result = new DijkstraOneToAllResult();
+
+		result.time = (time2 - time) / 1000.0;
+		result.nodeCosts = nodeCost;
+		return result;
 	}
 
 	/**

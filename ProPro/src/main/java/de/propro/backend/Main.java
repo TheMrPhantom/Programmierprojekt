@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 import de.propro.backend.dijkstra.CustomMinHeap;
 import de.propro.backend.dijkstra.Dijkstra;
+import de.propro.backend.dijkstra.DijkstraOneToAllResult;
 import de.propro.backend.dijkstra.DijktraResult;
 import de.propro.backend.reading.GraphReader;
 
@@ -93,7 +94,17 @@ public class Main {
 				break;
 			case 1:
 				Dijkstra dijkstra = new Dijkstra(main.reader);
-				dijkstra.oneToAll(Integer.parseInt(main.readLine("Enter the id of the start node")), main);
+				DijkstraOneToAllResult result=dijkstra.oneToAll(Integer.parseInt(main.readLine("Enter the id of the start node")));
+				do {
+					try {
+						int node = Integer.parseInt(main.readLine("Cost to what node?"));
+						System.out.println(result.nodeCosts[node]);
+					} catch (ArrayIndexOutOfBoundsException e) {
+						System.err.println("Node does not exist");
+					}catch(NumberFormatException e) {
+						System.err.println("Not a number");
+					}
+				} while (main.readLine("New request? (y/n)").equals("y"));
 				break;
 			case 2:
 				try {
