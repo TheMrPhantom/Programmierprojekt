@@ -3,7 +3,6 @@ package de.propro.backend.dijkstra;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import de.propro.backend.Main;
 import de.propro.backend.reading.GraphReader;
 
 public class Dijkstra {
