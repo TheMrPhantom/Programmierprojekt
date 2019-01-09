@@ -125,7 +125,7 @@ public class GraphReader {
 	 */
 	public int findNearestNode(double latitude, double longitude) {
 		int num = coordinates.length;
-		int bestNodeIndex = 0;
+		int bestNodeIndex = -1;
 		double bestDistance = Double.MAX_VALUE;
 
 		double currentLat, currentLong, currentDistance;

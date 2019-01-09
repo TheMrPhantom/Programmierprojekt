@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import de.propro.backend.dijkstra.Dijkstra;
 import de.propro.backend.dijkstra.DijkstraOneToAllResult;
@@ -65,33 +66,26 @@ public class API {
 
 	/**
 	 * 
-	 * Request for the one to all Dijkstra
+	 * Finds the nearest node to given coordinates
 	 * 
-	 * @param input The latitude and longitude from the start node
-	 * @return The time for the calculation and all results as json
+	 * @param latitude Is required
+	 * @param longitude Is required
+	 * @return The index of the nearest node
 	 */
 	@GET
-	@Path("oneToAllSearch")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response oneToAllDijkstraSearch(String input) {
+	@Path("nearestNode")
+	@Consumes(MediaType.TEXT_PLAIN)
+	public Response oneToAllDijkstra(@QueryParam("lat") Double latitude, @QueryParam("long") Double longitude) {
 
-		Gson jInput = new Gson();
-		OneToAllInput otai = jInput.fromJson(input, OneToAllInput.class);
-		Dijkstra dijkstra = new Dijkstra(ServerSetup.reader);
-		int nodeIdx = ServerSetup.reader.findNearestNode(otai.lat, otai.lng);
-		DijkstraOneToAllResult dResult = dijkstra.oneToAll(nodeIdx);
+		ResponseBuilder response = null;
+		Gson jsonHandler = new Gson();
 
-		ResponseBuilder response;
-		String jsonOutput;
-		if (dResult != null) {
-			jsonOutput = jInput.toJson(dResult);
-			response = Response.ok(jsonOutput, MediaType.APPLICATION_JSON);
-		} else {
-			response = Response.status(412);
-		}
+		int nearest = ServerSetup.reader.findNearestNode(latitude, longitude);
+		JsonObject jo = new JsonObject();
+		jo.addProperty("nodeID", nearest);
 
-		Response output = response.build();
-		return output;
+		response = Response.ok(jsonHandler.toJson(jo), MediaType.APPLICATION_JSON);
+		return response.build();
 	}
 
 }
