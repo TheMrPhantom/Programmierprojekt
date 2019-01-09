@@ -15,7 +15,7 @@ import de.propro.backend.dijkstra.DijkstraOneToAllResult;
 import de.propro.web.json.OneToAllInput;
 import de.propro.web.util.ServerSetup;
 
-@Path(ServerSetup.BASE_URL)
+@Path("/public")
 public class API {
 
 	/**

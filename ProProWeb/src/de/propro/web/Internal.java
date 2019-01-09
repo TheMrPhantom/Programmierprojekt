@@ -6,7 +6,7 @@ import javax.ws.rs.QueryParam;
 
 import de.propro.web.util.ServerSetup;
 
-@Path(ServerSetup.BASE_URL+"/internal")
+@Path("/internal")
 public class Internal {
 	
 	@POST
