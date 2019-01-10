@@ -13,6 +13,10 @@ import com.google.gson.JsonObject;
 
 import de.propro.backend.dijkstra.Dijkstra;
 import de.propro.backend.dijkstra.DijkstraOneToAllResult;
+import de.propro.backend.dijkstra.DijktraResult;
+import de.propro.web.json.DijkstraResult;
+import de.propro.web.json.MultipleQueue;
+import de.propro.web.json.MultipleQueueResponse;
 import de.propro.web.json.OneToAllInput;
 import de.propro.web.util.ServerSetup;
 
@@ -32,7 +36,6 @@ public class API {
 	 */
 	@GET
 	@Path("oneToAll")
-	@Consumes(MediaType.TEXT_PLAIN)
 	public Response oneToAllDijkstra(@QueryParam("nodeID") Integer nodeID, @QueryParam("lat") Double latitude,
 			@QueryParam("long") Double longitude) {
 
@@ -47,9 +50,9 @@ public class API {
 			dijkstra = new Dijkstra(ServerSetup.reader);
 			dResult = dijkstra.oneToAll(nodeID);
 
-			jsonHandler.toJson(dResult);
+			String o = jsonHandler.toJson(dResult);
 
-			response = Response.ok(dResult, MediaType.APPLICATION_JSON);
+			response = Response.ok(o, MediaType.APPLICATION_JSON);
 			output = response.build();
 		} else if (longitude != null && latitude != null) {
 			/* Use coordiantes */
@@ -68,13 +71,12 @@ public class API {
 	 * 
 	 * Finds the nearest node to given coordinates
 	 * 
-	 * @param latitude Is required
+	 * @param latitude  Is required
 	 * @param longitude Is required
 	 * @return The index of the nearest node
 	 */
 	@GET
 	@Path("nearestNode")
-	@Consumes(MediaType.TEXT_PLAIN)
 	public Response oneToAllDijkstra(@QueryParam("lat") Double latitude, @QueryParam("long") Double longitude) {
 
 		ResponseBuilder response = null;
@@ -88,4 +90,35 @@ public class API {
 		return response.build();
 	}
 
+	/**
+	 * 
+	 * Finds the nearest node to given coordinates
+	 * 
+	 * @param latitude  Is required
+	 * @param longitude Is required
+	 * @return The index of the nearest node
+	 */
+	@GET
+	@Path("oneToAllQueue")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response startToEndDijkstra(String inputJson) {
+
+		ResponseBuilder response = null;
+		Gson jsonHandler = new Gson();
+		MultipleQueue queue = jsonHandler.fromJson(inputJson, MultipleQueue.class);
+		MultipleQueueResponse queResp = new MultipleQueueResponse(queue.startNodes.length);
+		Dijkstra dk = new Dijkstra(ServerSetup.reader);
+
+		for (int i = 0; i < queue.startNodes.length; i++) {
+			DijktraResult dr=dk.startToEnd(queue.startNodes[i], queue.endNodes[i]);
+			//TODO more stuff
+		}
+
+		
+		JsonObject jo = new JsonObject();
+		
+
+		response = Response.ok(jsonHandler.toJson(jo), MediaType.APPLICATION_JSON);
+		return response.build();
+	}
 }
