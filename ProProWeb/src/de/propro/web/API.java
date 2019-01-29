@@ -183,20 +183,26 @@ public class API {
 			dijkstra = new Dijkstra(ServerSetup.reader);
 			dResult = dijkstra.startToEnd(start, end);
 
-			ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>(dResult.path.size());
+			try {
+				ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>(dResult.path.size());
 
-			for (int i = 0; i < dResult.path.size(); i++) {
-				Coordinate cor = new Coordinate();
-				int nodeID = dResult.path.get(i);
-				cor.lat = ServerSetup.reader.getCoordinates()[nodeID * 2];
-				cor.lng = ServerSetup.reader.getCoordinates()[nodeID * 2 + 1];
-				coordinates.add(cor);
+				for (int i = 0; i < dResult.path.size(); i++) {
+					Coordinate cor = new Coordinate();
+					int nodeID = dResult.path.get(i);
+					cor.lat = ServerSetup.reader.getCoordinates()[nodeID * 2];
+					cor.lng = ServerSetup.reader.getCoordinates()[nodeID * 2 + 1];
+					coordinates.add(cor);
+				}
+
+				String o = jsonHandler.toJson(new GeoRoute(coordinates)).toString();
+
+				response = Response.ok(o, MediaType.APPLICATION_JSON);
+				output = response.build();
+			} catch (NullPointerException ex) {
+				/* Report an error */
+				response = Response.status(412);
+				output = response.build();
 			}
-
-			String o = jsonHandler.toJson(new GeoRoute(coordinates)).toString();
-
-			response = Response.ok(o, MediaType.APPLICATION_JSON);
-			output = response.build();
 		} else {
 			/* Report an error */
 			response = Response.status(412);

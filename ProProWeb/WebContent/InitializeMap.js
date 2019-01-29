@@ -6,10 +6,6 @@ function initResponse(temp) {
 
 }
 
-httpGetAsync(
-		"http://localhost:8080/ProProWeb/api/internal/initGraph?path=C:/Users/Justin/OneDrive - bwedu/GitHub/Programmierprojekt/ProProWeb/stgt.fmi",
-		initResponse);
-
 var mymap = L.map('propromap').setView([ 48.7451668, 9.1066026 ], 13);
 
 L.tileLayer(

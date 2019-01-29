@@ -29,12 +29,20 @@ function displayRoute(response) {
 	if (lastRequest != null) {
 		mymap.removeLayer(lastRequest);
 	}
+	
 	var layerPostalcodes = L.geoJSON().addTo(mymap);
 	layerPostalcodes.addData(JSON.parse(response));
 
 	lastRequest = new L.LayerGroup();
 	lastRequest.addTo(mymap);
 	lastRequest.addLayer(layerPostalcodes);
+
+	var resp = JSON.parse(response);
+
+	var popup = L.popup().setLatLng([ resp.avgNode.lat, resp.avgNode.lng ])
+			.setContent(
+					"The calculated path is " + resp.lengthInKM + " km long")
+			.openOn(mymap);
 
 }
 
