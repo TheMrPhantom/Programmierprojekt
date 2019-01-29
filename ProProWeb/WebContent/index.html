@@ -3,8 +3,41 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
+<link rel="stylesheet"
+	href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+	integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+	crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+	integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+	crossorigin=""></script>
+<link rel="stylesheet" href="Textfield.css" />
+
+<link href="https://fonts.googleapis.com/css?family=Rajdhani"
+	rel="stylesheet">
+<link href="Standards.css" rel="stylesheet">
+
 </head>
+
+
 <body>
-Hello World!
+
+	<div class="headline">ProProWeb</div>
+
+	<label for="inp" class="inp"> <input type="text"
+		id="inputStart" class="fancyFont" placeholder="&nbsp;"
+		onchange="checkRoute()"> <span class="label fancyFont">Start Node-ID</span> <span class="border"></span>
+	</label>
+
+	<label for="inp" class="inp"> <input type="text" id="inputEnd"
+		class="fancyFont" placeholder="&nbsp;" onchange="checkRoute()">
+		<span class="label fancyFont">End Node-ID</span> <span class="border"></span>
+	</label>
+
+	<div id="propromap"></div>
 </body>
+
+<link rel="stylesheet" type="text/css" href="Map.css">
+<script src="InitializeMap.js"></script>
+<script src="MapHandling.js"></script>
+
 </html>

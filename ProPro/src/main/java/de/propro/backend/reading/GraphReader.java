@@ -137,7 +137,7 @@ public class GraphReader {
 			currentDistance = Math.sqrt(Math.pow(latitude - currentLat, 2) + Math.pow(longitude - currentLong, 2));
 			if (currentDistance < bestDistance) {
 				bestDistance = currentDistance;
-				bestNodeIndex = i;
+				bestNodeIndex = i/2;
 			}
 		}
 		return bestNodeIndex;

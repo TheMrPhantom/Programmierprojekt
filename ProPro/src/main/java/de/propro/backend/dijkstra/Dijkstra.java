@@ -73,7 +73,7 @@ public class Dijkstra {
 		} catch (ArrayIndexOutOfBoundsException e) {
 
 			System.err.println("Startknoten existiert nicht");
-
+e.printStackTrace();
 			return null;
 		}
 		int popedNode = priorityQueue.pop();

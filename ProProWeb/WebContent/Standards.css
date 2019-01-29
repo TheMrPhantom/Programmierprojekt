@@ -1,0 +1,11 @@
+@charset "ISO-8859-1";
+
+.headline {
+	margin: auto;
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 50px
+}
+
+.fancyFont{
+	font-family: 'Rajdhani', sans-serif;
+}
