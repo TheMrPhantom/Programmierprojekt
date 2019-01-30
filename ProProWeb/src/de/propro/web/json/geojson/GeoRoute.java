@@ -2,8 +2,6 @@ package de.propro.web.json.geojson;
 
 import java.util.ArrayList;
 
-import org.apache.tomcat.util.file.Matcher;
-
 import de.propro.web.json.Coordinate;
 
 public class GeoRoute {
@@ -33,11 +31,23 @@ public class GeoRoute {
 			double latB = coordinates.get(i + 1).lat;
 			double lngB = coordinates.get(i + 1).lng;
 
-			double latR = latB - latA;
-			double lngR = lngB - lngA;
+			distance += distFrom(latA, lngA, latB, lngB);
 
-			distance += Math.sqrt(Math.pow(latR, 2) + Math.pow(lngR, 2));
 		}
-		this.lengthInKM = Math.round(distance * 10000) / 100.0;
+		
+		this.lengthInKM = Math.round(distance/10.0) / 100.0;
 	}
+
+	private static double distFrom(double lat1, double lng1, double lat2, double lng2) {
+		double earthRadius = 6371000; // meters
+		double dLat = Math.toRadians(lat2 - lat1);
+		double dLng = Math.toRadians(lng2 - lng1);
+		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(lat1))
+				* Math.cos(Math.toRadians(lat2)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		float dist = (float) (earthRadius * c);
+
+		return dist;
+	}
+
 }

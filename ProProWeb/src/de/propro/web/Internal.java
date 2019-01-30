@@ -10,6 +10,8 @@ import de.propro.web.util.ServerSetup;
 @Path("/internal")
 public class Internal {
 	
+	//http://localhost:8080/ProProWeb/api/internal/initGraph?path=/home/kingfisher/Git/Programmierprojekt/ProProWeb/germany.fmi
+	
 	@GET
 	@Path("initGraph")
 	public String initGraph(@QueryParam("path") String path) {
