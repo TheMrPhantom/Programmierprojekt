@@ -5,4 +5,4 @@ sudo apt install default-jdk
 sudo apt install maven
 $CATALINA_HOME/bin/startup.sh
 sudo rm $CATALINA_HOME/webapps/ROOT/ -r
-sudo cp /ProProWeb/target/ProProWeb-0.1.war sudo rm $CATALINA_HOME/webapps/ROOT.war
+sudo mv /ProProWeb/target/ProProWeb-0.1.war sudo rm $CATALINA_HOME/webapps/ROOT.war
