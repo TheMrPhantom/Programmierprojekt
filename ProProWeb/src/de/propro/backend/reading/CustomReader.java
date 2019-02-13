@@ -11,7 +11,8 @@ public abstract class CustomReader implements Runnable {
 
 	protected final File file;
 	protected boolean isFinished;
-
+	protected boolean isSuccessfull;
+	
 	/**
 	 * 
 	 * Initializes the attributes
@@ -21,6 +22,7 @@ public abstract class CustomReader implements Runnable {
 	public CustomReader(File file) {
 		this.file = file;
 		this.isFinished = false;
+		this.isSuccessfull=false;
 	}
 
 	/**

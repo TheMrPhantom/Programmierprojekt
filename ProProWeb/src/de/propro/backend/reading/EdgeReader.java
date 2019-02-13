@@ -71,6 +71,7 @@ public class EdgeReader extends CustomReader {
 			}
 			System.out.println("Finished reading Edges");
 			isFinished = true;
+			isSuccessfull=true;
 		} catch (FileNotFoundException e) {
 			System.out.println("File was not found");
 		} catch (IOException | NullPointerException e) {

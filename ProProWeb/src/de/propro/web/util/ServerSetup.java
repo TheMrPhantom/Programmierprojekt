@@ -7,7 +7,7 @@ public class ServerSetup {
 	
 	public static GraphReader reader;
 
-	public static void initializeGraph(String path) {
+	public static void initializeGraph(String path) throws IllegalStateException{
 		reader = new GraphReader(path);
 		reader.readDataFast();
 	}

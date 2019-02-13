@@ -29,11 +29,12 @@ public class GraphReader {
 		File f = new File(name);
 		if (f == null || !f.isFile()) {
 			System.err.println("File does not exist or is a directory");
+		} else {
+			System.out.println("File found: " + this.file.getAbsolutePath());
+			System.out.println("Graph reader initialized");
+			System.out.println();
 		}
 		this.file = f;
-		System.out.println("File found: " + this.file.getAbsolutePath());
-		System.out.println("Graph reader initialized");
-		System.out.println();
 	}
 
 	/**
@@ -76,6 +77,10 @@ public class GraphReader {
 			t2.join();
 		} catch (InterruptedException e) {
 			System.out.println("Internal threading error");
+		}
+
+		if (!edges.isSuccessfull || !nodes.isSuccessfull) {
+			throw new IllegalStateException("The reading failed");
 		}
 
 		this.edges = edges.getEdges();
@@ -137,7 +142,7 @@ public class GraphReader {
 			currentDistance = Math.sqrt(Math.pow(latitude - currentLat, 2) + Math.pow(longitude - currentLong, 2));
 			if (currentDistance < bestDistance) {
 				bestDistance = currentDistance;
-				bestNodeIndex = i/2;
+				bestNodeIndex = i / 2;
 			}
 		}
 		return bestNodeIndex;
