@@ -1,8 +1,4 @@
-ProPro/.gradle/
-/bin/
-
-ProPro/build/
-ProPro/bin/
+ProProWeb/WebContent/META-INF/maven
 ProProWeb/build/
 ProProWeb/target/
 *.fmi

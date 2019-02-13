@@ -6,6 +6,7 @@ function initResponse(temp) {
 
 }
 
+var baseURL=window.location.host;
 var mymap = L.map('propromap').setView([ 48.7451668, 9.1066026 ], 13);
 
 L.tileLayer(

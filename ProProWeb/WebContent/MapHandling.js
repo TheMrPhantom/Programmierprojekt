@@ -48,7 +48,7 @@ function displayRoute(response) {
 
 function onMapClick(e) {
 
-	httpGetAsync("http://localhost:8080/ProProWeb/api/public/nearestNode?lat="
+	httpGetAsync(baseURL+"/api/public/nearestNode?lat="
 			+ e.latlng.lat + "&long=" + e.latlng.lng, mapWasClicked);
 
 }
@@ -59,7 +59,7 @@ function checkRoute() {
 
 	if (inputStart.value != "" && inputEnd.value != "") {
 		httpGetAsync(
-				"http://localhost:8080/ProProWeb/api/public/startToEndGeo?start="
+				baseURL+"/api/public/startToEndGeo?start="
 						+ inputStart.value + "&end=" + inputEnd.value,
 				displayRoute);
 	}
