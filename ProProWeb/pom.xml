@@ -85,6 +85,11 @@
 			<artifactId>leafletjs-lib</artifactId>
 			<version>0.7.3</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>2.5.1</version>
+		</dependency>
 	</dependencies>
 
 </project>
