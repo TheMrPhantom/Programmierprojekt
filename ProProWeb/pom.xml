@@ -81,11 +81,6 @@
 			<version>1.19.4</version>
 		</dependency>
 		<dependency>
-			<groupId>ProPro</groupId>
-			<artifactId>backend</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
 			<groupId>com.bytebybyte.gwt</groupId>
 			<artifactId>leafletjs-lib</artifactId>
 			<version>0.7.3</version>
