@@ -23,6 +23,14 @@ public abstract class CustomReader implements Runnable {
 		this.file = file;
 		this.isFinished = false;
 		this.isSuccessfull=false;
+
+		if (this.file == null || !this.file.isFile()) {
+			System.err.println("File does not exist or is a directory");
+		} else {
+			System.out.println("File found: " + this.file.getAbsolutePath());
+			System.out.println("Graph reader initialized");
+			System.out.println();
+		}
 	}
 
 	/**

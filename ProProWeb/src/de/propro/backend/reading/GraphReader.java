@@ -26,7 +26,9 @@ public class GraphReader {
 	 * @param name The path to the graph which should be read
 	 */
 	public GraphReader(String name) {
+		name = name.replaceFirst("^~", System.getProperty("user.home"));
 		File f = new File(name);
+		this.file = f;
 		if (f == null || !f.isFile()) {
 			System.err.println("File does not exist or is a directory");
 		} else {
@@ -34,7 +36,6 @@ public class GraphReader {
 			System.out.println("Graph reader initialized");
 			System.out.println();
 		}
-		this.file = f;
 	}
 
 	/**
