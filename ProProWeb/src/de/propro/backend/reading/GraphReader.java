@@ -26,7 +26,7 @@ public class GraphReader {
 	 * @param name The path to the graph which should be read
 	 */
 	public GraphReader(String name) {
-		name = name.replaceFirst("^~", System.getProperty("user.home"));
+		name = name.replaceFirst("~", System.getProperty("user.home"));
 		File f = new File(name);
 		this.file = f;
 		if (f == null || !f.isFile()) {
