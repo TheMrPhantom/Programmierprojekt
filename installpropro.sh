@@ -7,7 +7,7 @@ sudo apt install maven
 sudo $CATALINA_HOME/bin/startup.sh
 sudo rm $CATALINA_HOME/webapps/ROOT.war
 sudo rm $CATALINA_HOME/webapps/ROOT/ -r
-mvn -f ProProWeb/pom.xml clean install
+mvn -f clean install
 sudo mv ProProWeb/target/ProProWeb-0.1.war $CATALINA_HOME/webapps/ROOT.war
 echo "Please insert the absolute path to the graph file:"
 read pathToFile
