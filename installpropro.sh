@@ -8,7 +8,7 @@ sudo $CATALINA_HOME/bin/startup.sh
 sudo rm $CATALINA_HOME/webapps/ROOT.war
 sudo rm $CATALINA_HOME/webapps/ROOT/ -r
 mvn -f clean install
-sudo mv ProProWeb/target/ProProWeb-0.1.war $CATALINA_HOME/webapps/ROOT.war
+sudo mv target/ProProWeb-0.1.war $CATALINA_HOME/webapps/ROOT.war
 echo "Please insert the absolute path to the graph file:"
 read pathToFile
 curl "localhost:8080/api/internal/initGraph?path=$pathToFile"
