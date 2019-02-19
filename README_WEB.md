@@ -10,6 +10,8 @@ We decided to use Java for our backend and html, css and JavaScript for the fron
   - org.json
   - com.bytebybyte.gwt
   - org.eclipse.persistence
+  
+Maven will download these dependencies while building
 
 ## Packaging
 Our project is packaged by maven as .war file to deploy it easyly on a tomcat webserver
@@ -28,3 +30,10 @@ Our building script executes the follwing steps:
 7. Deploying it as ROOT.war in the Tomcat7 webapps folder (Renaming it because only ROOT.war files will be deployed on the root adress of the Tomcat server)
 8. Asking for the path to the graph file
 9. Initializing the backend with the given graph file
+
+## Using
+The script deployes the project under localhost:8080. **The backend has to be initialized before clicking on the map  (Request to `localhost:8080/api/internal/initGraph?path=<PATH>`, this request is made inside the install script) otherwise a http error is thrown.**
+
+You can now choose on the frontend the either choose 2 node ids for start and end or just click on 2 points on the map to calculate a path. Clicking on the map will fill the text boxes. If the content of the textboxes change and both textboxes are not empty a request to the backend is send.
+
+Clicking on the map will also show the coordinates and the node id as small popup
