@@ -1,4 +1,4 @@
-CATALINA_HOME=/opt/tomcat/apache-tomcat-7.0.92
+CATALINA_HOME=/opt/tomcat/apache-tomcat-7.0.96
 sudo $CATALINA_HOME/bin/shutdown.sh
 sudo rm $CATALINA_HOME/webapps/ROOT.war
 sudo rm $CATALINA_HOME/webapps/ROOT/ -r
