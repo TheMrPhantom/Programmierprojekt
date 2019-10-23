@@ -1,2 +1,4 @@
 language: java
-script: ./travisbuild.sh
+script:
+  - cd ProProWeb
+  - mvn clean install
