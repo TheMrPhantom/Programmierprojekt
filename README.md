@@ -23,8 +23,10 @@ While running the skript will ask you a few times to confirm the installation of
 At the end it may ask you "What would you like to do about menu.lst?" then just type keep and you are done with preparing and building.
 Afterwards you can find **ProPro.jar** in `./build/libs/`
 
+## How To Frontend
+[See here](https://github.com/TheMrPhantom/Programmierprojekt/blob/master/README_WEB.md)
 
-## Running the software
+## How To Backend standalone (deprecated)
 
 To run the software, locate **ProPro.jar** (by default in `./build/libs/`) and run the following command:
 ```
