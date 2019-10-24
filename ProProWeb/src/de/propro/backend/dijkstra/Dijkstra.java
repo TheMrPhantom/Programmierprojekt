@@ -76,8 +76,8 @@ public class Dijkstra {
 e.printStackTrace();
 			return null;
 		}
-		int popedNode = priorityQueue.pop();
-		nodeCost[popedNode] = 0;
+		int poppedNode = priorityQueue.pop();
+		nodeCost[poppedNode] = 0;
 
 		int newNode;
 		int costOldPlusEdge;
@@ -86,21 +86,21 @@ e.printStackTrace();
 		int[] edges = reader.getEdges();
 		int costForViewedNode;
 		long time = System.currentTimeMillis();
-		while (popedNode != end) {
+		while (poppedNode != end) {
 			/* Get the index in the edge list for the node we look at */
-			int init = indices[popedNode];
+			int init = indices[poppedNode];
 
 			/* If the node is not reachable the index is -1 */
 			if (init == -1) {
 				/* Then skip */
-				popedNode = priorityQueue.pop();
+				poppedNode = priorityQueue.pop();
 
 				continue;
 			}
 			try {
-				costForViewedNode = this.nodeCost[popedNode];
+				costForViewedNode = this.nodeCost[poppedNode];
 				/* For all edges of the active node */
-				for (int i = init; edges[i] == popedNode; i += 3) {
+				for (int i = init; edges[i] == poppedNode; i += 3) {
 
 					newNode = edges[i + 1];
 
@@ -121,7 +121,7 @@ e.printStackTrace();
 							throw new IllegalStateException("Node is not reachable");
 						}
 
-						lastNode[newNode] = popedNode;
+						lastNode[newNode] = poppedNode;
 
 					}
 
@@ -136,10 +136,10 @@ e.printStackTrace();
 			/* If there are more node repeat as long as we are not at the start */
 			if (!priorityQueue.isEmpty()) {
 
-				popedNode = priorityQueue.pop();
+				poppedNode = priorityQueue.pop();
 
 			} else {
-				popedNode = end;
+				poppedNode = end;
 			}
 		}
 
@@ -189,8 +189,8 @@ e.printStackTrace();
 
 			return null;
 		}
-		int popedNode = priorityQueue.pop();
-		nodeCost[popedNode] = 0;
+		int poppedNode = priorityQueue.pop();
+		nodeCost[poppedNode] = 0;
 
 		int newNode;
 		int costOldPlusEdge;
@@ -203,19 +203,19 @@ e.printStackTrace();
 		/* Start of the dijkstra */
 		while (!finished) {
 			/* Get the index in the edge list for the node we look at */
-			int init = indices[popedNode];
+			int init = indices[poppedNode];
 
 			/* If the node is not reachable the index is -1 */
 			if (init == -1) {
 				/* Then skip */
-				popedNode = priorityQueue.pop();
+				poppedNode = priorityQueue.pop();
 
 				continue;
 			}
 			try {
-				costForViewedNode = this.nodeCost[popedNode];
+				costForViewedNode = this.nodeCost[poppedNode];
 				/* For all edges of the active node */
-				for (int i = init; edges[i] == popedNode; i += 3) {
+				for (int i = init; edges[i] == poppedNode; i += 3) {
 					newNode = edges[i + 1];
 					if (nodeCost[newNode] == Integer.MAX_VALUE) {
 						priorityQueue.push(newNode, Integer.MAX_VALUE);
@@ -230,7 +230,7 @@ e.printStackTrace();
 							nodeCost[newNode] = costOldPlusEdge;
 							priorityQueue.decreaseValue(newNode, costOldPlusEdge);
 						}
-						lastNode[newNode] = popedNode;
+						lastNode[newNode] = poppedNode;
 					}
 				}
 
@@ -243,7 +243,7 @@ e.printStackTrace();
 			/* If there are more node repeat as long as we are not at the start */
 			if (!priorityQueue.isEmpty()) {
 
-				popedNode = priorityQueue.pop();
+				poppedNode = priorityQueue.pop();
 
 			} else {
 				finished = true;
